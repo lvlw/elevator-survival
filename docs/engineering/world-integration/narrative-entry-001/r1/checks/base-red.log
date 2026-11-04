@@ -1,0 +1,507 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/state/residence-session/narrative-r1.test.ts src/ui/infected-world/narrative-r1.test.tsx --maxWorkers=2 --reporter=verbose
+
+
+ RUN  v4.1.10 C:/Users/zjl/.codex/visualizations/2026/10/30/01a18dbc-1d81-7312-99ab-903daead5d63/NARRATIVE-R1/red-run
+
+ × src/state/residence-session/narrative-r1.test.ts > real atomic hotel producer through facade/controller consumes and saves once, without search receipt or Feed 271ms
+   → expected { scope: {}, ordinal: 1, …(1) } to be undefined
+ × src/state/residence-session/narrative-r1.test.ts > controlled binding receipt witness fault is diagnostic after the one real committed search 118ms
+   → expected undefined to be 'projection-unavailable' // Object.is equality
+ × src/state/residence-session/narrative-r1.test.ts > controlled site receipt witness fault is diagnostic after the one real committed search 102ms
+   → expected { scope: {}, ordinal: 4, …(1) } to be undefined
+ × src/ui/infected-world/narrative-r1.test.tsx > P06 actually displays cabinet and habits before any creation; explicit completion records only displayed content 99ms
+   → the given combination of arguments (undefined and string) is invalid for this assertion. You can use an array, a map, an object, a set, a string, or a weakset instead of a string
+ × src/state/residence-session/narrative-r1.test.ts > controlled resource receipt witness fault is diagnostic after the one real committed search 123ms
+   → expected undefined to be 'projection-unavailable' // Object.is equality
+ × src/state/residence-session/narrative-r1.test.ts > controlled tool-binding receipt witness fault is diagnostic after the one real committed search 111ms
+   → expected { scope: {}, ordinal: 4, …(1) } to be undefined
+ × src/ui/infected-world/narrative-r1.test.tsx > skipped P06 can create through real choices but never becomes read 13ms
+   → DOM_TEST_ASSERTION: button 略过准备叙事; visible=确认创建
+ × src/ui/infected-world/narrative-r1.test.tsx > real ordinary search uses lightweight prose below the scene, and the next action does not mark it read 352ms
+   → expected <section class="iw-stage" …(1)>…(6)</section> to be null
+ × src/ui/infected-world/narrative-r1.test.tsx > workorder has three bounded cards, final ACK only after the displayed last card, with retired ACK inert 212ms
+   → expected '刚刚发生停用工单旧转运计划上压着一张日期更晚、字迹更急的纸。\n“暂停接驳…' to contain '1 / 3'
+
+ Test Files  2 failed (2)
+      Tests  9 failed (9)
+   Start at  00:56:17
+   Duration  5.64s (transform 4.73s, setup 0ms, import 5.75s, tests 1.40s, environment 3.10s)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/state/residence-session/narrative-r1.test.ts > real atomic hotel producer through facade/controller consumes and saves once, without search receipt or Feed
+AssertionError: expected { scope: {}, ordinal: 1, …(1) } to be undefined
+
+- Expected:
+undefined
+
++ Received:
+{
+  "ordinal": 1,
+  "receipt": {
+    "kind": "search",
+    "method": null,
+    "resource": null,
+    "revealed": 0,
+    "story": null,
+  },
+  "scope": {},
+}
+
+ ❯ src/state/residence-session/narrative-r1.test.ts:24:67
+     22|  h.storage.write.mockClear();h.listener.mockClear()
+     23|  const result=controller.execute(input)
+     24|  expect(result.kind).toBe('committed');expect(result.exploration).toBe…
+       |                                                                   ^
+     25|  expect(result.snapshot.feed.map(e=>e.text).join('|')).not.toContain('…
+     26|  expect(playerItem(facade.player,'压缩口粮','backpack').quantity).toBe(2)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  src/state/residence-session/narrative-r1.test.ts > controlled binding receipt witness fault is diagnostic after the one real committed search
+ FAIL  src/state/residence-session/narrative-r1.test.ts > controlled resource receipt witness fault is diagnostic after the one real committed search
+AssertionError: expected undefined to be 'projection-unavailable' // Object.is equality
+
+- Expected:
+"projection-unavailable"
+
++ Received:
+undefined
+
+ ❯ src/state/residence-session/narrative-r1.test.ts:45:40
+     43|   const result=send(h.owner,'source','药房搜索',{item:tool.selector},'lit')
+     44|   expect(result.kind).toBe('committed');expect(result.exploration).toB…
+     45|   expect(result.explorationDiagnostic).toBe('projection-unavailable')
+       |                                        ^
+     46|   expect(o.counts()).toMatchObject({dispatch:1,current:1,notices:1,sou…
+     47|   expect(h.setItem.mock.calls.filter(([k])=>k===CHECKPOINT_KEY)).toHav…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  src/state/residence-session/narrative-r1.test.ts > controlled site receipt witness fault is diagnostic after the one real committed search
+AssertionError: expected { scope: {}, ordinal: 4, …(1) } to be undefined
+
+- Expected:
+undefined
+
++ Received:
+{
+  "ordinal": 4,
+  "receipt": {
+    "kind": "search",
+    "method": "lit",
+    "resource": {
+      "kind": "charge",
+      "spent": 1,
+    },
+    "revealed": 0,
+    "story": "H03",
+  },
+  "scope": {},
+}
+
+ ❯ src/state/residence-session/narrative-r1.test.ts:44:68
+     42|   const tool=ready(h.owner).carried.find(i=>i.container==='utility')!
+     43|   const result=send(h.owner,'source','药房搜索',{item:tool.selector},'lit')
+     44|   expect(result.kind).toBe('committed');expect(result.exploration).toB…
+       |                                                                    ^
+     45|   expect(result.explorationDiagnostic).toBe('projection-unavailable')
+     46|   expect(o.counts()).toMatchObject({dispatch:1,current:1,notices:1,sou…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  src/state/residence-session/narrative-r1.test.ts > controlled tool-binding receipt witness fault is diagnostic after the one real committed search
+AssertionError: expected { scope: {}, ordinal: 4, …(1) } to be undefined
+
+- Expected:
+undefined
+
++ Received:
+{
+  "ordinal": 4,
+  "receipt": {
+    "kind": "search",
+    "method": "lit",
+    "resource": null,
+    "revealed": 2,
+    "story": "H03",
+  },
+  "scope": {},
+}
+
+ ❯ src/state/residence-session/narrative-r1.test.ts:44:68
+     42|   const tool=ready(h.owner).carried.find(i=>i.container==='utility')!
+     43|   const result=send(h.owner,'source','药房搜索',{item:tool.selector},'lit')
+     44|   expect(result.kind).toBe('committed');expect(result.exploration).toB…
+       |                                                                    ^
+     45|   expect(result.explorationDiagnostic).toBe('projection-unavailable')
+     46|   expect(o.counts()).toMatchObject({dispatch:1,current:1,notices:1,sou…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  src/ui/infected-world/narrative-r1.test.tsx > P06 actually displays cabinet and habits before any creation; explicit completion records only displayed content
+AssertionError: the given combination of arguments (undefined and string) is invalid for this assertion. You can use an array, a map, an object, a set, a string, or a weakset instead of a string
+ ❯ src/ui/infected-world/narrative-r1.test.tsx:9:67
+      7|  try{
+      8|   await h.d.button('略过叙事，查看任务');await h.d.button('准备出发')
+      9|   expect(h.host.querySelector('[aria-label="补给柜"]')?.textContent).toCo…
+       |                                                                   ^
+     10|   expect(h.host.textContent).toContain('生前的习惯');expect(h.host.textCont…
+     11|   expect(h.entropy).not.toHaveBeenCalled();expect(h.setItem).not.toHav…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  src/ui/infected-world/narrative-r1.test.tsx > skipped P06 can create through real choices but never becomes read
+Error: DOM_TEST_ASSERTION: button 略过准备叙事; visible=确认创建
+ ❯ assert src/ui/infected-world/route-test-fixtures.ts:12:99
+     10| export function createUiDriver(options: UiDriverOptions) {
+     11|   const doc = options.document, view = options.getView
+     12|   function assert(condition: unknown, message: string): asserts condit…
+       |                                                                                                   ^
+     13|   const buttons = () => [...doc.querySelectorAll<HTMLButtonElement>('b…
+     14|   async function button(label: string) {
+ ❯ Object.button src/ui/infected-world/route-test-fixtures.ts:17:5
+ ❯ src/ui/infected-world/narrative-r1.test.tsx:18:71
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  src/ui/infected-world/narrative-r1.test.tsx > real ordinary search uses lightweight prose below the scene, and the next action does not mark it read
+AssertionError: expected <section class="iw-stage" …(1)>…(6)</section> to be null
+
+- Expected:
+null
+
++ Received:
+<section
+  class="iw-stage"
+  data-scene="医院/药房"
+>
+  <img
+    alt=""
+    aria-hidden="true"
+    class="iw-scene-plate"
+    src="/src/assets/presentation/world-ui-v1/bg-h2-v1.png"
+    style="object-position: 50% 42%;"
+  />
+  <div
+    aria-hidden="true"
+    class="iw-scene-shade"
+  />
+  <div
+    class="iw-entry-story"
+  >
+    <section
+      aria-label="当前叙事"
+      class="iw-narrative"
+    >
+      <header>
+        <small>
+          刚刚发生
+        </small>
+        <strong>
+          亲手搜索
+        </strong>
+      </header>
+      <p
+        class="iw-story-copy"
+      >
+        光束扫过台面，你避开碎玻璃。
+找到的东西留在现场，是否带走由你决定。
+      </p>
+      <div
+        class="iw-story-controls"
+      >
+        <button>
+          读毕
+        </button>
+        <button>
+          略过本段
+        </button>
+        <button
+          aria-label="收起叙事"
+        >
+          收起
+        </button>
+      </div>
+    </section>
+    <details
+      class="iw-records"
+    >
+      <summary>
+        剧情记录
+      </summary>
+      <nav
+        aria-label="已知剧情记录"
+      >
+        <button>
+          断掉的声音
+          <small>
+            已略过
+          </small>
+        </button>
+        <button>
+          没有楼层的显示屏
+          <small>
+            已略过
+          </small>
+        </button>
+        <button>
+          长椅上的本子
+          <small>
+            已略过
+          </small>
+        </button>
+        <button>
+          准备期结束
+          <small>
+            已略过
+          </small>
+        </button>
+        <button>
+          首次委托
+          <small>
+            已读
+          </small>
+        </button>
+        <button>
+          准备出发
+          <small>
+            已读
+          </small>
+        </button>
+        <button>
+          门开之后
+          <small>
+            未读
+          </small>
+        </button>
+        <button>
+          仍在循环的广播
+          <small>
+            未读
+          </small>
+        </button>
+        <button>
+          亲手搜索
+          <small>
+            未读
+          </small>
+        </button>
+      </nav>
+    </details>
+  </div>
+  <header
+    class="iw-room-heading"
+  >
+    <div>
+      <p
+        class="iw-eyebrow"
+      >
+        医院
+         / 当前地点
+      </p>
+      <h1>
+        药房
+      </h1>
+    </div>
+    <div
+      style="margin-right: 120px;"
+    />
+  </header>
+  <div
+    class="iw-scene-card"
+  >
+    <div
+      class="iw-room-content"
+    >
+      <section
+        aria-label="当前现场互动"
+        class="iw-room-interactions"
+      >
+        <div
+          class="iw-source"
+        >
+          <strong>
+            药房搜索
+          </strong>
+          <span
+            class="iw-muted"
+          >
+            已处理
+          </span>
+        </div>
+      </section>
+      <section
+        aria-label="当前地面物"
+        class="iw-ground"
+        data-empty="false"
+      >
+        <header>
+          <h2>
+            现场物品 
+            <small>
+              2
+               件
+            </small>
+          </h2>
+          <button
+            type="button"
+          >
+            收起结果
+          </button>
+        </header>
+        <div
+          class="iw-ground-items"
+        >
+          <article>
+            <span
+              class="iw-item-hint"
+              style="display: contents;"
+            >
+              <button
+                aria-label="查看绷带详情"
+                class="iw-ground-inspect"
+                type="button"
+              >
+                <img … />
+                <span … />
+              </button>
+            </span>
+            <span
+              class="iw-action-entry"
+            >
+              <button
+                aria-label="拾取 绷带"
+                type="button"
+              >
+                拾取
+              </button>
+            </span>
+          </article>
+          <article>
+            <span
+              class="iw-item-hint"
+              style="display: contents;"
+            >
+              <button
+                aria-label="查看止痛药详情"
+                class="iw-ground-inspect"
+                type="button"
+              >
+                <img … />
+                <span … />
+              </button>
+            </span>
+            <span
+              class="iw-action-entry"
+            >
+              <button
+                aria-label="拾取 止痛药"
+                type="button"
+              >
+                拾取
+              </button>
+            </span>
+          </article>
+        </div>
+      </section>
+    </div>
+    <nav
+      aria-label="相邻方向"
+      class="iw-travel"
+    >
+      <strong>
+        前往
+      </strong>
+      <div>
+        <span
+          class="iw-action-entry"
+        >
+          <button
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+            >
+              ↗
+            </span>
+             
+            大厅
+            <small>
+              精力 
+              2
+            </small>
+          </button>
+        </span>
+      </div>
+    </nav>
+    <nav
+      aria-label="当前地点行动"
+      class="iw-local-actions"
+    >
+      <span
+        class="iw-action-entry"
+      >
+        <button
+          type="button"
+        >
+          原位休整
+        </button>
+      </span>
+    </nav>
+  </div>
+  <details
+    class="iw-presentation-settings"
+  >
+    <summary>
+      表现选项
+    </summary>
+    <span
+      class="iw-committed-cue iw-sr-only"
+    />
+    <div>
+      <label>
+        <input
+          type="checkbox"
+        />
+        进一步减少动态
+      </label>
+    </div>
+  </details>
+</section>
+
+ ❯ src/ui/infected-world/narrative-r1.test.tsx:27:37
+     25|  try{await h.d.setup('lamp');await h.d.send('进入封锁区');await h.d.move('大…
+     26|  const panel=h.host.querySelector('[aria-label="当前叙事"]')!
+     27|  expect(panel.closest('.iw-stage')).toBeNull();expect(panel.getAttribu…
+       |                                     ^
+     28|  expect(panel.textContent).toContain('光束扫过');expect(panel.querySelecto…
+     29|  await h.d.move('大厅');expect(h.owner().controls()!.getReading().marks)…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  src/ui/infected-world/narrative-r1.test.tsx > workorder has three bounded cards, final ACK only after the displayed last card, with retired ACK inert
+AssertionError: expected '刚刚发生停用工单旧转运计划上压着一张日期更晚、字迹更急的纸。\n“暂停接驳…' to contain '1 / 3'
+
+- Expected
++ Received
+
+- 1 / 3
++ 刚刚发生停用工单旧转运计划上压着一张日期更晚、字迹更急的纸。
++ “暂停接驳。先隔离污染侧，再恢复医院服务支路。”
++ 执行人：周衡。
++ “有人主动停了它。是想把什么隔在外面？”读毕略过本段收起
+
+ ❯ src/ui/infected-world/narrative-r1.test.tsx:36:67
+     34|  try{await h.d.setup();await h.d.send('进入封锁区');await h.d.move('大厅');aw…
+     35|  const writes=h.setItem.mock.calls.length
+     36|  expect(h.host.querySelector('[aria-label="当前叙事"]')?.textContent).toCo…
+       |                                                                   ^
+     37|  await h.d.button('继续');expect(h.host.querySelector('[aria-label="当前叙事…
+     38|  await h.d.button('继续');expect(h.setItem).toHaveBeenCalledTimes(writes)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+

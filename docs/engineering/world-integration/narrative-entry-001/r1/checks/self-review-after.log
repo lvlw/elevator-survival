@@ -1,0 +1,9 @@
+
+ RUN  v4.1.10 E:/projects/传奇私服调整记录/world-narrative-entry-001
+
+
+ Test Files  4 passed (4)
+      Tests  15 passed (15)
+   Start at  00:49:45
+   Duration  7.41s (transform 3.02s, setup 0ms, import 4.75s, tests 2.78s, environment 6.06s)
+

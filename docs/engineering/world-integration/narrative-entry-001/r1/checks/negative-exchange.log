@@ -1,0 +1,47 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/state/residence-session/narrative-r1.test.ts -t real atomic hotel --maxWorkers=2
+
+
+ RUN  v4.1.10 C:/Users/zjl/.codex/visualizations/2026/10/30/01a18dbc-1d81-7312-99ab-903daead5d63/NARRATIVE-R1/red-run
+
+ ❯ src/state/residence-session/narrative-r1.test.ts (5 tests | 1 failed | 4 skipped) 246ms
+   × real atomic hotel producer through facade/controller consumes and saves once, without search receipt or Feed 245ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 skipped (5)
+   Start at  00:51:05
+   Duration  5.12s (transform 2.64s, setup 0ms, import 3.10s, tests 246ms, environment 1.54s)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/state/residence-session/narrative-r1.test.ts > real atomic hotel producer through facade/controller consumes and saves once, without search receipt or Feed
+AssertionError: expected { scope: {}, ordinal: 1, …(1) } to be undefined
+
+- Expected:
+undefined
+
++ Received:
+{
+  "ordinal": 1,
+  "receipt": {
+    "kind": "search",
+    "method": null,
+    "resource": null,
+    "revealed": 0,
+    "story": null,
+  },
+  "scope": {},
+}
+
+ ❯ src/state/residence-session/narrative-r1.test.ts:24:67
+     22|  h.storage.write.mockClear();h.listener.mockClear()
+     23|  const result=controller.execute(input)
+     24|  expect(result.kind).toBe('committed');expect(result.exploration).toBe…
+       |                                                                   ^
+     25|  expect(result.snapshot.feed.map(e=>e.text).join('|')).not.toContain('…
+     26|  expect(playerItem(facade.player,'压缩口粮','backpack').quantity).toBe(2)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

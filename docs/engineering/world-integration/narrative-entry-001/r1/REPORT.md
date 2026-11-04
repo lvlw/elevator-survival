@@ -9,7 +9,7 @@
 - BASE parent：`c7a88539d468059ec5ee23a819092792101d0d02`。
 - BASE tree：`be2f2ff3f72fb2d12334b33abcbd5b26c65f33e7`。
 - 分支：`feature/world-narrative-entry-001`，追加普通提交；原三个提交保留。
-- 本轮唯一提交的parent应为BASE。FINAL、PARENT、TREE和准确SHA的CI在提交后生成的仓库外交付回执及最终回复中逐字列出；避免在同一提交的报告中制造自引用SHA。
+- 本轮追加两个普通提交：实现提交`ed26ab22eafe85073e5c73123827cde72f5e60f9`，parent为BASE、tree为`c64e13b8b5313d6a5074a60ad4067f735fec5328`；随后仅补证据日志与交付说明，未改实现。最终证据提交的PARENT即该实现提交。FINAL、PARENT、TREE和准确SHA的CI在提交后生成的仓库外交付回执及最终回复中逐字列出，避免自引用SHA。
 - 实际代码目录：`E:/projects/传奇私服调整记录/world-narrative-entry-001`，已通过`git worktree list`核实属于本仓库；不是借用其他项目授权。
 - 主工作区`E:/projects/elevator-survival`仍在`5e4a38b1d32719f3f7478ecee824c8efae454b8c`；原HTTP未提交实验逐文件SHA256对照保全，见`protection.json`，未带入本分支。
 - 推荐Sol/high/Standard；实际模型、推理和服务档位均为**UNCONFIRMED**，工具不暴露可核验配置。Windows PowerShell，原npm脚本；本地测试仅环境变量`VITEST_MAX_WORKERS=2`，未改脚本或超时。
@@ -81,3 +81,5 @@ P06内容显示且明确确定准备才记录read；点击略过准备叙事则�
 全部变更按SCOPE逐路径核对。core、S/current、保存/expected、BrowserOwner、A/B1协议、C1/C2消费者、地图、main入口、原稿、图像资产、依赖及CI未改。无SSH/部署、强推、合并、清档或移动旧分支/标签。保全其他worktree及HTTP实验。
 
 没有已知阻断性未完成实现；主线代码与视觉实审尚未进行，不能以全绿测试代替主线结论。未做额外分辨率矩阵、C16能力补验、Owner体验、外网或发布验证；这些不在本轮范围。准确SHA CI如遇外部平台阻塞将逐项在最终回执标明。交付后停止，不自动部署或继续中后段、美术、B2。
+
+原始日志补收录说明：项目忽略`*.log`，首个普通提交未收录六份日志；第二个普通提交仅在本r1白名单内显式加入它们并修正交付说明，没有amend或改历史。

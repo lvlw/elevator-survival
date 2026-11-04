@@ -1,0 +1,65 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/narrative-r1.test.tsx -t skipped P06 --maxWorkers=2
+
+
+ RUN  v4.1.10 C:/Users/zjl/.codex/visualizations/2026/10/30/01a18dbc-1d81-7312-99ab-903daead5d63/NARRATIVE-R1/red-run
+
+ ❯ src/ui/infected-world/narrative-r1.test.tsx (4 tests | 1 failed | 3 skipped) 204ms
+   × skipped P06 can create through real choices but never becomes read 204ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 skipped (4)
+   Start at  00:51:11
+   Duration  5.53s (transform 3.00s, setup 0ms, import 3.57s, tests 204ms, environment 1.53s)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/ui/infected-world/narrative-r1.test.tsx > skipped P06 can create through real choices but never becomes read
+AssertionError: expected [ …(6) ] to deep equally contain { key: 'P06', state: 'skipped' }
+
+- Expected:
+{
+  "key": "P06",
+  "state": "skipped",
+}
+
++ Received:
+[
+  {
+    "key": "P01",
+    "state": "skipped",
+  },
+  {
+    "key": "P02",
+    "state": "skipped",
+  },
+  {
+    "key": "P03",
+    "state": "skipped",
+  },
+  {
+    "key": "P04",
+    "state": "skipped",
+  },
+  {
+    "key": "P05",
+    "state": "read",
+  },
+  {
+    "key": "P06",
+    "state": "read",
+  },
+]
+
+ ❯ src/ui/infected-world/narrative-r1.test.tsx:19:51
+     17|  const h=await mountUi()
+     18|  try{await h.d.button('略过叙事，查看任务');await h.d.button('准备出发');await h.d.…
+     19|  expect(h.owner().controls()!.getReading().marks).toContainEqual({key:…
+       |                                                   ^
+     20|  expect(h.owner().controls()!.getReading().marks).not.toContainEqual({…
+     21|  }finally{await h.unmount()}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

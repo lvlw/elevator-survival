@@ -1,0 +1,80 @@
+
+ RUN  v4.1.10 E:/projects/传奇私服调整记录/world-narrative-entry-001
+
+ ✓ src/state/residence-session/narrative-r1.test.ts > real atomic hotel producer through facade/controller consumes and saves once, without search receipt or Feed 234ms
+ ✓ src/state/residence-session/narrative-r1.test.ts > controlled binding receipt witness fault is diagnostic after the one real committed search 95ms
+ × src/state/residence-session/narrative-r1.test.ts > controlled site receipt witness fault is diagnostic after the one real committed search 81ms
+   → expected { scope: {}, ordinal: 4, …(1) } to be undefined
+ ✓ src/state/residence-session/narrative-r1.test.ts > controlled resource receipt witness fault is diagnostic after the one real committed search 79ms
+ × src/state/residence-session/narrative-r1.test.ts > controlled tool-binding receipt witness fault is diagnostic after the one real committed search 84ms
+   → expected { scope: {}, ordinal: 4, …(1) } to be undefined
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/state/residence-session/narrative-r1.test.ts > controlled site receipt witness fault is diagnostic after the one real committed search
+AssertionError: expected { scope: {}, ordinal: 4, …(1) } to be undefined
+
+- Expected:
+undefined
+
++ Received:
+{
+  "ordinal": 4,
+  "receipt": {
+    "kind": "search",
+    "method": "lit",
+    "resource": {
+      "kind": "charge",
+      "spent": 1,
+    },
+    "revealed": 0,
+    "story": "H03",
+  },
+  "scope": {},
+}
+
+ ❯ src/state/residence-session/narrative-r1.test.ts:44:68
+     42|   const tool=ready(h.owner).carried.find(i=>i.container==='utility')!
+     43|   const result=send(h.owner,'source','药房搜索',{item:tool.selector},'lit')
+     44|   expect(result.kind).toBe('committed');expect(result.exploration).toB…
+       |                                                                    ^
+     45|   expect(result.explorationDiagnostic).toBe('projection-unavailable')
+     46|   expect(o.counts()).toMatchObject({dispatch:1,current:1,notices:1,sou…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/state/residence-session/narrative-r1.test.ts > controlled tool-binding receipt witness fault is diagnostic after the one real committed search
+AssertionError: expected { scope: {}, ordinal: 4, …(1) } to be undefined
+
+- Expected:
+undefined
+
++ Received:
+{
+  "ordinal": 4,
+  "receipt": {
+    "kind": "search",
+    "method": "lit",
+    "resource": null,
+    "revealed": 2,
+    "story": "H03",
+  },
+  "scope": {},
+}
+
+ ❯ src/state/residence-session/narrative-r1.test.ts:44:68
+     42|   const tool=ready(h.owner).carried.find(i=>i.container==='utility')!
+     43|   const result=send(h.owner,'source','药房搜索',{item:tool.selector},'lit')
+     44|   expect(result.kind).toBe('committed');expect(result.exploration).toB…
+       |                                                                    ^
+     45|   expect(result.explorationDiagnostic).toBe('projection-unavailable')
+     46|   expect(o.counts()).toMatchObject({dispatch:1,current:1,notices:1,sou…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 3 passed (5)
+   Start at  00:49:22
+   Duration  4.08s (transform 1.60s, setup 0ms, import 1.96s, tests 574ms, environment 1.34s)
+

@@ -1,0 +1,8 @@
+{
+  "base": "afbb0178fc29a533487fa5208b71ba92b94354c5",
+  "command": "npm run test:run -- src/state/residence-session/narrative-r1.test.ts src/ui/infected-world/narrative-r1.test.tsx --maxWorkers=2 --reporter=verbose",
+  "exit": 1,
+  "filesFailed": 2,
+  "testsFailed": 9,
+  "note": "Historical afbb reproduction rerun to archive raw evidence after new tests completed. Includes original seven and two self-review witness cases. Not a claim that this later rerun preceded implementation. Only new tests over exact base production/helper modules in isolated git archive."
+}

@@ -1,0 +1,84 @@
+{
+  "sha": "afbb0178fc29a533487fa5208b71ba92b94354c5",
+  "sourceBlobs": {
+    "receipt.ts": "293020c84edfbaa5c6ca9d5399c52ea0bcf8550a",
+    "issuer.ts": "cd61fe9e5c9f8c414a6dbeca430b95e6e818979f"
+  },
+  "mode": "actual transpiled pure modules + explicitly synthetic partial inputs",
+  "wholeGameTests": "NOT RUN",
+  "browser": "NOT RUN",
+  "observations": [
+    {
+      "case": "positive-lit-search",
+      "contract": "PASS",
+      "actual": {
+        "method": "lit",
+        "resource": {
+          "kind": "charge",
+          "spent": 2
+        },
+        "revealed": 1,
+        "kind": "search",
+        "story": "H03"
+      },
+      "assertion": true
+    },
+    {
+      "case": "positive-dark-search",
+      "contract": "PASS",
+      "actual": {
+        "method": "dark",
+        "resource": null,
+        "revealed": 1,
+        "kind": "search",
+        "story": "H03"
+      },
+      "assertion": true
+    },
+    {
+      "case": "positive-actual-truncated-resource",
+      "contract": "PASS",
+      "actual": {
+        "method": "crow",
+        "resource": {
+          "kind": "durability",
+          "spent": 1
+        },
+        "revealed": 1,
+        "kind": "search",
+        "story": null
+      },
+      "assertion": true
+    },
+    {
+      "case": "exchange-misclassified-as-search",
+      "contract": "FAIL",
+      "actual": {
+        "method": null,
+        "resource": null,
+        "revealed": 0,
+        "kind": "search",
+        "story": null
+      },
+      "feed": "搜索完成，现场现有 0 件物品。",
+      "assertion": true,
+      "limit": "Synthetic inputs reproduce the receipt branch; native exchange exists in supply-faults.test.ts but was not executed here."
+    },
+    {
+      "case": "supported-search-wrong-binding-silently-null",
+      "contract": "FAIL",
+      "actual": null,
+      "threw": false,
+      "assertion": true,
+      "limit": "Defensive projection-contract gap. Not evidence of a reachable normal corrupted commit or cross-character save corruption."
+    },
+    {
+      "case": "supported-search-missing-tool-state-silently-null",
+      "contract": "FAIL",
+      "actual": null,
+      "threw": false,
+      "assertion": true,
+      "limit": "Same defensive finding; facade only reports explorationDiagnostic on throw, not on null."
+    }
+  ]
+}

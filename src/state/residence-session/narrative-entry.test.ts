@@ -18,8 +18,8 @@ it('synthetic receipt vectors preserve truncated 1→0 and zero tool use, reject
     const withTool = (value: typeof before, current: number) => ({ ...value, itemStates: { states: value.itemStates.states.map(s => s.instanceId === tool.instanceId && s.resource.kind !== 'none' ? { ...s, resource: { ...s.resource, current } } : s) } })
     expect(explorationReceipt(withTool(before, 1), withTool(after, 0), command)?.resource).toEqual({ kind: 'durability', spent: 1 })
     expect(explorationReceipt(withTool(before, 0), withTool(after, 0), command)?.resource).toEqual({ kind: 'durability', spent: 0 })
-    expect(explorationReceipt(before, after, { ...command, command: { ...command.command, toolInstanceId: 'not-the-tool' } })).toBeNull()
-    expect(explorationReceipt(before, after, { ...command, command: { ...command.command, expectedRevision: before.character.revision + 1 } })).toBeNull()
+    expect(() => explorationReceipt(before, after, { ...command, command: { ...command.command, toolInstanceId: 'not-the-tool' } })).toThrow('Exploration projection unavailable')
+    expect(() => explorationReceipt(before, after, { ...command, command: { ...command.command, expectedRevision: before.character.revision + 1 } })).toThrow('Exploration projection unavailable')
     expect(ready(h.owner).narrative?.doorParts).toBe(false)
     expect(storyText('H05', ready(h.owner).narrative!)).not.toContain('电子材料')
   } finally { h.owner.dispose() }

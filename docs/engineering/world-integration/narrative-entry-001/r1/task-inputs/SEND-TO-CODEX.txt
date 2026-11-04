@@ -1,0 +1,23 @@
+执行附件 ENG-WORLD-NARRATIVE-ENTRY-001-R1。
+
+不要revert三个提交，不重做叙事底层。主线结论是保留成果、集中R1；其他项目会话的审查只作旁证，本包不继承其部署或写权限。
+
+repo：lvlw/elevator-survival
+BASE：afbb0178fc29a533487fa5208b71ba92b94354c5
+继续分支：feature/world-narrative-entry-001
+配置沿用原任务建议GPT-6.1 Sol／high／Standard；实际不能核验仍写UNCONFIRMED。
+
+先读实际AGENTS、TASK/AUD/ACCEPTANCE/SCOPE和原归档v0.2；保全其他worktree及未提交HTTP实验，重新核对HEAD/diff并运行实际基线。
+
+一次完成：
+A. 交换不能误报搜索；受支持回执的绑定/工具见证异常有诊断，原提交仍一次。
+B. 真正完成补给柜与生前习惯P06，不再仅旧配置表；未展示不能自动记已读。
+C. 底部有界短叙事、普通反馈轻量、重要对白有节奏，不再常驻上方大卡及三个同级阅读管理按钮。
+
+保留已经正确的任务数字同源、lit/dark分流、真实创建/出发、唯一工具直用、原L3、书签绑定和A/B1/C1/C2。不重做地图、不铺分辨率，不加中后段/新美术/通用引擎。
+
+仅SCOPE内修改；原分支普通commit/push。无revert整批、reset丢工作、强推、merge、SSH/部署、清档、依赖/CI变更权限。
+
+补先失败后修复的原生和受控故障测试、相邻回归，最终原check及准确SHA CI。固定一个1920×1080 CSS主视口，交4张本轮实际React原图。没跑如实说明，不要求Owner补测试。
+
+直接交完整BASE/FINAL/PARENT/TREE、报告、检查/CI和遗留；GitHub直审，不打源码ZIP。完成停等主线，不自动部署或邀请Owner试玩。

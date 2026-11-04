@@ -1,0 +1,81 @@
+{
+  "actualReact": true,
+  "route": "/?dev-infected-world=1",
+  "injectedGameState": false,
+  "dailyEdgeProfileUsed": false,
+  "note": "工具普通截图曾裁右；最终图均原生API完整捕获。中枢fullPage曾有1112高度，未交付该图；最终直接捕获1920x1080视口矩形，未事后裁图。两个新隔离origin不是同一角色连续四帧。",
+  "frames": [
+    {
+      "path": "screenshots/01-hub.jpg",
+      "bytes": 144337,
+      "sha256": "48d043f6faca4de5be5051f25fdb2c7a920305aff022a72c3a3456e562eb6cef",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "cssViewport": [
+        1920,
+        1080
+      ],
+      "devicePixelRatio": 1,
+      "capture": "native screenshot clip {x:0,y:0,width:1920,height:1080}; requested viewport itself",
+      "origin": "http://localhost:5261",
+      "scene": "原生P02中枢观察、显示屏与任务入口；实际准备前流程",
+      "postProcessing": "NONE; original JPEG bytes only"
+    },
+    {
+      "path": "screenshots/02-preparation.jpg",
+      "bytes": 213899,
+      "sha256": "cc8981ab020ce5aeed2b694bd7c82d3670871d52d59bef26ff8829f78b1be775",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "cssViewport": [
+        1920,
+        1080
+      ],
+      "devicePixelRatio": 1,
+      "capture": "native screenshot fullPage:true",
+      "origin": "http://localhost:5261",
+      "scene": "真实P06补给柜、三工具与三专长；此origin未创建角色",
+      "postProcessing": "NONE; original JPEG bytes only"
+    },
+    {
+      "path": "screenshots/03-search.jpg",
+      "bytes": 273268,
+      "sha256": "15ce6c131a44a595defa40e0c77580e6c8ba7d5012974629d71e9331c8cc1a32",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "cssViewport": [
+        1920,
+        1080
+      ],
+      "devicePixelRatio": 1,
+      "capture": "native screenshot fullPage:true",
+      "origin": "http://127.0.0.1:5261",
+      "scene": "真实照明搜索后；实际绷带、消毒剂；下方轻量反馈",
+      "postProcessing": "NONE; original JPEG bytes only"
+    },
+    {
+      "path": "screenshots/04-workorder.jpg",
+      "bytes": 266646,
+      "sha256": "1e11cdeb4c784a3782500ff5275a9491696bf00498a54c1a75dc9d52123a1841",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "cssViewport": [
+        1920,
+        1080
+      ],
+      "devicePixelRatio": 1,
+      "capture": "native screenshot fullPage:true",
+      "origin": "http://127.0.0.1:5261",
+      "scene": "真实调查后的工单第2/3卡；原行动可达",
+      "postProcessing": "NONE; original JPEG bytes only"
+    }
+  ]
+}

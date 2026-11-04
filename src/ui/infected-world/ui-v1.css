@@ -258,3 +258,27 @@
 @media(max-width:1359px) { .iw-app { --iw-m:12px; --iw-l:192px; --iw-r:272px; --iw-t:56px; --iw-cell:37px; }.iw-hud { padding:0 12px; }.iw-brand strong { font-size:16px; }.iw-hud-tools { gap:2px; }.iw-hud-tools button { padding:5px 7px; }.iw-room-heading { left:20px; right:20px; top:20px; }.iw-scene-card { left:20px; right:20px; bottom:20px; }.iw-ground-items { max-height:190px; } }
 @media(max-width:1279px),(max-height:719px) { .iw-app { --iw-m:12px; --iw-g:10px; --iw-t:72px; --iw-f:36px; --iw-r:288px; --iw-cell:40px; }.iw-game { grid-template-columns:minmax(0,1fr); grid-template-rows:var(--iw-t) minmax(0,1fr) var(--iw-f); }.iw-stage-column { grid-column:1; }.iw-sidebar,.iw-carrying { display:none; }.iw-drawer-tabs { position:absolute; z-index:25; display:flex; gap:5px; top:calc(var(--iw-m) + var(--iw-t) + var(--iw-g) + 8px); right:20px; }.iw-drawer-tabs button { min-height:32px; padding:4px 7px; font-size:13px; }.iw-drawer-left .iw-sidebar,.iw-drawer-right .iw-carrying { display:flex; position:absolute; z-index:30; top:calc(var(--iw-m) + var(--iw-t) + var(--iw-g) + 48px); bottom:calc(var(--iw-m) + var(--iw-f) + var(--iw-g)); width:min(310px,calc(100% - 24px)); background:#111b20f5; }.iw-drawer-left .iw-sidebar { left:12px; }.iw-drawer-right .iw-carrying { right:12px; }.iw-content-overlay { padding:calc(var(--iw-m) + var(--iw-t) + var(--iw-g)) 12px calc(var(--iw-m) + var(--iw-f) + var(--iw-g)); }.iw-hud-tools { margin-left:auto; }.iw-condition { display:none; }.iw-save-warning { left:12px; right:12px; }.iw-room-heading { top:54px; }.iw-scene-card { max-height:calc(100% - 170px); }.iw-hud { flex-wrap:wrap; align-content:center; gap:4px 14px; }.iw-meter { min-width:72px; }.iw-game .iw-feed { min-height:0; } }
 @media(max-width:620px) { .iw-app { --iw-m:8px; --iw-g:8px; --iw-t:120px; --iw-f:44px; }.iw-hud { padding:8px; }.iw-brand { width:52%; }.iw-brand strong { font-size:18px; }.iw-hud-tools { order:2; }.iw-meter { order:1; flex:1; }.iw-game { height:100dvh; }.iw-ground-items { grid-template-columns:1fr; max-height:150px; }.iw-room-heading { left:16px; right:16px; }.iw-room-heading h1 { font-size:24px; }.iw-location-tag { display:none; }.iw-scene-card { left:16px; right:16px; bottom:16px; }.iw-recent-feedback { display:none; }.iw-footer { justify-content:space-between; font-size:12px; }.iw-content-body { padding:14px; }.iw-content-layer > header { padding:6px 12px; }.iw-content-layer > header h2 { font-size:17px; }.iw-content-overlay { padding-left:8px; padding-right:8px; }.iw-room-content { max-height:100%; }.iw-ground { padding:10px; }.iw-ground-items article > img { width:40px; height:40px; } }
+
+/* R1: bounded prose follows the scene, never covers its action cluster. */
+.iw-stage-column { display:flex; flex-direction:column; gap:10px; overflow:visible; }
+.iw-stage-column > .iw-stage { flex:1; height:auto; min-height:0; }
+.iw-entry-story { position:relative; inset:auto; flex:none; min-height:36px; max-height:236px; pointer-events:auto; }
+.iw-narrative { width:100%; max-height:196px; padding:10px 18px; box-shadow:none; }
+.iw-narrative .iw-story-copy { max-height:108px; overflow:auto; margin:6px 0; }
+.iw-narrative[data-light="true"] { display:flex; align-items:center; gap:12px; padding:8px 16px; }
+.iw-narrative[data-light="true"] .iw-story-copy { flex:1; margin:0; font-size:15px; }
+.iw-narrative[data-light="true"] header { flex:none; font-size:13px; }
+.iw-narrative .iw-secondary { border:0; background:transparent; color:#a9b4b6; }
+.iw-records { position:relative; top:auto; right:auto; width:fit-content; margin-left:auto; }
+.iw-records summary { padding:3px 14px; }
+.iw-records nav { bottom:100%; z-index:35; }
+.iw-reading-warning { margin:0; font-size:12px; }
+.iw-issued-supplies { display:flex; gap:14px; margin:12px 0; }
+.iw-issued-supplies figure { display:flex; flex:1; align-items:center; gap:10px; margin:0; padding:10px; background:#152329c9; border:1px solid #56605b; }
+.iw-issued-supplies img { width:64px; height:64px; object-fit:contain; }
+.iw-issued-supplies small { display:block; font-size:12px; color:#a9b4b6; }
+.iw-preparation-story p { margin:6px 0; }
+.iw-preparation-story small { color:#d5c09c; }
+.iw-habit-story { margin:18px 0 6px; color:#b9c3bf; }
+.iw-setup-card .iw-skip-story { background:transparent; padding:3px 8px; min-height:28px; color:#b0bbba; }
+.iw-preparation-help { font-size:13px; color:#a9b4b6; margin-top:12px; }

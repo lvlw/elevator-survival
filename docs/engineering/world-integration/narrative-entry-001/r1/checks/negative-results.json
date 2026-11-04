@@ -1,0 +1,16 @@
+[
+  {
+    "case": "exchange",
+    "exit": 1,
+    "businessFailure": true,
+    "restored": true,
+    "scope": "isolated copy of current actual modules; real facade/controller or React"
+  },
+  {
+    "case": "unseen-read",
+    "exit": 1,
+    "businessFailure": true,
+    "restored": true,
+    "scope": "isolated copy of current actual modules; real facade/controller or React"
+  }
+]

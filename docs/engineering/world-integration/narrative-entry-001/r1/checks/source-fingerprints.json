@@ -1,0 +1,66 @@
+[
+  {
+    "path": "src/content/infected-world-v0.1/narrative-entry/content.ts",
+    "sha256": "8d5a77d9f4a02905de954a87ad8542a3d5ee8b628b8b5aea94a794e84ba203a4"
+  },
+  {
+    "path": "src/state/residence-session/narrative-entry.test.ts",
+    "sha256": "7cf5a31be8cfdff6b3bc08ab5437b3910db372af50390451a93e7e531ff07610"
+  },
+  {
+    "path": "src/state/residence-session/narrative-entry/receipt.ts",
+    "sha256": "2452308ae7356c2234f1e5372efe1667ddb746769771d15020e5908f940b7a99"
+  },
+  {
+    "path": "src/state/residence-session/player-facade.ts",
+    "sha256": "c9a7a75357a5f45b974197fd738799986fe7cd032c14592e5e158b1a5cc13ef0"
+  },
+  {
+    "path": "src/ui/infected-world/app.tsx",
+    "sha256": "ff65e1b3767b3e3fd31bfa4f866638a5049e74f8dba228bca981f81cb0f1bacd"
+  },
+  {
+    "path": "src/ui/infected-world/components/game-shell.tsx",
+    "sha256": "fc3dfffa53b586f33e49ee3ae9899f1e2debdee682c8d39f2ecb12c6b57d1ccd"
+  },
+  {
+    "path": "src/ui/infected-world/components/setup-panel.tsx",
+    "sha256": "c6ff8e07301f215156a67b6fc9785b7962e26b0309a15b2bef61493cb0518004"
+  },
+  {
+    "path": "src/ui/infected-world/components/world-stage.tsx",
+    "sha256": "d39ce132473da9eda3ed595e43ac06f3a2412111c487bf1104e608ba095bf9df"
+  },
+  {
+    "path": "src/ui/infected-world/narrative-entry.test.tsx",
+    "sha256": "5d4b25ae6410c4f3807cc01dbe06957bb6b5adc627084cf871ca56f0407312e7"
+  },
+  {
+    "path": "src/ui/infected-world/narrative-entry/prologue.tsx",
+    "sha256": "d9b651bb59b25882156967c7f74a88b3b1797ce2339948fa4b90abfb3699d3cf"
+  },
+  {
+    "path": "src/ui/infected-world/narrative-entry/story-panel.tsx",
+    "sha256": "ab7b5ca039af61e6bb806c7aba39aeda970b4e71c963df3164c894974818f369"
+  },
+  {
+    "path": "src/ui/infected-world/route-test-fixtures.ts",
+    "sha256": "794cf70fb18cd77da204b8f800ab22cc84d8651e39417355b3fced7b95e9f46a"
+  },
+  {
+    "path": "src/ui/infected-world/setup.test.tsx",
+    "sha256": "1508a8048756b476cd19513e253149f428ebc3e031845d895b332a20a12c0821"
+  },
+  {
+    "path": "src/ui/infected-world/ui-v1.css",
+    "sha256": "7ab1ee36702812e8c059e3b45c1acd68aed7bac3ada42db518763ea6c5e5dfd3"
+  },
+  {
+    "path": "src/state/residence-session/narrative-r1.test.ts",
+    "sha256": "c64074da527be219f7db8796a2660d910a059eb91a833d0ff327ce8ae1abacba"
+  },
+  {
+    "path": "src/ui/infected-world/narrative-r1.test.tsx",
+    "sha256": "bfab8671d982d73da5c09a7158e3b962e17c5ed13a738304d346c844eace4f4d"
+  }
+]

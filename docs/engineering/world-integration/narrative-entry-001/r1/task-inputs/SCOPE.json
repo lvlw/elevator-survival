@@ -1,0 +1,82 @@
+{
+  "task": "ENG-WORLD-NARRATIVE-ENTRY-001-R1",
+  "base": "afbb0178fc29a533487fa5208b71ba92b94354c5",
+  "branch": "feature/world-narrative-entry-001",
+  "allow_existing_production": [
+    "src/state/residence-session/narrative-entry/receipt.ts",
+    "src/state/residence-session/narrative-entry/types.ts",
+    "src/state/residence-session/player-facade.ts",
+    "src/app/infected-preplay/narrative-entry/issuer.ts",
+    "src/content/infected-world-v0.1/narrative-entry/content.ts",
+    "src/ui/infected-world/narrative-entry/prologue.tsx",
+    "src/ui/infected-world/narrative-entry/use-entry-story.ts",
+    "src/ui/infected-world/narrative-entry/story-panel.tsx",
+    "src/ui/infected-world/components/setup-panel.tsx",
+    "src/ui/infected-world/components/world-stage.tsx",
+    "src/ui/infected-world/components/game-shell.tsx",
+    "src/ui/infected-world/app.tsx",
+    "src/ui/infected-world/ui-v1.css",
+    "src/ui/infected-world/styles.css"
+  ],
+  "allow_new_limited_prefixes": [
+    "src/ui/infected-world/narrative-entry/",
+    "docs/engineering/world-integration/narrative-entry-001/r1/"
+  ],
+  "allow_tests_patterns": [
+    "src/state/residence-session/*.test.ts",
+    "src/app/infected-preplay/*.test.ts",
+    "src/app/infected-browser/*.test.ts",
+    "src/ui/infected-world/**/*.test.ts",
+    "src/ui/infected-world/**/*.test.tsx",
+    "src/ui/infected-world/*.test.ts",
+    "src/ui/infected-world/*.test.tsx"
+  ],
+  "allow_existing_test_helpers": [
+    "src/ui/infected-world/test-fixtures.tsx",
+    "src/ui/infected-world/test-fixtures.ts",
+    "src/ui/infected-world/route-test-fixtures.ts",
+    "src/ui/infected-world/route-test-fixtures.tsx"
+  ],
+  "limits": [
+    "现有生产只限F01—F04相关接缝；不表示全部都要改。",
+    "scene/story的结构调整可在两个样式文件或新叙事CSS中窄改；不可重做全站、地图、五档响应式。",
+    "public事实投影、书签存储owner和core默认保护，不因R1获得任意新写权限。",
+    "新UI前缀只允许小型叙事/准备组件或CSS，不造通用剧情引擎。",
+    "旧测试只改新DOM/已批准字段，原数量和身份/资格/保存/随机/隐私断言不删除、不skip、不变成宽松计数。",
+    "原任务输入和作者M1—M3报告保持，R1另写报告不倒改COMPLETE历史。"
+  ],
+  "protected": [
+    "src/core/**",
+    "src/state/residence-save/**",
+    "src/state/residence-session/combat-session.ts",
+    "src/state/residence-session/combat-current.ts",
+    "src/app/infected-browser/** (existing production)",
+    "src/app/infected-preplay/committed-presentation.ts",
+    "src/ui/infected-world/presentation/**",
+    "src/ui/infected-world/components/knowledge-map.tsx",
+    "src/main.tsx",
+    "src/app/application-entry.ts",
+    "package.json",
+    "package-lock.json",
+    "vite.config.ts",
+    ".github/**",
+    "docs/05-design-decisions.md",
+    "docs/design-drafts/** (existing)",
+    "public/**",
+    "existing image/audio binaries",
+    "all files not explicitly allowed"
+  ],
+  "permissions": {
+    "commit": true,
+    "push": true,
+    "only_branch": "feature/world-narrative-entry-001",
+    "merge": false,
+    "force_push": false,
+    "rewrite_history": false,
+    "revert_batch": false,
+    "deploy": false,
+    "ssh": false,
+    "clear_save": false
+  },
+  "stop": "完成R1及精确提交/真实画面交付后停等主线；不得自己宣告Owner体验/正式发布通过。"
+}

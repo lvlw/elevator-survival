@@ -53,7 +53,7 @@ export function wrapPlayerSession(owner: CombatSession, policy: CombatResidenceP
         // Projection defects after a successful commit must never turn it into a rejected action.
         try {
           if (owner.getState().current !== commit.current) throw new Error('Commit no longer current')
-          exploration = explorationReceipt(before, commit.current, command) ?? undefined
+          exploration = explorationReceipt(before, commit.current, command, deps.supply.tasks.data.sources) ?? undefined
         } catch { explorationDiagnostic = 'projection-unavailable' }
       } catch (e) {
         if (!isPlayerBusinessError(e)) throw e

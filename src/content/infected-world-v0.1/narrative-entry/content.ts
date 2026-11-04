@@ -20,7 +20,7 @@ export function storyText(key: StoryKey, knowledge: NarrativeKnowledge, receipt?
     case 'P02': return '地面很冷。这里没有窗，电梯的显示屏上也没有楼层。\n中枢接入完成。返还原世界：需取得资格。首次任务将在准备结束后分配。'
     case 'P03': return diary.join('\n\n')
     case 'P04': return '你一直没等到窗外亮起来。这里没有窗。\n再次睁眼时，电梯上方多了一行字：准备期结束。首次任务已分配。'
-    case 'P05': return `恢复当地急救转运；取得指定密封病原样本，携回医院电梯前室交付。\n驻留期限 ${knowledge.brief.days} 个任务日。完整履约奖励 ${knowledge.brief.reward} 积分；生还失败最多扣除 ${knowledge.brief.penalty} 积分。主动失败后本委托关闭，不能重做。`
+    case 'P05': return `恢复当地急救转运；取得指定密封病原样本，携回医院电梯前室交付。\n驻留期限 ${knowledge.brief.days} 个任务日。完整履约奖励 ${knowledge.brief.reward} 积分；失败收入为 0，最多扣除现有积分中的 ${knowledge.brief.penalty} 积分，不负债。成功或失败正式结束后，本委托均不可重接。`
     case 'P06': return '金属管、外套和绷带已经放在柜内。工具与专长由你明确选择。准备确认后，仍由你决定何时进入医院。'
     case 'H01': return '你扶着门边，电梯已经停了，耳边的轰鸣却迟了一会儿才散。\n“转运、样本……最后回到这里。”'
     case 'H02': return '“请等待转运的人员留在指定区域。接驳安排将另行通知。”\n相同的杂音之后，这句话又重复了一遍。\n“还在播，可转运已经停了。先看看附近有什么。”'

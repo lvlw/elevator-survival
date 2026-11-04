@@ -14,7 +14,7 @@ describe('infected-world explicit setup controls', () => {
       expect(h.entropy).not.toHaveBeenCalled(); expect(h.setItem).not.toHaveBeenCalled()
       expect(observed.counts()).toMatchObject({ initial: 0, dispatch: 0, current: 0, notices: 0, draw: 0 })
       expect([...h.host.querySelectorAll<HTMLInputElement>('input[type="radio"]')].every(input => !input.checked)).toBe(true)
-      expect([...h.host.querySelectorAll('button')].find(button => button.textContent === '确认创建')).toBeUndefined()
+      expect([...h.host.querySelectorAll('button')].find(button => button.textContent === '确定准备')).toBeUndefined()
       expect(h.host.textContent).toContain('略过叙事，查看任务')
       await h.render(); await h.remount()
       expect(h.owner().getSnapshot().status).toBe('setup')
@@ -29,7 +29,7 @@ describe('infected-world explicit setup controls', () => {
     const observed = observeBrowser(), h = await mountUi(`setup-${tool}-${specialty}`)
     try {
       await h.d.button('略过叙事，查看任务'); await h.d.button('准备出发')
-      const create = [...h.host.querySelectorAll('button')].find(button => button.textContent === '确认创建')!
+      const create = [...h.host.querySelectorAll('button')].find(button => button.textContent === '确定准备')!
       expect(create.disabled).toBe(true)
       const toolInput = h.host.querySelector<HTMLInputElement>(`input[name="tool"][value="${tool}"]`)!
       await h.flush(() => toolInput.click()); expect(create.disabled).toBe(true)

@@ -119,7 +119,7 @@ export function createUiDriver(options: UiDriverOptions) {
       const radio=doc.querySelector<HTMLInputElement>(`input[name="${name}"][value="${value}"]`);assert(radio,'setup radio')
       await options.flush(()=>radio.click())
     }
-    await button('确认创建')
+    await button('确定准备')
   }
   return {view,button,information,select,input,anchor,confirm,fields,send,menu,pick,medical,rest,paid,move,walk,task,fight,setup}
 }

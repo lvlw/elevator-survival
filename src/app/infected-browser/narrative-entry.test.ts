@@ -13,11 +13,11 @@ describe('narrative entry owner boundary', () => {
     send(h.owner, 'depart', '进入封锁区'); send(h.owner, 'move', '大厅'); send(h.owner, 'move', '后勤控制间')
     expect(ready(h.owner).narrative?.known).not.toContain('H07')
     expect(storyText('H07', ready(h.owner).narrative!)).toBeNull()
-    const action = actions(h.owner).find(a => a.family === 'task' && a.label === '现场互动')!
+    const action = actions(h.owner).find(a => a.family === 'task' && a.label === '调查停用工单')!
     expect(action).toBeTruthy()
     c.preview({ action: action.selector }); c.cancel()
     expect(ready(h.owner).narrative?.workorder).toBe(false)
-    const r = send(h.owner, 'task', '现场互动')
+    const r = send(h.owner, 'task', '调查停用工单')
     expect(r.exploration?.receipt).toMatchObject({ kind: 'workorder', story: 'H07' })
     expect(ready(h.owner).narrative?.known).toContain('H07')
     h.owner.dispose()

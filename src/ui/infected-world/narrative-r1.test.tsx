@@ -31,7 +31,7 @@ it('real ordinary search uses lightweight prose below the scene, and the next ac
 })
 it('workorder has three bounded cards, final ACK only after the displayed last card, with retired ACK inert',async()=>{
  const h=await mountUi()
- try{await h.d.setup();await h.d.send('进入封锁区');await h.d.move('大厅');await h.d.move('后勤控制间');await h.d.task('现场互动')
+ try{await h.d.setup();await h.d.send('进入封锁区');await h.d.move('大厅');await h.d.move('后勤控制间');await h.d.task('调查停用工单')
  const writes=h.setItem.mock.calls.length
  expect(h.host.querySelector('[aria-label="当前叙事"]')?.textContent).toContain('1 / 3')
  await h.d.button('继续');expect(h.host.querySelector('[aria-label="当前叙事"]')?.textContent).toContain('执行人：周衡')

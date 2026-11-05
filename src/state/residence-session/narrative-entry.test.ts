@@ -52,7 +52,7 @@ it('power survey before the workorder selects the factual isolation reaction wit
     send(h.owner, 'task', '调查供电')
     for (const label of ['配线廊', '岗亭', '后勤控制间']) send(h.owner, 'move', label)
     expect(storyText('H07', ready(h.owner).narrative!)).toBeNull()
-    send(h.owner, 'task', '现场互动')
+    send(h.owner, 'task', '调查停用工单')
     expect(storyText('H07', ready(h.owner).narrative!)).toContain('供电柜上的隔离，就是这份停用令')
     expect(storyText('H07', ready(h.owner).narrative!)).not.toContain('亲口')
     expect(ready(h.owner).move.options.length).toBeGreaterThan(0)

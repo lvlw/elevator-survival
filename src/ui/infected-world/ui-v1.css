@@ -282,3 +282,42 @@
 .iw-habit-story { margin:18px 0 6px; color:#b9c3bf; }
 .iw-setup-card .iw-skip-story { background:transparent; padding:3px 8px; min-height:28px; color:#b0bbba; }
 .iw-preparation-help { font-size:13px; color:#a9b4b6; margin-top:12px; }
+
+/* MISSION-MAP-UX: finite desktop task/map budget. Existing stage/carrying/narrative untouched. */
+.iw-sidebar { padding:14px; gap:9px; overflow:hidden; }
+.iw-sidebar > h2 { padding-bottom:6px; font-size:14px; }
+.iw-sidebar-bottom { font-size:12px; }
+.iw-sidebar-bottom p:last-child { display:none; }
+.iw-mission-tracker h3 { font-size:17px; letter-spacing:1px; margin:0 0 8px; }
+.iw-mission-progress { list-style:none; margin:0 0 6px!important; padding:0!important; font-size:14px; line-height:1.7; }
+.iw-tracked-clue { font-size:14px; line-height:1.5; margin:5px 0 0; }
+.iw-tracked-clue button { padding:2px 6px; margin-left:4px; min-height:26px; font-size:13px; }
+.iw-mission-detail { line-height:1.65; font-size:16px; }
+.iw-mission-detail h3 { font-size:20px; margin-bottom:8px; }
+.iw-mission-detail > section { border-top:1px solid #53605f; padding-top:12px; margin-top:12px; }
+.iw-mission-requirements { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.iw-clue-list { padding-left:20px; display:grid; grid-template-columns:1fr 1fr; gap:12px 24px; }
+.iw-clue-list p { margin:4px 0 8px; }
+.iw-clue-list button { font-size:14px; padding:4px 8px; min-height:30px; margin-right:5px; }
+.iw-content-layer:has(.iw-mission-detail) { width:min(1100px,100%); max-height:100%; }
+.iw-map-toolbar { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:5px; }
+.iw-map-toolbar strong { font-size:16px; color:#d5c09c; }
+.iw-map-toolbar button,.iw-map-tools button { padding:3px 8px; min-height:28px; font-size:14px; }
+.iw-map-current { margin:0 0 6px; font-size:14px; line-height:1.4; }
+.iw-map-viewport { overflow:hidden; height:auto; max-height:none; border:0; }
+.iw-map-canvas { width:100%; height:auto; display:block; max-height:none!important; aspect-ratio:250/370; }
+.iw-map-canvas text { font-size:15px; }
+.iw-map-edge-gap { fill:none; stroke:#0b1419; stroke-width:7px; }
+.iw-map-edge[data-passage='mixed'] { stroke:#d0b372; stroke-dasharray:6 2; }
+.iw-map-node[data-visited='false'] rect { stroke-dasharray:4 3; }
+.iw-map-node[data-target='true'] rect { stroke:#ead08d; stroke-width:3px; }
+.iw-map-legend { font-size:12px; margin:5px 0; display:block; white-space:nowrap; }
+.iw-map-tools { display:flex; gap:8px; align-items:start; font-size:13px; }
+.iw-map-tools details p { position:absolute; z-index:40; background:#14242b; padding:12px; border:1px solid #63736c; max-width:280px; }
+.iw-map-exits { font-size:14px; margin-bottom:5px; line-height:1.5; }
+.iw-map-exits p { font-size:13px; }
+.iw-known-map .iw-map { font-size:13px; margin-top:5px; }
+.iw-known-map .iw-map-selection { max-height:90px; overflow:auto; font-size:14px; }
+.iw-sidebar .iw-map-content { position:absolute; z-index:45; width:320px; max-height:260px; }
+.iw-tier-map .iw-known-map { max-width:560px; margin:auto; }
+.iw-tier-map .iw-map-canvas { max-height:560px!important; }

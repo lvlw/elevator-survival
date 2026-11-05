@@ -30,7 +30,7 @@ describe('real React narrative entry', () => {
     try {
       await h.d.setup(); await h.d.send('进入封锁区'); await h.d.move('大厅'); await h.d.move('后勤控制间')
       expect(h.host.textContent).not.toContain('执行人：周衡')
-      await h.d.task('现场互动'); await h.d.button('继续')
+      await h.d.task('调查停用工单'); await h.d.button('继续')
       expect(h.host.querySelector('[aria-label="当前叙事"]')?.textContent).toContain('执行人：周衡')
       const current = h.view(), checkpoint = h.disk.get(CHECKPOINT_KEY), writes = h.setItem.mock.calls.filter(([k]) => k === CHECKPOINT_KEY).length
       o.clear(); await h.d.button('继续'); await h.d.button('读毕')

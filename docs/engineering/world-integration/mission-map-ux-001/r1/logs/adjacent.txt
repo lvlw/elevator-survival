@@ -1,0 +1,13 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/mission-map-route-selection-r1.test.tsx src/ui/infected-world/mission-map-ux.test.tsx src/ui/infected-world/map/projection.test.ts src/ui/infected-world/ui-v1-map.test.tsx src/ui/infected-world/ui-v1-review-map.test.tsx src/ui/infected-world/privacy.test.tsx src/ui/infected-world/ui-v1-review-lifecycle.test.tsx src/ui/infected-world/confirmation-stale.test.tsx src/ui/infected-world/committed-presentation-lifecycle.test.tsx
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-mission-map-ux-001
+
+
+ Test Files  9 passed (9)
+      Tests  61 passed (61)
+   Start at  22:28:35
+   Duration  22.94s (transform 3.53s, setup 0ms, import 7.64s, tests 18.96s, environment 16.17s)
+

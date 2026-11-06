@@ -1,0 +1,26 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run
+
+failed to load config from E:\projects\elevator-survival-worktrees\world-mission-map-ux-001\vite.config.ts
+
+⎯⎯⎯⎯⎯⎯⎯ Startup Error ⎯⎯⎯⎯⎯⎯⎯⎯
+Error: EPERM: operation not permitted, open 'E:\projects\elevator-survival-worktrees\world-mission-map-ux-001\node_modules\.vite-temp\vite.config.ts.timestamp-1793974435227-c399240d0d1ac8.mjs'
+    at async open (node:internal/fs/promises:642:25)
+    at async Object.writeFile (node:internal/fs/promises:1249:14)
+    at async loadConfigFromBundledFile (file:///E:/projects/elevator-survival-worktrees/world-mission-map-ux-001/node_modules/vite/dist/node/chunks/node.js:36178:3)
+    at async bundleAndLoadConfigFile (file:///E:/projects/elevator-survival-worktrees/world-mission-map-ux-001/node_modules/vite/dist/node/chunks/node.js:36042:17)
+    at async loadConfigFromFile (file:///E:/projects/elevator-survival-worktrees/world-mission-map-ux-001/node_modules/vite/dist/node/chunks/node.js:36001:42)
+    at async resolveConfig (file:///E:/projects/elevator-survival-worktrees/world-mission-map-ux-001/node_modules/vite/dist/node/chunks/node.js:35617:22)
+    at async _createServer (file:///E:/projects/elevator-survival-worktrees/world-mission-map-ux-001/node_modules/vite/dist/node/chunks/node.js:25777:65)
+    at async createViteServer (file:///E:/projects/elevator-survival-worktrees/world-mission-map-ux-001/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:8835:17)
+    at async createVitest (file:///E:/projects/elevator-survival-worktrees/world-mission-map-ux-001/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:14221:18)
+    at async prepareVitest (file:///E:/projects/elevator-survival-worktrees/world-mission-map-ux-001/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:14588:14) {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'E:\\projects\\elevator-survival-worktrees\\world-mission-map-ux-001\\node_modules\\.vite-temp\\vite.config.ts.timestamp-1793974435227-c399240d0d1ac8.mjs'
+}
+
+
+

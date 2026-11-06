@@ -1,0 +1,98 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/mission-map-route-selection-r1.test.tsx
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-mission-map-ux-001
+
+ ❯ src/ui/infected-world/mission-map-route-selection-r1.test.tsx (11 tests | 7 failed) 662ms
+     × insertion/reordering keeps the same endpoints and reads latest directional observations 70ms
+     × deletion with reused indices closes details and later reappearance does not revive them 30ms
+     × world channels also bind building pairs through inserted/reordered cross-building routes 15ms
+     × insertion/reordering keeps the same endpoints and reads latest directional observations 14ms
+     × deletion with reused indices closes details and later reappearance does not revive them 13ms
+     × world channels also bind building pairs through inserted/reordered cross-building routes 14ms
+   × formal same-building knowledge expansion preserves the selected corridor through the original React move/query/save chain 345ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/ui/infected-world/mission-map-route-selection-r1.test.tsx > R1 real React preserved selection false/true > insertion/reordering keeps the same endpoints and reads latest directional observations
+ FAIL  src/ui/infected-world/mission-map-route-selection-r1.test.tsx > R1 real React preserved selection true/false > insertion/reordering keeps the same endpoints and reads latest directional observations
+AssertionError: expected '已知联系（只读，非移动）。医院 / 大厅 → 医院 / 保安室：已知可通行…' to contain '医院 / 后勤控制间'
+
+Expected: "医院 / 后勤控制间"
+Received: "已知联系（只读，非移动）。医院 / 大厅 → 医院 / 保安室：已知可通行，当前观察；医院 / 保安室 → 医院 / 大厅：已知受阻，上次观察关闭地图详情"
+
+ ❯ src/ui/infected-world/mission-map-route-selection-r1.test.tsx:58:40
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  src/ui/infected-world/mission-map-route-selection-r1.test.tsx > R1 real React preserved selection false/true > deletion with reused indices closes details and later reappearance does not revive them
+ FAIL  src/ui/infected-world/mission-map-route-selection-r1.test.tsx > R1 real React preserved selection true/false > deletion with reused indices closes details and later reappearance does not revive them
+AssertionError: expected <p class="iw-map-selection" …(1)>…(1)</p> to be null
+
+- Expected:
+null
+
++ Received:
+<p
+  class="iw-map-selection"
+  role="status"
+>
+  已知联系（只读，非移动）。
+  医院 / 保安室 → 医院 / 值班休息室：已知可通行，当前观察；医院 / 值班休息室 → 医院 / 保安室：已知受阻，上次观察
+  <button>
+    关闭地图详情
+  </button>
+</p>
+
+ ❯ src/ui/infected-world/mission-map-route-selection-r1.test.tsx:72:27
+     70|       await r.render(original); await r.click(label(hall, control))
+     71|       await r.render(map([...original.routes.slice(0, 4), ...extra]))
+     72|       expect(r.details()).toBeNull()
+       |                           ^
+     73|       await r.render(original); expect(r.details()).toBeNull()
+     74|       await r.click(label(hall, control), ' '); expect(r.details()?.te…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  src/ui/infected-world/mission-map-route-selection-r1.test.tsx > R1 real React preserved selection false/true > world channels also bind building pairs through inserted/reordered cross-building routes
+ FAIL  src/ui/infected-world/mission-map-route-selection-r1.test.tsx > R1 real React preserved selection true/false > world channels also bind building pairs through inserted/reordered cross-building routes
+AssertionError: expected '已知联系（只读，非移动）。医院 / 大厅 → 医院 / 电梯前室：已知受阻…' to contain '医院 / 电梯前室 → 酒店 / 入口'
+
+Expected: "医院 / 电梯前室 → 酒店 / 入口"
+Received: "已知联系（只读，非移动）。医院 / 大厅 → 医院 / 电梯前室：已知受阻，上次观察；医院 / 电梯前室 → 医院 / 大厅：已知可通行，当前观察关闭地图详情"
+
+ ❯ src/ui/infected-world/mission-map-route-selection-r1.test.tsx:110:40
+    108|       await r.render(values); await r.button('世界'); await r.click(labe…
+    109|       await r.render(map([...pair(hotel, power), ...values.routes].rev…
+    110|       expect(r.details()?.textContent).toContain(`${name('电梯前室')} → ${…
+       |                                        ^
+    111|       expect(r.details()?.textContent).not.toContain(power)
+    112|       await r.render(map([...original.routes, ...pair(hotel, power)]))…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  src/ui/infected-world/mission-map-route-selection-r1.test.tsx > formal same-building knowledge expansion preserves the selected corridor through the original React move/query/save chain
+AssertionError: expected '已知联系（只读，非移动）。医院 / 保安室 → 医院 / 值班休息室：已知…' to contain '医院 / 大厅 → 医院 / 后勤控制间'
+
+Expected: "医院 / 大厅 → 医院 / 后勤控制间"
+Received: "已知联系（只读，非移动）。医院 / 保安室 → 医院 / 值班休息室：已知可通行，当前观察；医院 / 值班休息室 → 医院 / 保安室：已知可通行，上次观察关闭地图详情"
+
+ ❯ src/ui/infected-world/mission-map-route-selection-r1.test.tsx:137:18
+    135|     expect(after.map.nodes.some(n => n.name === '值班休息室')).toBe(true)
+    136|     const text = h.host.querySelector('.iw-map-selection')?.textContent
+    137|     expect(text).toContain(`${hall} → ${control}`); expect(text).not.t…
+       |                  ^
+    138|     expect(observed.counts()).toMatchObject({ dispatch: 1, current: 1,…
+    139|     expect(h.setItem.mock.calls.filter(([key]) => key === CHECKPOINT_K…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed | 4 passed (11)
+   Start at  22:26:53
+   Duration  5.43s (transform 2.25s, setup 0ms, import 2.85s, tests 662ms, environment 1.68s)
+

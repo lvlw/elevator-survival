@@ -31,18 +31,18 @@
 - 10 项合成公开 DTO 边界用例：小图自有状态与展开图受控 MapScope 各 5 项，覆盖前插/重排、最新双向通行及观察、删除后序号复用和重现、端点歧义/缺失、切层/查看建筑/真实 anchor 变化及不复活、世界层建筑对重排；同时保留节点选择、键盘 Enter/Space 与任务目标标记。
 - 1 项正式生产链：原 DEV React/BrowserOwner/正式生产者建立角色并出发，从大厅进入保安室；由正式玩家查询产生同建筑知识扩展，没有注入或手改游戏状态。进入保安室后公开路线数组确实增长，原大厅—后勤控制间的行位置改变。旧实现实际显示保安室—值班休息室，新实现继续显示原端点。只读点击/切层零 dispatch/current/notices/draw、零保存和环境熵；真实移动只提交一次、更新一次、保存一次。
 
-修复前 7 failed / 4 passed，失败均为业务 AssertionError，包括上述正式玩家链。`logs/before-fix.log` 保留完整期望/实际详情，非工具报错或仅简化宿主。修复后同一测试文件 11/11 PASS。
+修复前 7 failed / 4 passed，失败均为业务 AssertionError，包括上述正式玩家链。`logs/before-fix.txt` 保留完整期望/实际详情，非工具报错或仅简化宿主。修复后同一测试文件 11/11 PASS。
 
 ## 检查分账
 
 | 项目 | 实际结果 | 原始证据 |
 |---|---|---|
-| 首次受限 test:run | EPERM：任务 worktree 的 Vite 临时缓存不在默认写权限内；未进入测试，不计为基线 | logs/baseline-sandbox.log |
-| W0 固定 BASE 原 test:run | 359 文件 / 5,088 项 PASS，640.54s，exit0；运行结束前源码与测试未编辑 | logs/baseline.log |
-| W1 旧实现 + 新回归 | 1 文件 / 11 项，7 FAIL / 4 PASS，5.43s，exit1 | logs/before-fix.log |
-| W2 修复后同一回归 | 1 文件 / 11 项 PASS，5.02s，exit0 | logs/after-fix.log |
-| W3 相邻组合（包含新增 11 项，不重复累计） | 9 文件 / 61 项 PASS，22.94s，exit0 | logs/adjacent.log |
-| W3 原默认 npm run check | 360 文件 / 5,099 项 PASS，测试阶段 663.90s，exit0；53 DEC / 347 core 架构、类型与构建 PASS（288ms） | logs/check.log |
+| 首次受限 test:run | EPERM：任务 worktree 的 Vite 临时缓存不在默认写权限内；未进入测试，不计为基线 | logs/baseline-sandbox.txt |
+| W0 固定 BASE 原 test:run | 359 文件 / 5,088 项 PASS，640.54s，exit0；运行结束前源码与测试未编辑 | logs/baseline.txt |
+| W1 旧实现 + 新回归 | 1 文件 / 11 项，7 FAIL / 4 PASS，5.43s，exit1 | logs/before-fix.txt |
+| W2 修复后同一回归 | 1 文件 / 11 项 PASS，5.02s，exit0 | logs/after-fix.txt |
+| W3 相邻组合（包含新增 11 项，不重复累计） | 9 文件 / 61 项 PASS，22.94s，exit0 | logs/adjacent.txt |
+| W3 原默认 npm run check | 360 文件 / 5,099 项 PASS，测试阶段 663.90s，exit0；53 DEC / 347 core 架构、类型与构建 PASS（288ms） | logs/check.txt |
 | 准确最终 SHA 原 CI | 提交/普通 push 后核对实际 run、job 与原始日志；链接及结论见最终交付回执，不沿用 BASE 的 #189 | 提交后 ci-receipt.json / ci-job.log |
 
 相邻组合包括新回归、mission-map-ux、projection、ui-v1-map、ui-v1-review-map、原 privacy、ui-v1-review-lifecycle、confirmation-stale 和 committed-presentation-lifecycle。旧测试未修改、删除、skip 或放宽。完整默认 check 包含原 E03，不另叠一轮全量。只用 `VITEST_MAX_WORKERS=2` 控制本机资源，未改脚本/timeout/CI/依赖。

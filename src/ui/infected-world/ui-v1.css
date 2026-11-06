@@ -336,3 +336,6 @@
 .iw-mission-detail > section { padding-top:10px; margin-top:10px; }
 
 .iw-clue-list { grid-template-columns:repeat(3,minmax(0,1fr)); }
+
+/* Read-only map facts must sit above the stage, below existing modal layers. */
+.iw-sidebar:has(.iw-map-selection),.iw-sidebar:has(.iw-map[open]),.iw-sidebar:has(.iw-map-tools details[open]) { z-index:40; overflow:visible; }

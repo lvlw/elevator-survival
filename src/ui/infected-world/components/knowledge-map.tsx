@@ -28,7 +28,7 @@ export function KnowledgeMap({map,compact=true,scope,onScope,target}:{map:KnownM
  <p className="iw-map-current">{current?`当前：${fullName(current)}`:'当前不在活动建筑中'}</p>
  {!world&&validPlace!==anchor&&<p className="iw-map-help">正在查看：{validPlace}（没有移动）</p>}
  <div className={`iw-map-viewport${compact?'':' iw-map-viewport--expanded'}`} aria-label="已知地图画布，只读">
- <svg className="iw-minimap iw-map-canvas" viewBox="0 0 250 370" role="group" aria-label="已知地点拓扑，只读">
+ <svg className="iw-minimap iw-map-canvas" viewBox="0 0 250 320" role="group" aria-label="已知地点拓扑，只读">
  <defs><marker id={marker} markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M 0 0 L 5 3 L 0 6 Z" fill="#cfbe95"/></marker></defs>
  {[...channels.values()].map((c,i)=>{
   const ia=names.indexOf(c.from),ib=names.indexOf(c.to);if(ia<0||ib<0)return null
@@ -38,14 +38,14 @@ export function KnowledgeMap({map,compact=true,scope,onScope,target}:{map:KnownM
  })}
  {names.map((name,i)=>{const p=points[i],node=world?undefined:layer.nodes[i],currentNode=world?name===anchor:node?.current,selected=target&&(world?target.place===name:uniqueTarget(map,target)&&name===`${target.place} / ${target.name}`),label=world?name:node!.name
   const click=()=>world?change({world:false,place:name,selected:null}):change({selected:graph.byName.get(name)?name:null})
-  return <g key={i} className="iw-map-node" data-current={currentNode} data-visited={world?map.nodes.some(n=>n.place===name&&n.visited):node?.visited} data-target={!!selected} role="button" tabIndex={0} aria-label={world?`查看${name}内部`:`查看${name} · ${status(node!)}`} onClick={click} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();click()}}}><title>{world?`${name} · ${currentNode?'当前区域':'已发现入口'}（只查看）`:`${name} · ${status(node!)}`}</title><rect x={p.x-48} y={p.y-21} width="96" height="42" rx="3"/>{currentNode&&<path d={`M ${p.x+37} ${p.y-20} l 10 0 l 0 10 Z`} fill="#e2bf7a"/>}<text x={p.x} y={label.length>4?p.y-3:p.y+5} textAnchor="middle"><tspan x={p.x}>{label.slice(0,4)}</tspan>{label.length>4&&<tspan x={p.x} dy="17">{label.slice(4,8)}</tspan>}</text></g>
+  return <g key={i} className="iw-map-node" data-current={currentNode} data-visited={world?map.nodes.some(n=>n.place===name&&n.visited):node?.visited} data-target={!!selected} role="button" tabIndex={0} aria-label={world?`查看${name}内部`:`查看${name} · ${status(node!)}`} onClick={click} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();click()}}}><title>{world?`${name} · ${currentNode?'当前区域':'已发现入口'}（只查看）`:`${name} · ${status(node!)}`}</title><rect x={p.x-48} y={p.y-22} width="96" height="44" rx="3"/>{currentNode&&<path d={`M ${p.x+37} ${p.y-20} l 10 0 l 0 10 Z`} fill="#e2bf7a"/>}<text x={p.x} y={label.length>5?p.y-3:p.y+5} textAnchor="middle"><tspan x={p.x}>{label.slice(0,5)}</tspan>{label.length>5&&<tspan x={p.x} dy="17">{label.slice(5,10)}</tspan>}</text></g>
  })}
  {!names.length&&<text x="125" y="160" textAnchor="middle">尚无已知地点</text>}
  </svg></div>
  <p className="iw-map-legend">◆ 当前　实框已到达　虚框待探索</p>
  {!world&&layer.exits.length>0&&<div className="iw-map-exits" aria-label="已知对外出口">{[...new Set(layer.exits.map(r=>r.from))].map(from=><details key={from}><summary>{graph.byName.get(from)!.name} ↗ {[...new Set(layer.exits.filter(r=>r.from===from).map(r=>r.toNode.place))].join(' / ')}</summary>{layer.exits.filter(r=>r.from===from).map(r=><p key={r.index}>{r.from} → {r.to} · {passage(r.passable)} · {observation(r.observation)}</p>)}</details>)}</div>}
  <div className="iw-map-tools"><button onClick={()=>change({world:false,place:anchor,selected:null})}>回当前位置</button><details><summary>地图说明</summary><p>节点和切层只查看；移动使用现场“前往”。箭头保留方向，虚线为受阻/未知，淡线是上次观察。双向状态可能不同，旧观察不保证现在能走；交叉线不是路口。区域联系不证明内部连通。</p></details></div>
- {(chosen||routesValid)&&<p className="iw-map-selection" role="status">{chosen?`${fullName(chosen)} · ${status(chosen)}。`:'已知联系（只读，非移动）。'}{details.map(r=>`${r.from} → ${r.to}：${passage(r.passable)}，${observation(r.observation)}`).join('；')}</p>}
+ {(chosen||routesValid)&&<p className="iw-map-selection" role="status">{chosen?`${fullName(chosen)} · ${status(chosen)}。`:'已知联系（只读，非移动）。'}{details.map(r=>`${r.from} → ${r.to}：${passage(r.passable)}，${observation(r.observation)}`).join('；')}<button onClick={()=>change({selected:null})}>关闭地图详情</button></p>}
  {graph.unresolved&&<p className="iw-map-help">部分公开名称或路线端点不能唯一定位；保留路线文字，不猜测连线。</p>}
  <details className="iw-map"><summary>已知地图 <small>只读记录</small></summary><div className="iw-map-content"><ul className="iw-map-nodes" aria-label="已知地点">{map.nodes.map((n,i)=><li key={i}>{fullName(n)}<small>{status(n)}</small></li>)}</ul><ul className="iw-map-routes" aria-label="已知路线">{map.routes.map((r,i)=><li key={i}>{r.from} → {r.to}<small>{passage(r.passable)} · {observation(r.observation)}</small></li>)}</ul></div></details>
  </section>

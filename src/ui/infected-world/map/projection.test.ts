@@ -24,7 +24,7 @@ it('finite room layout does not shuffle on current movement and every hospital c
   const d=corridor(p[a],p[b],p);expect(d).not.toBeNull()
   const vertices=d!.slice(2).split(' L ').map(s=>s.split(' ').map(Number))
   for(let i=1;i<vertices.length;i++) {const [x,y]=vertices[i-1],[xx,yy]=vertices[i];expect(x===xx||y===yy).toBe(true)
-   for(const room of p){const crosses=x===xx?x>room.x-48&&x<room.x+48&&Math.max(y,yy)>room.y-21&&Math.min(y,yy)<room.y+21:y>room.y-21&&y<room.y+21&&Math.max(x,xx)>room.x-48&&Math.min(x,xx)<room.x+48;expect(crosses).toBe(false)}
+   for(const room of p){const crosses=x===xx?x>room.x-48&&x<room.x+48&&Math.max(y,yy)>room.y-22&&Math.min(y,yy)<room.y+22:y>room.y-22&&y<room.y+22&&Math.max(x,xx)>room.x-48&&Math.min(x,xx)<room.x+48;expect(crosses).toBe(false)}
   }
  }
 })

@@ -31,6 +31,19 @@ it('formal sample-first production path keeps unfinished power/transport explici
   await h.d.button('任务目标');const text=document.querySelector('.iw-mission-detail')!.textContent!
   expect(text).toContain('装接未完成');expect(text).toContain('样本已取得，但委托未完成')
   expect(text).not.toContain('当前可以交付返回')
+  await h.d.button('关闭')
+  await h.d.walk(['隔离走廊','大厅','后勤控制间','岗亭','配线廊','转运支路柜']);await h.d.rest()
+  expect(h.view().narrative?.powerSurvey).toBe(false);expect(missionGuide(h.view()).power).toBe(false)
+  await h.d.task('调查供电');expect(h.view().narrative?.powerSurvey).toBe(true);expect(missionGuide(h.view()).power).toBe(false)
+  await h.d.task('恢复供电');expect(missionGuide(h.view()).power).toBe(true);expect(missionGuide(h.view()).transfer).toBe(false)
+  expect(missionGuide(h.view()).clues.find(c=>c.id==='sample-held')?.text).not.toContain('还需恢复供电')
+  await h.d.walk(['配线廊','岗亭','后勤控制间','转运平台']);await h.d.task('安装转运装置',undefined,{materials:['component','module','金属零件','电子元件']})
+  expect(missionGuide(h.view()).transfer).toBe(true);expect(h.view().terminal.eligibility.deliver).toBe(false)
+  expect(missionGuide(h.view()).clues.find(c=>c.id==='sample-held')?.target).toEqual({place:'医院',name:'电梯前室'})
+  await h.d.walk(['后勤控制间','大厅','电梯前室']);expect(h.view().terminal.eligibility.deliver).toBe(true)
+  expect(missionGuide(h.view()).status).toBe('当前可以交付返回。');await h.d.send('交付返回')
+  expect(h.view().tasks.sample).toBe('delivered');expect(missionGuide(h.view()).ended).toBe(true);expect(missionGuide(h.view()).clues).toEqual([])
+
  }finally{await h.unmount()}
 },30000)
 it('workorder is explicitly named, reading is not investigation, and the real producer commits/saves once',async()=>{
@@ -70,5 +83,16 @@ it('owner loss removes task/map selection and old positioning controls cannot ex
   o.clear();h.setItem.mockClear();await h.flush(()=>h.owner().suspend());await h.flush(()=>old.click())
   expect(document.querySelector('.iw-mission-detail')).toBeNull();expect(document.querySelector('[aria-label="已知地图"]')).toBeNull()
   expect(h.setItem).not.toHaveBeenCalled();expect(o.counts()).toMatchObject({dispatch:0,current:0,notices:0,draw:0})
+ }finally{await h.unmount()}
+})
+
+it('formal power-first route needs neither a sample nor transport completion and supplies only remaining clues',async()=>{
+ const h=await mountUi()
+ try{await h.d.setup();await h.d.send('进入封锁区');await h.d.walk(['酒店入口','配线廊','转运支路柜'])
+  expect(h.view().narrative?.powerSurvey).toBe(false);expect(missionGuide(h.view()).power).toBe(false)
+  await h.d.task('调查供电');expect(missionGuide(h.view()).power).toBe(false)
+  await h.d.task('恢复供电');const m=missionGuide(h.view())
+  expect(m.power).toBe(true);expect(m.transfer).toBe(false);expect(h.view().tasks.sample).toBe('not-acquired')
+  expect(m.clues.some(c=>c.id==='power')).toBe(false);expect(m.status).not.toBe('当前可以交付返回。')
  }finally{await h.unmount()}
 })

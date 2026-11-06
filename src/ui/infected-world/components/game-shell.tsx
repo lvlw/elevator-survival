@@ -29,7 +29,7 @@ export function GameShell({ view, feed, onAction, onRetrySave, describeAction, p
   const [tracked, setTracked] = useState<string | null>(null)
   const [mapScope, setMapScope] = useState<MapScope>({anchor:view.location?.place??null,world:false,place:view.location?.place??null,selected:null})
   const [mapTarget, setMapTarget] = useState<MapTarget | null>(null)
-  const active = view.phase==='active-world'
+  const active = view.phase==='active-world' && view.location!==null
   const safeTarget = active && mapTarget && uniqueTarget(view.map,mapTarget) ? mapTarget : null
   const locate = (target:MapTarget) => {
     if(!active || !uniqueTarget(view.map,target))return
@@ -39,8 +39,8 @@ export function GameShell({ view, feed, onAction, onRetrySave, describeAction, p
   const missionProps = {view,tracked,onTrack:setTracked,onLocate:locate}
   return <ItemInspectionProvider view={view} describeAction={describeAction} onAction={onAction}><main className={`iw-app iw-game${drawer ? ` iw-drawer-${drawer}` : ''}`}><StatusHud view={view} onBody={() => setPanel('body')} onHelp={() => setPanel('help')} />
     <nav className="iw-drawer-tabs" aria-label="窄屏侧栏"><button onClick={() => setDrawer(drawer === 'left' ? null : 'left')}>任务与地图</button><button onClick={() => setDrawer(drawer === 'right' ? null : 'right')}>携带</button>{drawer && <button onClick={() => setDrawer(null)}>关闭侧栏</button>}</nav>
-    <div className="iw-game-layout"><aside className="iw-sidebar iw-framed" aria-label="任务与已知信息"><h2>当前委托</h2><MissionGuide {...missionProps} /><button type="button" onClick={() => setPanel('tasks')}>任务目标</button>
-      <h2>已知地点 <small>只读</small></h2><KnowledgeMap key={view.phase} map={view.map} scope={mapScope} onScope={setMapScope} target={safeTarget} /><button type="button" onClick={() => setPanel('map')}>展开已知区域</button>
+    <div className="iw-game-layout"><aside className="iw-sidebar iw-framed" aria-label="任务与已知信息"><MissionGuide {...missionProps} /><button type="button" onClick={() => setPanel('tasks')}>任务目标</button>
+      <KnowledgeMap key={view.phase} map={view.map} scope={mapScope} onScope={setMapScope} target={safeTarget} /><button type="button" onClick={() => setPanel('map')}>展开已知区域</button>
       <div className="iw-sidebar-bottom"><p>{view.location ? `${view.location.place} / ${view.location.name}` : '电梯中枢'}</p><p>工具：{view.first.toolChoices.map(toolName).join('、')}<br />专长：{view.first.specialtyChoices.map(specialtyName).join('、')}</p></div></aside>
       <div className="iw-stage-column"><WorldStage view={view} onAction={onAction} presentation={presentation} />{narrative}</div>
       <div className="iw-carrying iw-framed"><InventoryPanel view={view} onAction={onAction} describeAction={describeAction} />

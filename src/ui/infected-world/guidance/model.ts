@@ -3,7 +3,7 @@ import { knownGraph, uniqueTarget, type MapTarget } from '../map/projection'
 export type Clue = Readonly<{ id:string; title:string; text:string; target?:MapTarget }>
 /** Derived exclusively from the current safe DTO. Never a gameplay or knowledge owner. */
 export function missionGuide(v: PlayerReadyView) {
- const power=v.tasks.publicObjectives.find(o=>o.label==='本地供电')?.state==='completed'
+ const power=v.tasks.publicObjectives.find(o=>o.label==='恢复供电')?.state==='completed'
  const transfer=v.tasks.publicObjectives.find(o=>o.label==='急救转运')?.state==='completed'
  const sample=({'not-acquired':'尚未取得',carried:'已携带，待交付','left-in-world':'留置现场，返回前需取回',delivered:'已交付',unavailable:'当前不可取得'})[v.tasks.sample]
  const ended=v.phase==='dead'||v.phase==='living-hub'
@@ -25,7 +25,7 @@ export function missionGuide(v: PlayerReadyView) {
    }
    if(!v.narrative?.workorder)add('record','医院','后勤控制间','查看现场记录，查明转运停摆的原因；到现场可“调查停用工单”。')
    if(!transfer)add('install','医院','转运平台',power?'供电已恢复，转运设备仍待装接。到设备现场核对“安装转运装置”的要求。':'转运设备尚未装接。先恢复相关供电；可在已知设备现场核对装接需求。')
-   if(v.tasks.sample==='carried')clues.push({id:'sample-held',title:'指定样本',text:power&&transfer?'成果已齐备，携原样本回医院电梯前室，核对原交付资格。':'样本已取得，但委托未完成；待完成供电与转运工作后携回交付。'})
+   if(v.tasks.sample==='carried')clues.push({id:'sample-held',title:'指定样本',...(power&&transfer&&uniqueTarget(v.map,{place:'医院',name:'电梯前室'})?{target:{place:'医院',name:'电梯前室'}}:{}),text:power&&transfer?'成果已齐备，携原样本回医院电梯前室，核对原交付资格。':`样本已取得，但委托未完成；还需${[!power?'恢复供电':null,!transfer?'完成转运装接':null].filter(Boolean).join('、')}，再携回交付。`})
    else if(v.tasks.sample==='left-in-world')clues.push({id:'sample-left',title:'指定样本留置',text:'样本留在现场，返回前需取回；没有公开位置时不猜测它所在的房间。'})
    else if(v.tasks.sample==='not-acquired')add('sample','医院','冷藏室','调查已知冷藏区域的现场任务信息，核对指定样本的提取要求；位置已知不等于样本已取得。')
    if(!clues.some(c=>c.target)) {

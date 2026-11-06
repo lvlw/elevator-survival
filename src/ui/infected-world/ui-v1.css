@@ -305,7 +305,7 @@
 .iw-map-toolbar button,.iw-map-tools button { padding:3px 8px; min-height:28px; font-size:14px; }
 .iw-map-current { margin:0 0 6px; font-size:14px; line-height:1.4; }
 .iw-map-viewport { overflow:hidden; height:auto; max-height:none; border:0; }
-.iw-map-canvas { width:100%; height:auto; display:block; max-height:none!important; aspect-ratio:250/370; }
+.iw-map-canvas { width:100%; height:auto; display:block; max-height:none!important; aspect-ratio:250/320; }
 .iw-map-canvas text { font-size:15px; }
 .iw-map-edge-gap { fill:none; stroke:#0b1419; stroke-width:7px; }
 .iw-map-edge[data-passage='mixed'] { stroke:#d0b372; stroke-dasharray:6 2; }
@@ -321,3 +321,12 @@
 .iw-sidebar .iw-map-content { position:absolute; z-index:45; width:320px; max-height:260px; }
 .iw-tier-map .iw-known-map { max-width:560px; margin:auto; }
 .iw-tier-map .iw-map-canvas { max-height:560px!important; }
+
+.iw-sidebar-bottom { display:none; }
+.iw-sidebar .iw-map-selection { position:fixed; left:320px; top:150px; width:440px; max-height:430px; z-index:50; box-shadow:0 12px 32px #0009; padding:16px; }
+.iw-sidebar .iw-map-content { position:fixed; left:320px; top:150px; width:480px; max-height:650px; }
+.iw-map-selection button { display:block; margin-top:8px; }
+
+.iw-tracked-clue small { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; color:#b9c6be; font-size:14px; margin:3px 0; }
+
+.iw-mission-tracker h2 { font-size:17px; letter-spacing:1px; margin:0 0 8px; }

@@ -30,8 +30,8 @@ describe('shared safe SVG known-map projection (renderer tests, not native scree
       expect(host.querySelector('[data-visited="false"]')?.getAttribute('aria-label')).toContain('已知未到达')
       expect(host.querySelectorAll('.iw-map-routes li')).toHaveLength(4)
       expect(host.innerHTML).not.toMatch(/冷藏室|检修间|H[0-9]|nodeId|instanceId/)
-      expect(host.querySelector('.iw-map-canvas')!.getAttribute('viewBox')).toBe('0 0 250 370')
-      expect(Number(host.querySelector('.iw-map-node rect')!.getAttribute('height'))).toBeGreaterThanOrEqual(42)
+      expect(host.querySelector('.iw-map-canvas')!.getAttribute('viewBox')).toBe('0 0 250 320')
+      expect(Number(host.querySelector('.iw-map-node rect')!.getAttribute('height'))).toBeGreaterThanOrEqual(44)
     } finally { await act(async () => root.unmount()); host.remove() }
   })
   it('real current and known-unvisited nodes only open facts; keyboard, scrolling and expanded map do not move or save', async () => {

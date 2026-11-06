@@ -1,0 +1,16 @@
+[
+  {
+    "file": "projection.ts",
+    "git_blob": "3787d26700bbedb27f43b695e880113205d45444",
+    "expected": "3787d26700bbedb27f43b695e880113205d45444",
+    "matched": true,
+    "bytes": 1629
+  },
+  {
+    "file": "knowledge-map.tsx",
+    "git_blob": "7b72fdde1decfc09ce47926caac7b1325d8d29a7",
+    "expected": "7b72fdde1decfc09ce47926caac7b1325d8d29a7",
+    "matched": true,
+    "bytes": 8145
+  }
+]

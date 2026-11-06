@@ -1,0 +1,47 @@
+[
+  {
+    "path": "AUD.md",
+    "bytes": 7297,
+    "sha256": "4cf5266c7dbc4d841688320d2af5bddc0292b1b5e3099f6f296aa378e05caf26"
+  },
+  {
+    "path": "README.md",
+    "bytes": 173,
+    "sha256": "0fb9c8f541fb1fe65302965cff78d157de530c7e382dfcd79ed64ed4ad14e390"
+  },
+  {
+    "path": "SEND-TO-CODEX.txt",
+    "bytes": 614,
+    "sha256": "e9089d329ee1911fc0dd0018fb619b68683f8cadcd32de1ac24cbca8e0bbae58"
+  },
+  {
+    "path": "TASK.md",
+    "bytes": 3224,
+    "sha256": "a226a0f6474d0dddc008ee9a669638aa217d547ee8683ed30df94e71613bf8ee"
+  },
+  {
+    "path": "isolated/reproduce.cjs",
+    "bytes": 4623,
+    "sha256": "43ffd0519e93b391d8d8ba75d17e3cf36dbe2e4eaf9b433454702b3ccbe27b78"
+  },
+  {
+    "path": "isolated/result.json",
+    "bytes": 1100,
+    "sha256": "d009fbca72765c0b36d6ce49950dbeda2390a061868e3bc51763dd343f9883a6"
+  },
+  {
+    "path": "isolated/source/knowledge-map.tsx",
+    "bytes": 8145,
+    "sha256": "4b60b1f25751ab49a9109b8a6017398589a1df7a2dc334faeb5d86b16720cb53"
+  },
+  {
+    "path": "isolated/source/projection.ts",
+    "bytes": 1629,
+    "sha256": "372cb5c03791f5589d7b5cb5e9ca6001766278d91d0e65215947787e7cac4834"
+  },
+  {
+    "path": "isolated/source-binding.json",
+    "bytes": 401,
+    "sha256": "73fc55f7a6fec7c5f412c2158c5c8d7e9fa168fcde2d4c519650415311828046"
+  }
+]

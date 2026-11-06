@@ -1,0 +1,21 @@
+{
+  "scope": "ISOLATED_HASH_BOUND_COMPONENT_AND_PROJECTION_NOT_REACT_DOM_OR_NATIVE_GAME",
+  "source_commit": "f75bbb0d16378b32b6f13d1e5de8cb0eeedc887c",
+  "inputs": "Synthetic public map DTOs, modeled on same-building knowledge expansion and catalog order",
+  "test_doubles": [
+    "React hook/JSX host",
+    "geometry only; no layout assertion"
+  ],
+  "result": "REPRODUCED: route detail silently changes its endpoints",
+  "selected_key": "routes:6,7",
+  "before": "已知联系（只读，非移动）。医院 / 大厅 → 医院 / 后勤控制间：已知可通行，当前观察；医院 / 后勤控制间 → 医院 / 大厅：已知可通行，上次观察关闭地图详情",
+  "after": "已知联系（只读，非移动）。医院 / 保安室 → 医院 / 值班休息室：已知可通行，当前观察；医院 / 值班休息室 → 医院 / 保安室：已知可通行，上次观察关闭地图详情",
+  "original_pair_still_present": true,
+  "after_original_indexes": [
+    8,
+    9
+  ],
+  "formal_dispatch": "NOT EXECUTED",
+  "full_test_suite": "NOT RUN",
+  "browser": "NOT RUN"
+}

@@ -1,0 +1,8 @@
+执行附件 ENG-WORLD-MISSION-MAP-UX-001-R1。
+保留任务说明、两层地图及全部已交提交，不revert、不重做UI。
+BASE f75bbb0d16378b32b6f13d1e5de8cb0eeedc887c
+继续 feature/world-mission-map-ux-001。
+只修已选连线随已知路线数组变化而错绑的问题；按TASK先补真实React失败回归，再窄修并完成检查/准确SHA CI。
+不改布局/CSS/规则/存档，不重拍四图，不抢今晚A的原生桌面。
+只允许原分支普通commit/push，完成停在主线复审，不部署或更新Owner服务。
+推荐沿用Sol／high／Standard，实际不明记UNCONFIRMED。

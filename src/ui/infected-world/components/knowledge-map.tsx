@@ -13,14 +13,15 @@ export function KnowledgeMap({map,compact=true,scope,onScope,target}:{map:KnownM
  const roomNames=layer.nodes.map(fullName),names=world?graph.places:roomNames
  const points=positions(world?names:layer.nodes.map(n=>n.name),world?null:validPlace)
  const chosen=state.selected?graph.byName.get(state.selected):null
- const selectedRoutes=state.selected?.startsWith('routes:')?state.selected.slice(7).split(',').map(Number):[]
- const routesValid=selectedRoutes.length>0&&selectedRoutes.every(i=>graph.resolved.some(r=>r.index===i))
- useEffect(()=>{if(old.anchor!==anchor)change({world:false,place:anchor,selected:null})},[old.anchor,anchor])
- useEffect(()=>{if(state.selected&&!chosen&&!routesValid)change({selected:null})},[state.selected,chosen,routesValid])
  const marker=compact?'iw-map-mini-arrow':'iw-map-expanded-arrow'
  const routes=world?layer.cross:layer.internal
  const channels=new Map<string,{from:string;to:string;indexes:number[]}>()
- for(const r of routes){const pair=[world?r.fromNode.place:r.from,world?r.toNode.place:r.to].sort();if(pair[0]===pair[1])continue;const key=JSON.stringify(pair);const c=channels.get(key)??{from:pair[0],to:pair[1],indexes:[]};c.indexes.push(r.index);channels.set(key,c)}
+ for(const r of routes){const pair=[world?r.fromNode.place:r.from,world?r.toNode.place:r.to].sort();if(pair[0]===pair[1])continue;const key=`routes:${JSON.stringify([world?'world':'local',world?null:validPlace,...pair])}`;const c=channels.get(key)??{from:pair[0],to:pair[1],indexes:[]};c.indexes.push(r.index);channels.set(key,c)}
+ // Persist only the displayed channel's public endpoints and layer; row indices belong to this query.
+ const selectedRoutes=channels.get(state.selected??'')?.indexes??[]
+ const routesValid=selectedRoutes.length>0
+ useEffect(()=>{if(old.anchor!==anchor)change({world:false,place:anchor,selected:null})},[old.anchor,anchor])
+ useEffect(()=>{if(state.selected&&!chosen&&!routesValid)change({selected:null})},[state.selected,chosen,routesValid])
  const status=(node:KnownMap['nodes'][number])=>node.current?'当前位置':node.visited?'已到达':'已知未到达'
  const details=routesValid?map.routes.filter((_,i)=>selectedRoutes.includes(i)):chosen?map.routes.filter(r=>r.from===fullName(chosen)||r.to===fullName(chosen)):[]
  return <section className="iw-known-map" data-map-level={world?'world':'local'} data-map-place={world?'':validPlace??''}>
@@ -30,11 +31,11 @@ export function KnowledgeMap({map,compact=true,scope,onScope,target}:{map:KnownM
  <div className={`iw-map-viewport${compact?'':' iw-map-viewport--expanded'}`} aria-label="已知地图画布，只读">
  <svg className="iw-minimap iw-map-canvas" viewBox="0 0 250 320" role="group" aria-label="已知地点拓扑，只读">
  <defs><marker id={marker} markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M 0 0 L 5 3 L 0 6 Z" fill="#cfbe95"/></marker></defs>
- {[...channels.values()].map((c,i)=>{
+ {[...channels.entries()].map(([key,c],i)=>{
   const ia=names.indexOf(c.from),ib=names.indexOf(c.to);if(ia<0||ib<0)return null
   const d=corridor(points[ia],points[ib],points);if(!d)return null
   const rows=c.indexes.map(index=>map.routes[index]),states=new Set(rows.map(r=>r.passable))
-  return <g key={i} className="iw-map-channel" role="button" tabIndex={0} aria-label={`查看联系 ${c.from} 与 ${c.to}`} onClick={()=>change({selected:`routes:${c.indexes.join(',')}`})} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();change({selected:`routes:${c.indexes.join(',')}`})}}} ><path d={d} className="iw-map-edge-gap"/><path d={d} data-map-channel={i} className="iw-map-edge" data-passage={states.size===1?String(rows[0].passable):'mixed'} data-observation={rows.every(r=>r.observation==='last-observed')?'last-observed':'current'} markerStart={rows.some(r=>(world?graph.byName.get(r.from)?.place:r.from)===c.to)?`url(#${marker})`:undefined} markerEnd={rows.some(r=>(world?graph.byName.get(r.from)?.place:r.from)===c.from)?`url(#${marker})`:undefined}/>{c.indexes.map(index=><g key={index} data-map-route={index} data-passage={String(map.routes[index].passable)} data-observation={map.routes[index].observation}><title>{map.routes[index].from} → {map.routes[index].to} · {passage(map.routes[index].passable)} · {observation(map.routes[index].observation)}</title></g>)}</g>
+  return <g key={key} className="iw-map-channel" role="button" tabIndex={0} aria-label={`查看联系 ${c.from} 与 ${c.to}`} onClick={()=>change({selected:key})} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();change({selected:key})}}} ><path d={d} className="iw-map-edge-gap"/><path d={d} data-map-channel={i} className="iw-map-edge" data-passage={states.size===1?String(rows[0].passable):'mixed'} data-observation={rows.every(r=>r.observation==='last-observed')?'last-observed':'current'} markerStart={rows.some(r=>(world?graph.byName.get(r.from)?.place:r.from)===c.to)?`url(#${marker})`:undefined} markerEnd={rows.some(r=>(world?graph.byName.get(r.from)?.place:r.from)===c.from)?`url(#${marker})`:undefined}/>{c.indexes.map(index=><g key={index} data-map-route={index} data-passage={String(map.routes[index].passable)} data-observation={map.routes[index].observation}><title>{map.routes[index].from} → {map.routes[index].to} · {passage(map.routes[index].passable)} · {observation(map.routes[index].observation)}</title></g>)}</g>
  })}
  {names.map((name,i)=>{const p=points[i],node=world?undefined:layer.nodes[i],currentNode=world?name===anchor:node?.current,selected=target&&(world?target.place===name:uniqueTarget(map,target)&&name===`${target.place} / ${target.name}`),label=world?name:node!.name
   const click=()=>world?change({world:false,place:name,selected:null}):change({selected:graph.byName.get(name)?name:null})

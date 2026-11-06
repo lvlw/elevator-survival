@@ -23,7 +23,7 @@ export function missionGuide(v: PlayerReadyView) {
     if(current.byName.get('供电所 / 转运支路柜'))add('power','供电所','转运支路柜',text)
     else add('power','供电所',undefined,'查找相关供电设备，调查转运恢复所需的供电条件。')
    }
-   if(!v.narrative?.workorder)add('record','医院','后勤控制间','查看现场记录，查明转运停摆的原因；到现场可“调查停用工单”。')
+   if(!v.narrative?.workorder&&!visible.includes('调查停用工单'))add('record','医院','后勤控制间','查看现场记录，查明转运停摆的原因；到现场可“调查停用工单”。')
    if(!transfer)add('install','医院','转运平台',power?'供电已恢复，转运设备仍待装接。到设备现场核对“安装转运装置”的要求。':'转运设备尚未装接。先恢复相关供电；可在已知设备现场核对装接需求。')
    if(v.tasks.sample==='carried')clues.push({id:'sample-held',title:'指定样本',...(power&&transfer&&uniqueTarget(v.map,{place:'医院',name:'电梯前室'})?{target:{place:'医院',name:'电梯前室'}}:{}),text:power&&transfer?'成果已齐备，携原样本回医院电梯前室，核对原交付资格。':`样本已取得，但委托未完成；还需${[!power?'恢复供电':null,!transfer?'完成转运装接':null].filter(Boolean).join('、')}，再携回交付。`})
    else if(v.tasks.sample==='left-in-world')clues.push({id:'sample-left',title:'指定样本留置',text:'样本留在现场，返回前需取回；没有公开位置时不猜测它所在的房间。'})

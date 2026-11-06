@@ -15,7 +15,7 @@ it('real early task details explain the relationship and only locate public room
   expect(dialog.textContent).toContain('先恢复相关供电');expect(dialog.textContent).toContain('不等于转运已经恢复')
   expect(dialog.textContent).toContain('亲自带回医院电梯前室交付');expect(dialog.textContent).toContain('当前真实成果')
   expect(dialog.textContent).not.toMatch(/周衡|转运支路柜|冷藏室|检修间/)
-  const locate=[...dialog.querySelectorAll<HTMLButtonElement>('button')].find(b=>b.textContent?.startsWith('在地图查看：'))!
+  const locate=[...dialog.querySelectorAll<HTMLButtonElement>('button')].find(b=>b.getAttribute('aria-label')?.startsWith('在地图查看：'))!
   await h.flush(()=>locate.click());expect(document.querySelector('[aria-label="已知地图"]')).not.toBeNull()
   await h.d.button('关闭');await h.d.button('世界');await h.d.button('回当前位置')
   expect(h.view()).toBe(before);expect(h.setItem).not.toHaveBeenCalled();expect(h.entropy).not.toHaveBeenCalled()
@@ -79,7 +79,7 @@ it('public input alone drives layers and clues; inventory names, private-looking
 it('owner loss removes task/map selection and old positioning controls cannot execute or write',async()=>{
  const o=observeBrowser(),h=await mountUi()
  try{await h.d.setup();await h.d.send('进入封锁区');await h.d.button('任务目标')
-  const old=[...document.querySelectorAll<HTMLButtonElement>('button')].find(b=>b.textContent?.startsWith('在地图查看：'))!
+  const old=[...document.querySelectorAll<HTMLButtonElement>('button')].find(b=>b.getAttribute('aria-label')?.startsWith('在地图查看：'))!
   o.clear();h.setItem.mockClear();await h.flush(()=>h.owner().suspend());await h.flush(()=>old.click())
   expect(document.querySelector('.iw-mission-detail')).toBeNull();expect(document.querySelector('[aria-label="已知地图"]')).toBeNull()
   expect(h.setItem).not.toHaveBeenCalled();expect(o.counts()).toMatchObject({dispatch:0,current:0,notices:0,draw:0})

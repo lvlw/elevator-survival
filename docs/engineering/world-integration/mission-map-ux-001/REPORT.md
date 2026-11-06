@@ -7,8 +7,8 @@
 - BASE：`95cab5ad79e31d63aae93d97ab901c716cf75f89`，BASE tree `80545de7ac6efa8a2fcda4110a0fa071a3100419`。
 - 分支：`feature/world-mission-map-ux-001`。
 - worktree：`E:/projects/elevator-survival-worktrees/world-mission-map-ux-001`，从BASE新建，独立依赖由原lockfile离线npm ci产生，没有修改package/lock。
-- M1 `fbd9c27466830786f1f053ee74004ddc8ca0cb84`；M2 `a2f55e6107bf1cad5896cdcc7b5af1eb6b3b7c61`；M3详情自查 `9cc16db49517184df057d43e2ed8da46552da842`；M3隐私及绕线自查/最终源码 `887eafd9f3c9bc29f46a5a266ba00deaf0143c6d`。
-- 最后另有普通证据提交；其parent为上述最终源码提交。完整FINAL/PARENT/TREE、普通push回执与准确FINAL CI在提交后生成的仓库外交付回执及最终回复中列出，避免在同一提交内制造自引用SHA。证据提交不得修改源码。
+- M1 `fbd9c27466830786f1f053ee74004ddc8ca0cb84`；M2 `a2f55e6107bf1cad5896cdcc7b5af1eb6b3b7c61`；M3详情自查 `9cc16db49517184df057d43e2ed8da46552da842`；M3隐私及绕线自查 `887eafd9f3c9bc29f46a5a266ba00deaf0143c6d`；首个证据提交`f4c57ab8a360cc47d81562988162094cf363fbbd`；已公开歧义目标文本退路 `799e946d5b45a185f01deec7d7e2ac0d8f9a754d`；最终只读地图浮层层级源码 `ffa2fd86b2dcd49b9b1ca97375e0432f6380fec3`。
+- 最后另有普通最终证据提交；其parent为上述最终源码提交。完整FINAL/PARENT/TREE、普通push回执与准确FINAL CI在提交后生成的仓库外交付回执及最终回复中列出，避免在同一提交内制造自引用SHA。证据提交不得修改源码。
 - 模型、推理档位、Standard服务配置：实际均 **UNCONFIRMED**。推荐沿用此前Sol/high/Standard，不据此声称实际已核验。
 - 任务ZIP SHA256：`effb78f725cef0f4e26aadffa5e945049e7e0889045a099a264c298e9207c30b`；仓库外解包、CRC及所有MANIFEST条目通过；包内无verify-package.py。所有原输入见`task-inputs/`，Owner两张反例保留原字节，不把裁图当完整视口或绑定BASE的原生证据。
 - 已按实际AGENTS核对项目身份、当前职责/DEC-052、DEC-053、相关content与UIR；本包只覆盖任务说明与两层地图呈现，不改游戏规则、知识揭示、终局或存档。
@@ -44,7 +44,8 @@
 5. 原完整check抓到useId导致四项既有隐私DOM比较失败；**原privacy.test.tsx未改**，生产改为简图/展开图稳定marker。随后原隐私＋本批5文件26项通过，10.69s。没有把生成ID差异冒称真实隐藏种子泄漏。
 6. 真实像素自查发现详情末段裁切，合并重复工单提示、成果同行和三列线索，保留完整正文/字号。旧地图几何测试保留44px节点门槛。最终源码类型检查通过。
 7. 两类合同负控：外区房间漏进local；把sample carried改为已交付。均只在仓库外最终源码副本变异，具体业务AssertionError/exit1，逐字节还原；见negative日志/JSON。实际worktree未变异。
-8. 两轮被自查修订取代/中断的check日志保留，**不记PASS**。最终源码冻结后再运行原`npm run check`，包含既有E03；以`checks/final-check.log`和exit为准，准确统计/结论另列于交付回执。未扩timeout、删skip或修改CI/依赖。
+8. 最后复核UX B3时补齐：已公开但重名的线索保留原文字、没有地图定位按钮；完全未知地点仍不披露。使用真实公开DTO的歧义变体补断言，原隐私及定向4文件23项通过。补修前完整check已359/5088 PASS、559.67s（日志check-before-ambiguous保留），不沿用为补修后的最终运行。
+9. 两轮被自查修订取代/中断的check日志保留，**不记PASS**。最终源码冻结后再运行原`npm run check`，包含既有E03；以`checks/final-check.log`和exit为准，准确统计/结论另列于交付回执。未扩timeout、删skip或修改CI/依赖。
 
 所有本地命令沿用原脚本，仅设置`VITEST_MAX_WORKERS=2`控制本机并发；准确FINAL CI使用仓库原workflow。负控/隔离复现/相邻回归不累计包装成新增测试数。
 
@@ -57,7 +58,7 @@
 
 ## 四张最终原生原图与操作回执
 
-所有最终四图实际来源源码：`887eafd9f3c9bc29f46a5a266ba00deaf0143c6d`。其后的证据提交源码须逐blob一致。实际DEV React原npm run dev，只监听127.0.0.1:5307；本任务新IAB origin，不接管日常Edge，不改缩放/系统设置。1920×1080 CSS、DPR1；原生完整视口矩形捕获（API clip 0,0,1920,1080）JPEG固有尺寸逐图解码1920×1080，不裁切/缩放/拼图/补边。`screenshots/manifest.json`含字节/SHA256，`metadata.json`含原DOM几何及原生路径。自查早期帧已替换，不纳入本次交付四图。
+所有最终四图实际来源源码：`ffa2fd86b2dcd49b9b1ca97375e0432f6380fec3`。其后的最终证据提交源码须逐blob一致。实际DEV React原npm run dev，只监听127.0.0.1:5307；本任务新IAB origin，不接管日常Edge，不改缩放/系统设置。1920×1080 CSS、DPR1；原生完整视口矩形捕获（API clip 0,0,1920,1080）JPEG固有尺寸逐图解码1920×1080，没有截图后的裁切、缩放、拼图或补边。`screenshots/manifest.json`含字节/SHA256，`metadata.json`含原DOM几何及原生路径。自查早期帧已替换，不纳入本次交付四图。
 
 | 原图 | 实际证明内容 |
 |---|---|
@@ -68,7 +69,7 @@
 
 原生路径：明确新测试角色crow/engineer，原出发一次；H0→H1→原撬棍开门→H4真实战斗（蓄力一次、普通攻击两次，HP12→10、战后E90→78）→H5原谨慎提取，明确背包1,1放置，E76→66、样本真实携带。随后H4/H1/H3/H6/H7揭示医院分支回路；药房与转运平台仍可为已知未到达。工单点击一次E56→52；未调查前无署名，调查后保留原三卡。H7→H1→H0→T0（48→40，8E）→T1（40→38）。没有导入完成facts/checkpoint或改规则。
 
-第一遍只读看供电所内部再回当前位置，仍酒店/安置点、E38；原正式测试另以精确计数证明零dispatch/current/checkpoint/entropy。最终源码冷恢复同一任务origin的该角色，未自动重播剧情；重新采最终四图，先记录T1→T0→H0→H1→H7为36→28→26→24，跨区8E、默认医院层。全页API其后得到1905×1112自然文档图，未将它冒称1920原图；最终再次自然恢复同一H7测试档，用完整视口原生API取任务/医院图，实际H7→H1→H0→T0→T1为22→20→12→10，再取酒店/世界图。不是事后裁图或更改视口矩阵。两个方向的跨区均沿原入口，不自动去大厅。
+第一遍只读看供电所内部再回当前位置，仍酒店/安置点、E38；原正式测试另以精确计数证明零dispatch/current/checkpoint/entropy。最终源码冷恢复同一任务origin的该角色，未自动重播剧情；重新采最终四图，先记录T1→T0→H0→H1→H7为36→28→26→24，跨区8E、默认医院层。全页API其后得到1905×1112自然文档图，未将它冒称1920原图；最后歧义退路补修后实际原位休整一次至第2日、E100、饱食6→4、HP10，随后T1→T0→H0→H1→H7为98→90→88→86。浮层层级最终修复后从该真实H7档恢复，先取任务/医院图（E86）；实际H7→H1→H0→T0→T1为84→82→74→72，再取酒店/世界图。最终四图都在第2任务日，不将早期自查帧冒称最终帧。没有清档、补物或修改移动资格。不是事后裁图或更改视口矩阵。两个方向的跨区均沿原入口，不自动去大厅。
 
 任务浏览器标签已关闭、临时viewport已reset；本轮所有5307测试Vite均已停（最终PID见protection/runtime），5307不再提供服务；Owner原5277 PID25444保持运行且原origin数据未清。自动测试的memory ports/正式生产者夹具与原生浏览器分账，不冒称Owner体验通过。
 
@@ -84,4 +85,6 @@ A01保护/版本与A14检查见准确交付回执；A02—A05由真实任务链�
 
 未扩中后段剧情、多分辨率、玩法或美术；未SSH/部署/合并或安排Owner先玩。当前没有已知阻断性工程遗留；主线准确SHA代码与四图可用性实审尚未进行。详尽空间物理比例、路径自动规划、隐藏材料攻略并非本轮功能。完成后停止，不进入下一批。
 
-最终本地结果：原npm run check exit0；359文件/5088项通过，559.67秒；架构53 DEC/347 core、typecheck及build通过。准确FINAL CI提交后单独核对，不能以本地PASS替代。
+最后像素修订：节点详情此前虽存在于DOM却被舞台覆盖，最终CSS将已展开只读地图信息所在左栏置于z40，原模态z70保持更高。已实际用截图与elementFromPoint确认浮层可见，四图全部重取。该次仅CSS，TypeScript业务源码冻结；本轮原check的架构/类型/测试不依赖此CSS，最终build在CSS修订后运行，准确FINAL CI仍另作整轮验证。
+
+最终本地结果：原npm run check exit0；359文件/5088项通过，556.93秒；架构53 DEC/347 core、typecheck及build通过。准确FINAL CI提交后单独核对，不能以本地PASS替代。

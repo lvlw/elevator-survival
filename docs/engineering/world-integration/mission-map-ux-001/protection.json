@@ -1,6 +1,6 @@
 {
   "base": "95cab5ad79e31d63aae93d97ab901c716cf75f89",
-  "sourceSHA": "887eafd9f3c9bc29f46a5a266ba00deaf0143c6d",
+  "sourceSHA": "ffa2fd86b2dcd49b9b1ca97375e0432f6380fec3",
   "sourcePaths": [
     "src/app/infected-browser/narrative-entry.test.ts",
     "src/content/infected-world-v0.1/mission-guidance-copy.ts",
@@ -26,7 +26,12 @@
     {
       "ref": "refs/heads/feature/world-mission-map-ux-001",
       "before": "95cab5ad79e31d63aae93d97ab901c716cf75f89",
-      "after": "887eafd9f3c9bc29f46a5a266ba00deaf0143c6d"
+      "after": "ffa2fd86b2dcd49b9b1ca97375e0432f6380fec3"
+    },
+    {
+      "ref": "refs/remotes/origin/feature/world-mission-map-ux-001",
+      "before": null,
+      "after": "f4c57ab8a360cc47d81562988162094cf363fbbd"
     }
   ],
   "primaryHead": "5e4a38b1d32719f3f7478ecee824c8efae454b8c",
@@ -83,14 +88,14 @@
     }
   ],
   "ownerNarrativeHead": "95cab5ad79e31d63aae93d97ab901c716cf75f89",
-  "worktrees": "worktree E:/projects/elevator-survival\nHEAD 5e4a38b1d32719f3f7478ecee824c8efae454b8c\nbranch refs/heads/feature/world-ui-v1-integration-001\n\nworktree E:/projects/elevator-survival-worktrees/world-mission-map-ux-001\nHEAD 887eafd9f3c9bc29f46a5a266ba00deaf0143c6d\nbranch refs/heads/feature/world-mission-map-ux-001\n\nworktree E:/projects/elevator-survival-worktrees/world-narrative-entry-001\nHEAD 95cab5ad79e31d63aae93d97ab901c716cf75f89\nbranch refs/heads/feature/world-narrative-entry-001",
+  "worktrees": "worktree E:/projects/elevator-survival\nHEAD 5e4a38b1d32719f3f7478ecee824c8efae454b8c\nbranch refs/heads/feature/world-ui-v1-integration-001\n\nworktree E:/projects/elevator-survival-worktrees/world-mission-map-ux-001\nHEAD ffa2fd86b2dcd49b9b1ca97375e0432f6380fec3\nbranch refs/heads/feature/world-mission-map-ux-001\n\nworktree E:/projects/elevator-survival-worktrees/world-narrative-entry-001\nHEAD 95cab5ad79e31d63aae93d97ab901c716cf75f89\nbranch refs/heads/feature/world-narrative-entry-001",
   "runtime": {
     "ownerPort": 5277,
     "ownerPID": 25444,
     "ownerUntouched": true,
     "taskPort": 5307,
     "lastTaskPID": [
-      25592
+      31836
     ],
     "taskStopped": true,
     "taskTabsClosed": true,

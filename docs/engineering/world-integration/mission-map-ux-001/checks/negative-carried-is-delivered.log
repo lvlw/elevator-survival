@@ -5,13 +5,13 @@
 
  RUN  v4.1.10 C:/Users/zjl/.codex/visualizations/2026/10/30/01a18dbc-1d81-7312-99ab-903daead5d63/MISSION-MAP-UX/baseline-snapshot
 
- ❯ src/ui/infected-world/mission-map-ux.test.tsx (7 tests | 1 failed | 6 skipped) 4184ms
-   × formal sample-first production path keeps unfinished power/transport explicit, never advises a second extraction 4183ms
+ ❯ src/ui/infected-world/mission-map-ux.test.tsx (7 tests | 1 failed | 6 skipped) 4209ms
+   × formal sample-first production path keeps unfinished power/transport explicit, never advises a second extraction 4208ms
 
  Test Files  1 failed (1)
       Tests  1 failed | 6 skipped (7)
-   Start at  08:15:51
-   Duration  8.69s (transform 2.59s, setup 0ms, import 3.04s, tests 4.18s, environment 1.27s)
+   Start at  08:33:31
+   Duration  8.73s (transform 2.57s, setup 0ms, import 3.01s, tests 4.21s, environment 1.31s)
 
 
 ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯

@@ -10,8 +10,8 @@
 
  Test Files  1 failed (1)
       Tests  1 failed | 2 skipped (3)
-   Start at  08:15:49
-   Duration  1.51s (transform 35ms, setup 0ms, import 53ms, tests 7ms, environment 1.25s)
+   Start at  08:33:29
+   Duration  1.59s (transform 35ms, setup 0ms, import 53ms, tests 7ms, environment 1.32s)
 
 
 ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯

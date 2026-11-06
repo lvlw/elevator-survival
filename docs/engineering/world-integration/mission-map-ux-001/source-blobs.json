@@ -36,8 +36,8 @@
   },
   {
     "path": "src/ui/infected-world/guidance/model.ts",
-    "blob": "c938a39e12384458c4b8935717ebc5ff620cca38",
-    "sha256": "8258ecb6f31249f3cc6c3248f1220259a5cc11e773f38a3a80e8a6234e51ae26"
+    "blob": "f5eab2096ef1989901e4e7b82abec009165515d7",
+    "sha256": "e9ad6a5907a0dc65ae85dd847f47c008166da9b8978ecb017a11e48a05a8722a"
   },
   {
     "path": "src/ui/infected-world/map/layout.ts",
@@ -56,8 +56,8 @@
   },
   {
     "path": "src/ui/infected-world/mission-map-ux.test.tsx",
-    "blob": "c67ea89bcc49a70f694bd62f99d09f6a904fb965",
-    "sha256": "77b07de3e8d4bbf68dc987f254be887b8f4d4b258c9b3deda67cc8bb887b4085"
+    "blob": "2120fa8788c529cd407606632c89caf1aa1c129c",
+    "sha256": "bfad43fdf6d82a49d1357132995e428ed2c0dca16c72721e26cbafb576ab32e9"
   },
   {
     "path": "src/ui/infected-world/narrative-entry.test.tsx",
@@ -81,7 +81,7 @@
   },
   {
     "path": "src/ui/infected-world/ui-v1.css",
-    "blob": "2b6023ef8abdb375554b97eddae0ae94d4b8b800",
-    "sha256": "0dba5b42f93098cb2fc4c731462640fabbfedc2b0d29d69548bc92342e85cb61"
+    "blob": "9f405fe74a2aa4de3c73742c0da46cf67fd5d5c8",
+    "sha256": "4bf521251b325cb7969ec4dbd46c9810bec3f20863b913e746a4f86fccfc7092"
   }
 ]

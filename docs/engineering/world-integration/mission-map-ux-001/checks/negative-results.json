@@ -12,7 +12,7 @@
     "exit": 1,
     "businessAssertionFailure": true,
     "restored": true,
-    "restoredSha256": "8258ecb6f31249f3cc6c3248f1220259a5cc11e773f38a3a80e8a6234e51ae26",
+    "restoredSha256": "e9ad6a5907a0dc65ae85dd847f47c008166da9b8978ecb017a11e48a05a8722a",
     "location": "isolated external final-source copy; actual worktree untouched"
   }
 ]

@@ -9,7 +9,9 @@ export function missionGuide(v: PlayerReadyView) {
  const ended=v.phase==='dead'||v.phase==='living-hub'
  const clues:Clue[]=[]
  const add=(id:string,place:string,name:string|undefined,text:string)=>{
-  const target={place,...(name?{name}:{})};if(uniqueTarget(v.map,target))clues.push({id,title:name?`${place} / ${name}`:place,text,target})
+  const target={place,...(name?{name}:{})}
+  const disclosed=name?v.map.nodes.some(n=>n.place===place&&n.name===name):v.map.nodes.some(n=>n.place===place)
+  if(disclosed)clues.push({id,title:name?`${place} / ${name}`:place,text,...(uniqueTarget(v.map,target)?{target}:{})})
  }
  const current=knownGraph(v.map)
  if(!ended&&v.phase==='active-world') {

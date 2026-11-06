@@ -70,10 +70,14 @@ it('actual cross-building move retains original cost/entry and switches the defa
 })
 it('public input alone drives layers and clues; inventory names, private-looking extras and reading marks cannot complete objectives',async()=>{
  const h=await mountUi()
- try {await h.d.setup();await h.d.send('进入封锁区');const v=h.view()
+ try {await h.d.setup();await h.d.send('进入封锁区');await h.d.move('大厅');const v=h.view()
   const irrelevant={...v,carried:v.carried.map(i=>({...i,name:'指定样本'})),hiddenSeed:'different',infection:'secret',enemy:'hidden',readingMarks:['H07']}
   expect(missionGuide(irrelevant)).toEqual(missionGuide(v));expect(mapLayer(irrelevant.map,'医院')).toEqual(mapLayer(v.map,'医院'))
   const g=knownGraph(v.map);expect(g.places).not.toContain('供电所');expect(g.byName.has('医院 / 冷藏室')).toBe(false)
+  const room=v.map.nodes.find(n=>n.name==='后勤控制间')!;const ambiguous={...v,map:{...v.map,nodes:[...v.map.nodes,{...room,current:false}]}}
+  expect(missionGuide(ambiguous).clues.find(c=>c.id==='record')).toMatchObject({title:'医院 / 后勤控制间',text:expect.stringContaining('查看现场记录')})
+  expect(missionGuide(ambiguous).clues.find(c=>c.id==='record')?.target).toBeUndefined()
+  expect(missionGuide(v).clues.some(c=>c.title.includes('冷藏室'))).toBe(false)
  }finally{await h.unmount()}
 })
 it('owner loss removes task/map selection and old positioning controls cannot execute or write',async()=>{

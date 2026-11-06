@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { mapLayer, fullName, passage, observation, uniqueTarget, type KnownMap, type MapTarget } from '../map/projection'
 import { corridor, positions } from '../map/layout'
 export type MapScope={anchor:string|null;world:boolean;place:string|null;selected:string|null}
@@ -17,7 +17,7 @@ export function KnowledgeMap({map,compact=true,scope,onScope,target}:{map:KnownM
  const routesValid=selectedRoutes.length>0&&selectedRoutes.every(i=>graph.resolved.some(r=>r.index===i))
  useEffect(()=>{if(old.anchor!==anchor)change({world:false,place:anchor,selected:null})},[old.anchor,anchor])
  useEffect(()=>{if(state.selected&&!chosen&&!routesValid)change({selected:null})},[state.selected,chosen,routesValid])
- const marker='iw-map-'+useId().replace(/:/g,'')
+ const marker=compact?'iw-map-mini-arrow':'iw-map-expanded-arrow'
  const routes=world?layer.cross:layer.internal
  const channels=new Map<string,{from:string;to:string;indexes:number[]}>()
  for(const r of routes){const pair=[world?r.fromNode.place:r.from,world?r.toNode.place:r.to].sort();if(pair[0]===pair[1])continue;const key=JSON.stringify(pair);const c=channels.get(key)??{from:pair[0],to:pair[1],indexes:[]};c.indexes.push(r.index);channels.set(key,c)}

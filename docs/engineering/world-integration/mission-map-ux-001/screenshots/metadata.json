@@ -1,0 +1,126 @@
+{
+  "frames": [
+    {
+      "file": "01-mission.jpg",
+      "sourceSHA": "887eafd9f3c9bc29f46a5a266ba00deaf0143c6d",
+      "capture": "native full requested viewport rectangle, no postprocessing",
+      "metrics": {
+        "body": [
+          749,
+          749
+        ],
+        "canvas": null,
+        "channels": 0,
+        "css": [
+          1920,
+          1080
+        ],
+        "directions": 0,
+        "document": [
+          1905,
+          1905,
+          1112
+        ],
+        "dpr": 1,
+        "location": "当前：医院 / 后勤控制间",
+        "nodes": [],
+        "sidebar": [
+          886,
+          886
+        ],
+        "text": "封锁区 · 委托说明未完成的转运当地急救转运已经停摆。你需要让转运设施重新运作，并取得指定的密封病原样本，亲自带回医院电梯前室交付。恢复当地急救转运先恢复相关供电，再完成医院转运设备的装接。恢复供电只是其中一步，不等于转运已经恢复。现场记录与设备信息可以帮助你查明所需工作。携回指定样本找到并取得任务指定的密封病原样本，保留原物，最后携带它回到医院电梯前室。拿到样本不等于委托完成；样本留在现场也不算交付。当前真实成果供电：尚未恢复（未核查）转运：装接未完成指定样本：已携带，待交付样本在身上；携带不等于委托完成。已查工单：转运曾被主动停用并隔离污染侧。可追查的已知线索供电所查找相关供电设备，调查转运恢复所需的供电条件。在地图查看正在追踪医院 / 转运平台转运设备尚未装接。先恢复相关供电；可在已知设备现场核对装接需求。在地图查看追踪线索指定样本样本已取得，但委托未完成；还需恢复供电、完成转运装接，再携回交付。追踪线索完成与返回当地供电、转运恢复均已完成，指定样本正在携带，且合法回到医院电梯前室后，使用原“交付返回”操作。其他情况下主动结束会按失败止损，不存在离开整备后再续做本委托。驻留期限 7 个任务日；完整履约奖励 120 积分。失败收入 0，最多扣现有积分中的 20 积分，不负债。成功或失败正式结束后均不可重接。"
+      }
+    }
+  ],
+  "sourceSHA": "887eafd9f3c9bc29f46a5a266ba00deaf0143c6d",
+  "origin": "http://127.0.0.1:5307",
+  "route": "/?dev-infected-world=1",
+  "firstNativeRoute": {
+    "battle": [
+      "玩家 · 生命 10 / 12",
+      "战斗已结束"
+    ],
+    "crossRegion": [
+      {
+        "action": "大厅 精力 2",
+        "heading": "heading \"大厅\" [level=1]",
+        "energy": "50 / 100",
+        "layer": "医院"
+      },
+      {
+        "action": "电梯前室 精力 2",
+        "heading": "heading \"电梯前室\" [level=1]",
+        "energy": "48 / 100",
+        "layer": "医院"
+      },
+      {
+        "action": "酒店入口 精力 8",
+        "heading": "heading \"酒店入口\" [level=1]",
+        "energy": "40 / 100",
+        "layer": "酒店"
+      },
+      {
+        "action": "林岑安置点 精力 2",
+        "heading": "heading \"林岑安置点\" [level=1]",
+        "energy": "38 / 100",
+        "layer": "酒店"
+      }
+    ],
+    "workorder": "exactly one actual 调查停用工单 activation, energy56→52"
+  },
+  "finalNativeRoute": [
+    {
+      "action": "酒店入口 精力 2",
+      "heading": "heading \"酒店入口\" [level=1]",
+      "energy": "36 / 100",
+      "layer": ""
+    },
+    {
+      "action": "电梯前室 精力 8",
+      "heading": "heading \"电梯前室\" [level=1]",
+      "energy": "28 / 100",
+      "layer": "医院"
+    },
+    {
+      "action": "大厅 精力 2",
+      "heading": "heading \"大厅\" [level=1]",
+      "energy": "26 / 100",
+      "layer": "医院"
+    },
+    {
+      "action": "后勤控制间 精力 2",
+      "heading": "heading \"后勤控制间\" [level=1]",
+      "energy": "24 / 100",
+      "layer": "医院"
+    }
+  ],
+  "pixelCaptureRoute": [
+    {
+      "action": "大厅 精力 2",
+      "heading": "heading \"大厅\" [level=1]",
+      "energy": "22 / 100",
+      "layer": "医院"
+    },
+    {
+      "action": "电梯前室 精力 2",
+      "heading": "heading \"电梯前室\" [level=1]",
+      "energy": "20 / 100",
+      "layer": "医院"
+    },
+    {
+      "action": "酒店入口 精力 8",
+      "heading": "heading \"酒店入口\" [level=1]",
+      "energy": "12 / 100",
+      "layer": "酒店"
+    },
+    {
+      "action": "林岑安置点 精力 2",
+      "heading": "heading \"林岑安置点\" [level=1]",
+      "energy": "10 / 100",
+      "layer": "酒店"
+    }
+  ],
+  "save": "same task-origin role restored naturally, no checkpoint injection, clear or import; Owner5277 untouched",
+  "readOnly": "Viewed power region then returned to current hotel at energy38 in first pass; formal zero-side-effect test passes",
+  "capture": "Only final 4 native full viewport rectangle JPEGs delivered. FullPage API returned1905x1112 from document overflow; final direct native clip0,0,1920,1080, never postprocessed."
+}

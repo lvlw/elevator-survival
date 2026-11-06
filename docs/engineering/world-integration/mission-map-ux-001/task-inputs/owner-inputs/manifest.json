@@ -1,0 +1,26 @@
+[
+  {
+    "path": "owner-inputs/01-task-objectives.png",
+    "source": "image(6).png",
+    "bytes": 418470,
+    "sha256": "abbeb3bd8d002801658030568ecf828c7a87fbccd4d9e779e787835eb6a52fe5",
+    "pixels": [
+      856,
+      286
+    ],
+    "edited": false,
+    "runtime_sha": "NOT VERIFIED"
+  },
+  {
+    "path": "owner-inputs/02-sidebar-map.png",
+    "source": "image(7).png",
+    "bytes": 399761,
+    "sha256": "a12315de8a6f4c0447c2ae1a5e8c7212e084553198f913f81c68d9d75e3b210b",
+    "pixels": [
+      305,
+      894
+    ],
+    "edited": false,
+    "runtime_sha": "NOT VERIFIED"
+  }
+]

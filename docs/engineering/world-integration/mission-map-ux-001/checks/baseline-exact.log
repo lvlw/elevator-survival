@@ -1,0 +1,13 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run
+
+
+ RUN  v4.1.10 C:/Users/zjl/.codex/visualizations/2026/10/30/01a18dbc-1d81-7312-99ab-903daead5d63/MISSION-MAP-UX/baseline-snapshot
+
+
+ Test Files  357 passed (357)
+      Tests  5078 passed (5078)
+   Start at  07:48:38
+   Duration  607.19s (transform 12.99s, setup 0ms, import 101.40s, tests 449.06s, environment 540.55s)
+

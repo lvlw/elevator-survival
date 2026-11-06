@@ -1,0 +1,120 @@
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-mission-map-ux-001
+
+ ❯ src/ui/infected-world/ui-v1-review-map.test.tsx (8 tests | 8 failed) 609ms
+     × ambiguous full names and missing endpoints emit no guessed edge, keeping every original route text/state 48ms
+     × same short name in different places remains unique; directed cycle/reverse/unknown/old observation and exact node facts survive 19ms
+     × unique selection becomes ambiguous or absent immediately; later surviving names never reopen stale detail 31ms
+     × reading synthetic boundaries beside an actual owner never dispatches, saves or changes its real public view 343ms
+     × ambiguous full names and missing endpoints emit no guessed edge, keeping every original route text/state 8ms
+     × same short name in different places remains unique; directed cycle/reverse/unknown/old observation and exact node facts survive 6ms
+     × unique selection becomes ambiguous or absent immediately; later surviving names never reopen stale detail 12ms
+     × reading synthetic boundaries beside an actual owner never dispatches, saves or changes its real public view 141ms
+stderr | src/ui/infected-world/ui-v1-map.test.tsx > shared safe SVG known-map projection (renderer tests, not native screenshots) > real current and known-unvisited nodes only open facts; keyboard, scrolling and expanded map do not move or save
+g: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)
+
+ ❯ src/ui/infected-world/ui-v1-map.test.tsx (3 tests | 3 failed) 457ms
+     × compact=true retains the cycle, reverse direction and every observation instead of a tree 70ms
+     × compact=false retains the cycle, reverse direction and every observation instead of a tree 13ms
+     × real current and known-unvisited nodes only open facts; keyboard, scrolling and expanded map do not move or save 373ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/ui/infected-world/ui-v1-map.test.tsx > shared safe SVG known-map projection (renderer tests, not native screenshots) > compact=true retains the cycle, reverse direction and every observation instead of a tree
+ FAIL  src/ui/infected-world/ui-v1-map.test.tsx > shared safe SVG known-map projection (renderer tests, not native screenshots) > compact=false retains the cycle, reverse direction and every observation instead of a tree
+AssertionError: expected null not to be null // Object.is equality
+ ❯ src/ui/infected-world/ui-v1-map.test.tsx:27:47
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+ FAIL  src/ui/infected-world/ui-v1-map.test.tsx > shared safe SVG known-map projection (renderer tests, not native screenshots) > real current and known-unvisited nodes only open facts; keyboard, scrolling and expanded map do not move or save
+AssertionError: expected [ SVGGElement{ …(2), …(2) }, …(1) ] to have a length of 4 but got 2
+
+- Expected
++ Received
+
+- 4
++ 2
+
+ ❯ src/ui/infected-world/ui-v1-map.test.tsx:43:21
+     41|       const before = h.view(); observed.clear(); h.setItem.mockClear()
+     42|       const nodes = [...h.host.querySelectorAll<SVGGElement>('.iw-map-…
+     43|       expect(nodes).toHaveLength(before.map.nodes.length)
+       |                     ^
+     44|       await h.flush(() => nodes[0]!.dispatchEvent(new MouseEvent('clic…
+     45|       await h.flush(() => nodes.at(-1)!.dispatchEvent(new KeyboardEven…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/11]⎯
+
+ FAIL  src/ui/infected-world/ui-v1-review-map.test.tsx > R1-02 synthetic safe projection, compact=true (not a viewport/native-world claim) > ambiguous full names and missing endpoints emit no guessed edge, keeping every original route text/state
+ FAIL  src/ui/infected-world/ui-v1-review-map.test.tsx > R1-02 synthetic safe projection, compact=false (not a viewport/native-world claim) > ambiguous full names and missing endpoints emit no guessed edge, keeping every original route text/state
+AssertionError: expected [] to deeply equal [ 4, 5 ]
+
+- Expected
++ Received
+
+- [
+-   4,
+-   5,
+- ]
++ []
+
+ ❯ src/ui/infected-world/ui-v1-review-map.test.tsx:31:115
+     29|     try {
+     30|       await r.render(map)
+     31|       expect([...r.host.querySelectorAll('[data-map-route]')].map(e =>…
+       |                                                                                                                   ^
+     32|       expect(r.host.querySelectorAll('.iw-map-node')).toHaveLength(4)
+     33|       const text = [...r.host.querySelectorAll('.iw-map-routes li')].m…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/11]⎯
+
+ FAIL  src/ui/infected-world/ui-v1-review-map.test.tsx > R1-02 synthetic safe projection, compact=true (not a viewport/native-world claim) > same short name in different places remains unique; directed cycle/reverse/unknown/old observation and exact node facts survive
+ FAIL  src/ui/infected-world/ui-v1-review-map.test.tsx > R1-02 synthetic safe projection, compact=false (not a viewport/native-world claim) > same short name in different places remains unique; directed cycle/reverse/unknown/old observation and exact node facts survive
+AssertionError: expected [] to have a length of 4 but got +0
+
+- Expected
++ Received
+
+- 4
++ 0
+
+ ❯ src/ui/infected-world/ui-v1-review-map.test.tsx:45:21
+     43|     try {
+     44|       await r.render(map); const edges = [...r.host.querySelectorAll('…
+     45|       expect(edges).toHaveLength(4)
+       |                     ^
+     46|       expect(edges.map(e => [e.getAttribute('data-passage'), e.getAttr…
+     47|       expect(edges[0]!.getAttribute('d')).not.toBe(edges[3]!.getAttrib…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/11]⎯
+
+ FAIL  src/ui/infected-world/ui-v1-review-map.test.tsx > R1-02 synthetic safe projection, compact=true (not a viewport/native-world claim) > unique selection becomes ambiguous or absent immediately; later surviving names never reopen stale detail
+ FAIL  src/ui/infected-world/ui-v1-review-map.test.tsx > R1-02 synthetic safe projection, compact=false (not a viewport/native-world claim) > unique selection becomes ambiguous or absent immediately; later surviving names never reopen stale detail
+TypeError: Cannot read properties of undefined (reading 'dispatchEvent')
+ ❯ src/ui/infected-world/ui-v1-review-map.test.tsx:19:119
+
+ ❯ process.env.NODE_ENV.exports.act node_modules/react/cjs/react.development.js:814:22
+ ❯ Object.click src/ui/infected-world/ui-v1-review-map.test.tsx:19:59
+ ❯ src/ui/infected-world/ui-v1-review-map.test.tsx:63:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/11]⎯
+
+ FAIL  src/ui/infected-world/ui-v1-review-map.test.tsx > R1-02 synthetic safe projection, compact=true (not a viewport/native-world claim) > reading synthetic boundaries beside an actual owner never dispatches, saves or changes its real public view
+ FAIL  src/ui/infected-world/ui-v1-review-map.test.tsx > R1-02 synthetic safe projection, compact=false (not a viewport/native-world claim) > reading synthetic boundaries beside an actual owner never dispatches, saves or changes its real public view
+TypeError: Cannot read properties of undefined (reading 'dispatchEvent')
+ ❯ src/ui/infected-world/ui-v1-review-map.test.tsx:19:119
+
+ ❯ process.env.NODE_ENV.exports.act node_modules/react/cjs/react.development.js:814:22
+ ❯ Object.click src/ui/infected-world/ui-v1-review-map.test.tsx:19:59
+ ❯ src/ui/infected-world/ui-v1-review-map.test.tsx:74:33
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/11]⎯
+
+
+ Test Files  2 failed | 3 passed (5)
+      Tests  11 failed | 11 passed (22)
+   Start at  07:50:12
+   Duration  14.55s (transform 4.57s, setup 0ms, import 7.08s, tests 9.77s, environment 9.14s)
+

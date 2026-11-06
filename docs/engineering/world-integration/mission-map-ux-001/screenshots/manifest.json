@@ -1,0 +1,46 @@
+[
+  {
+    "file": "01-mission.jpg",
+    "sourceSHA": "887eafd9f3c9bc29f46a5a266ba00deaf0143c6d",
+    "pixels": [
+      1920,
+      1080
+    ],
+    "bytes": 341962,
+    "sha256": "02d06907c7e7e165c68e4c0bac61884a773208b8fba98b0a9c692d520aea01a2",
+    "postProcessing": "NONE; native entire viewport clip {x:0,y:0,width:1920,height:1080}"
+  },
+  {
+    "file": "02-hospital.jpg",
+    "sourceSHA": "887eafd9f3c9bc29f46a5a266ba00deaf0143c6d",
+    "pixels": [
+      1920,
+      1080
+    ],
+    "bytes": 272153,
+    "sha256": "15f307d47892c46eca037638a68e7be7dbe4bc3d082438221aaa7f2711fb32bd",
+    "postProcessing": "NONE; native entire viewport clip {x:0,y:0,width:1920,height:1080}"
+  },
+  {
+    "file": "03-hotel.jpg",
+    "sourceSHA": "887eafd9f3c9bc29f46a5a266ba00deaf0143c6d",
+    "pixels": [
+      1920,
+      1080
+    ],
+    "bytes": 301457,
+    "sha256": "0a1c8be83b2108575b44117ac0c90f0a6c6ac9340042a565dd04bd99de7e0be6",
+    "postProcessing": "NONE; native entire viewport clip {x:0,y:0,width:1920,height:1080}"
+  },
+  {
+    "file": "04-world.jpg",
+    "sourceSHA": "887eafd9f3c9bc29f46a5a266ba00deaf0143c6d",
+    "pixels": [
+      1920,
+      1080
+    ],
+    "bytes": 248894,
+    "sha256": "00f5880890ca0b2c1b22e233d91abf874b6712abd23975cd5ce8a8a6d814ff23",
+    "postProcessing": "NONE; native entire viewport clip {x:0,y:0,width:1920,height:1080}"
+  }
+]

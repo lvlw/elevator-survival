@@ -1,0 +1,20 @@
+执行附件 ENG-WORLD-MISSION-MAP-UX-001。Owner现在只要求先修“任务说明”和“两层地图”，暂停中后段剧情。
+
+仓库 lvlw/elevator-survival
+BASE 95cab5ad79e31d63aae93d97ab901c716cf75f89
+新分支 feature/world-mission-map-ux-001
+推荐沿用GPT-6.1 Sol／high／Standard；实际不可核验写UNCONFIRMED，不继承其他项目权限。
+
+先读TASK、UX-CONTRACT、CONTENT-GUIDANCE、ACCEPTANCE、SCOPE和实际AGENTS。核对实际HEAD/diff/worktree，保全HTTP实验与Owner存档，实际test:run建立基线。
+
+连续完成M1任务说明/知情线索/明确主线动作名，M2本地房间图＋世界建筑图＋只读任务定位，M3真实React验收与回归。各M普通提交，不在做完一个页面后停下来要求Owner摸索。
+
+任务详情不能再复制左栏的两个标题；样本携带不等于交付。地图默认当前建筑已知内部，世界图只含已知建筑；全本地同屏、无双滚动/半截节点/线穿文字。图例让位给地图，不用极小字伪装一屏。
+
+只读切层与地图定位不移动玩家；实际跨区仍用原动作、原成本、原入口。不泄露未知房间、隐藏捷径/材料/敌情，不从旧观察承诺实时安全。旧歧义名称保护保留。
+
+不改core、任务资格、存档、BrowserOwner、依赖、CI或服务器；无新美术或多分辨率矩阵。允许本新分支普通commit/push，不merge、不强推、不动main/baseline/旧refs。
+
+固定原1920×1080 CSS主视口，交任务详情、医院本地、酒店本地、世界地图四张真实原图及必要点击记录。执行定向回归、负控还原后原check及准确SHA CI；GitHub直审，不包重复源码。
+
+完成交BASE/FINAL/PARENT/TREE、报告、检查/CI、原图和遗留后停止，等待主线实审；不自动部署或安排试玩。

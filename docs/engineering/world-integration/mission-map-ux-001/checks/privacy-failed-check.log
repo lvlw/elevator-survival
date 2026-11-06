@@ -1,0 +1,32 @@
+
+> elevator-survival@0.0.0 check
+> npm run validate:architecture && npm run typecheck && npm run test:run && npm run build
+
+
+> elevator-survival@0.0.0 validate:architecture
+> node scripts/validate-architecture.mjs
+
+Architecture validation passed: 53 DEC entries and 347 core production files checked.
+
+> elevator-survival@0.0.0 typecheck
+> tsc -b --pretty false
+
+
+> elevator-survival@0.0.0 test:run
+> vitest run
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-mission-map-ux-001
+
+ ❯ src/ui/infected-world/privacy.test.tsx (5 tests | 4 failed) 1783ms
+     × same public facts with different hidden event seeds render identical markup including aria and title 554ms
+     × same approved current burden with different hidden progress and exposure preserves all DOM and medical option order 252ms
+     × different actual enemy HP within one stage after native retreat repair rest and reentry has identical battle DOM 442ms
+     × opposite real default sample risk answers have identical pre-confirm DOM including placement and option order 412ms
+ ❯ src/ui/infected-world/committed-presentation-privacy.test.tsx (3 tests | 3 failed) 1375ms
+     × same public band with different hidden disease progress and exposure preserves every field and ordered DOM attribute 496ms
+     × different real character/seed/item/battle identities retain identical complete DOM and feedback structure 410ms
+     × same-stage differing enemy HP after actual retreat/repair/rest/reentry does not change before/after DOM or the action cue 467ms
+ ❯ src/ui/infected-world/enemy-art-privacy.test.tsx (3 tests | 2 failed) 1055ms
+     × different actual enemy HP in one public stage after native retreat/repair/rest/reentry has identical complete ordered DOM 598ms
+     × different real seeds and hidden body progress/exposures with the same public facts have identical complete ordered DOM 193ms

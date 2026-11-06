@@ -1,0 +1,87 @@
+{
+  "task": "ENG-WORLD-MISSION-MAP-UX-001",
+  "version": "1.0",
+  "base": "95cab5ad79e31d63aae93d97ab901c716cf75f89",
+  "branch": "feature/world-mission-map-ux-001",
+  "allowed_existing_production_files": [
+    "src/ui/infected-world/components/game-shell.tsx",
+    "src/ui/infected-world/components/knowledge-map.tsx",
+    "src/ui/infected-world/components/content-layer.tsx",
+    "src/ui/infected-world/ui-v1.css",
+    "src/content/infected-world-v0.1/player-query.ts"
+  ],
+  "existing_file_constraints": {
+    "src/ui/infected-world/components/content-layer.tsx": "仅任务/地图详情空间与只读定位所需；保护焦点、Esc和其他层语义",
+    "src/ui/infected-world/ui-v1.css": "仅左栏任务、任务详情、两层地图；不改战斗/背包/叙事已审布局",
+    "src/content/infected-world-v0.1/player-query.ts": "仅补既有可见主线动作的人类可读标签，至少workorder；不改查询行为"
+  },
+  "allowed_new_production_paths": [
+    "src/ui/infected-world/guidance/**",
+    "src/ui/infected-world/map/**",
+    "src/ui/infected-world/components/mission-guide.tsx",
+    "src/content/infected-world-v0.1/mission-guidance-copy.ts"
+  ],
+  "allowed_tests": [
+    "src/ui/infected-world/mission-map-ux*.test.tsx",
+    "src/ui/infected-world/guidance/**/*.test.ts",
+    "src/ui/infected-world/map/**/*.test.ts",
+    "src/ui/infected-world/ui-v1-map.test.tsx",
+    "src/ui/infected-world/ui-v1-review-map.test.tsx",
+    "src/ui/infected-world/ui-v1-shell.test.tsx",
+    "src/ui/infected-world/ui-v1-battle.test.tsx",
+    "src/ui/infected-world/narrative-entry.test.tsx",
+    "src/ui/infected-world/narrative-r1.test.tsx",
+    "src/ui/infected-world/route-test-fixtures.ts",
+    "src/ui/infected-world/ui-v1-review-lifecycle.test.tsx",
+    "src/state/residence-session/narrative-entry.test.ts",
+    "src/app/infected-browser/narrative-entry.test.ts"
+  ],
+  "test_constraints": "新增/加强本批展示、过滤、只读、完整性断言；旧测试仅适配被明确替换的DOM/文案，不删skip或弱化核心资格/隐私/保存/通知断言。其他受文案影响测试先列具体路径和理由，仅必要机械替换；不得概括为全src可改。",
+  "allowed_docs_prefix": "docs/engineering/world-integration/mission-map-ux-001/",
+  "read_only": [
+    "AGENTS.md",
+    "docs/01-game-design-v0.1.md",
+    "docs/02-vertical-slice.md",
+    "docs/03-architecture.md",
+    "docs/05-design-decisions.md",
+    "docs/09-ui-design-record.md",
+    "docs/content/**",
+    "docs/design-drafts/**",
+    "src/state/residence-session/player-types.ts",
+    "src/state/residence-session/player-queries.ts",
+    "src/ui/infected-world/narrative-entry/**"
+  ],
+  "forbidden": [
+    "src/core/**",
+    "src/state/residence-save/**",
+    "src/state/residence-session/*session*",
+    "src/app/infected-browser/** (production)",
+    "src/app/infected-preplay/** (production)",
+    "src/assets/**",
+    "public/**",
+    "package.json",
+    "package-lock.json",
+    ".github/**",
+    "src/main.tsx",
+    "vite.config.ts"
+  ],
+  "git_permissions": {
+    "commit": true,
+    "push": "new task branch only",
+    "merge": false,
+    "force_push": false,
+    "rewrite_existing_history": false
+  },
+  "runtime_permissions": {
+    "local_task_dev_server": "127.0.0.1 only; isolated origin; stop at end",
+    "ssh": false,
+    "deploy": false,
+    "clear_owner_saves": false
+  },
+  "stop": "Exact SHA code + representative pixel review by mainline; no further work automatically",
+  "constrained_existing_test_adaptation": {
+    "paths": "src/**/*.test.ts, src/**/*.test.tsx, existing test-fixtures under src/",
+    "only": "仅workorder新增明确名称导致的必要旧文本/按钮定位替换；必须确认该旧fallback确实对应workorder，不改其他现场互动；不改测试对象/生产者/资格/隐私/保存/通知数量或容差。",
+    "report": "执行报告逐路径列出此类适配及依据；范围内无需逐个等待Owner再次批准。其他测试改造仍按显式白名单。"
+  }
+}

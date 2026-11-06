@@ -1,0 +1,9 @@
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-mission-map-ux-001
+
+
+ Test Files  4 passed (4)
+      Tests  20 passed (20)
+   Start at  07:58:26
+   Duration  10.12s (transform 3.92s, setup 0ms, import 5.46s, tests 6.83s, environment 5.97s)
+

@@ -1,0 +1,102 @@
+{
+  "base": "95cab5ad79e31d63aae93d97ab901c716cf75f89",
+  "sourceSHA": "887eafd9f3c9bc29f46a5a266ba00deaf0143c6d",
+  "sourcePaths": [
+    "src/app/infected-browser/narrative-entry.test.ts",
+    "src/content/infected-world-v0.1/mission-guidance-copy.ts",
+    "src/content/infected-world-v0.1/player-query.ts",
+    "src/state/residence-session/narrative-entry.test.ts",
+    "src/ui/infected-world/components/game-shell.tsx",
+    "src/ui/infected-world/components/knowledge-map.tsx",
+    "src/ui/infected-world/components/mission-guide.tsx",
+    "src/ui/infected-world/guidance/model.ts",
+    "src/ui/infected-world/map/layout.ts",
+    "src/ui/infected-world/map/projection.test.ts",
+    "src/ui/infected-world/map/projection.ts",
+    "src/ui/infected-world/mission-map-ux.test.tsx",
+    "src/ui/infected-world/narrative-entry.test.tsx",
+    "src/ui/infected-world/narrative-r1.test.tsx",
+    "src/ui/infected-world/ui-v1-map.test.tsx",
+    "src/ui/infected-world/ui-v1-review-map.test.tsx",
+    "src/ui/infected-world/ui-v1.css"
+  ],
+  "scopeValid": true,
+  "oldProjectRefsUnchanged": true,
+  "observedRefChanges": [
+    {
+      "ref": "refs/heads/feature/world-mission-map-ux-001",
+      "before": "95cab5ad79e31d63aae93d97ab901c716cf75f89",
+      "after": "887eafd9f3c9bc29f46a5a266ba00deaf0143c6d"
+    }
+  ],
+  "primaryHead": "5e4a38b1d32719f3f7478ecee824c8efae454b8c",
+  "httpExperiment": [
+    {
+      "path": "src/app/infected-browser/owner.ts",
+      "expected": "c12ef729e04c55e703a487d1833cbdb496793388c885cecc5b8e571254e77297",
+      "actual": "c12ef729e04c55e703a487d1833cbdb496793388c885cecc5b8e571254e77297"
+    },
+    {
+      "path": "src/app/infected-browser/types.ts",
+      "expected": "b2eb964dbd799915e73eb415f43beab25d8f031c05110f4d20fd797ef4409aa7",
+      "actual": "b2eb964dbd799915e73eb415f43beab25d8f031c05110f4d20fd797ef4409aa7"
+    },
+    {
+      "path": "src/app/infected-browser/identity-materials.ts",
+      "expected": "65e3b218687070ff322bf2a9fd8133b29e2898665f6cf689aedb4bb265a6ef74",
+      "actual": "65e3b218687070ff322bf2a9fd8133b29e2898665f6cf689aedb4bb265a6ef74"
+    },
+    {
+      "path": "src/app/infected-browser/http-lease.ts",
+      "expected": "d6aa01a9f55a47caf6e27893d67a1383425dec511f85f83fb99ed1b602d263a0",
+      "actual": "d6aa01a9f55a47caf6e27893d67a1383425dec511f85f83fb99ed1b602d263a0"
+    },
+    {
+      "path": "src/ui/infected-world/components/system-screen.tsx",
+      "expected": "9a2e65b3d17b8dc4032bec612be6b1c0a9be582235b506976aaba3c04df5a635",
+      "actual": "9a2e65b3d17b8dc4032bec612be6b1c0a9be582235b506976aaba3c04df5a635"
+    },
+    {
+      "path": "src/app/infected-browser/http-lease.test.ts",
+      "expected": "952222f1d4147fab974fecb3134bc58963c80bb668403abb758c5684d396294d",
+      "actual": "952222f1d4147fab974fecb3134bc58963c80bb668403abb758c5684d396294d"
+    },
+    {
+      "path": "src/app/infected-browser/http-owner.test.ts",
+      "expected": "77b1589d8d2aae520180ad24fc429638dcd42a89d598d27291e9849909a73fd0",
+      "actual": "77b1589d8d2aae520180ad24fc429638dcd42a89d598d27291e9849909a73fd0"
+    },
+    {
+      "path": "docs/engineering/world-integration/preplay/browser-owner/http-compatibility-20261102.md",
+      "expected": "a97865e6e0218d9cb17755b845a0b507952a04b09c6057d3b5d8c99f62158e3a",
+      "actual": "a97865e6e0218d9cb17755b845a0b507952a04b09c6057d3b5d8c99f62158e3a"
+    },
+    {
+      "path": "docs/engineering/world-integration/preplay/browser-owner/native-http.html",
+      "expected": "c3a2b01cb649d148a38b01f14ba6fd762c79885d24aaf2068719d0e62056dc00",
+      "actual": "c3a2b01cb649d148a38b01f14ba6fd762c79885d24aaf2068719d0e62056dc00"
+    },
+    {
+      "path": "docs/engineering/world-integration/preplay/browser-owner/native-http-frame.html",
+      "expected": "f9da9c452820fd0d0ee163e466319777c347064e15d06927e1abf6989c91d677",
+      "actual": "f9da9c452820fd0d0ee163e466319777c347064e15d06927e1abf6989c91d677"
+    }
+  ],
+  "ownerNarrativeHead": "95cab5ad79e31d63aae93d97ab901c716cf75f89",
+  "worktrees": "worktree E:/projects/elevator-survival\nHEAD 5e4a38b1d32719f3f7478ecee824c8efae454b8c\nbranch refs/heads/feature/world-ui-v1-integration-001\n\nworktree E:/projects/elevator-survival-worktrees/world-mission-map-ux-001\nHEAD 887eafd9f3c9bc29f46a5a266ba00deaf0143c6d\nbranch refs/heads/feature/world-mission-map-ux-001\n\nworktree E:/projects/elevator-survival-worktrees/world-narrative-entry-001\nHEAD 95cab5ad79e31d63aae93d97ab901c716cf75f89\nbranch refs/heads/feature/world-narrative-entry-001",
+  "runtime": {
+    "ownerPort": 5277,
+    "ownerPID": 25444,
+    "ownerUntouched": true,
+    "taskPort": 5307,
+    "lastTaskPID": [
+      25592
+    ],
+    "taskStopped": true,
+    "taskTabsClosed": true,
+    "viewportReset": true
+  },
+  "model": "UNCONFIRMED",
+  "reasoning": "UNCONFIRMED",
+  "serviceTier": "UNCONFIRMED"
+}

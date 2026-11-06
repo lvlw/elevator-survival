@@ -1,0 +1,18 @@
+[
+  {
+    "case": "cross-region-leak",
+    "exit": 1,
+    "businessAssertionFailure": true,
+    "restored": true,
+    "restoredSha256": "e7c378ee5fbf8064363e443c29cd426ca1c16e0e841d7cc0b1982f5d6b57b84c",
+    "location": "isolated external final-source copy; actual worktree untouched"
+  },
+  {
+    "case": "carried-is-delivered",
+    "exit": 1,
+    "businessAssertionFailure": true,
+    "restored": true,
+    "restoredSha256": "8258ecb6f31249f3cc6c3248f1220259a5cc11e773f38a3a80e8a6234e51ae26",
+    "location": "isolated external final-source copy; actual worktree untouched"
+  }
+]

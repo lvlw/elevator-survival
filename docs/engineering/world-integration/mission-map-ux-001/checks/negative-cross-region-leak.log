@@ -1,0 +1,40 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/map/projection.test.ts -t layers filter --maxWorkers=2
+
+
+ RUN  v4.1.10 C:/Users/zjl/.codex/visualizations/2026/10/30/01a18dbc-1d81-7312-99ab-903daead5d63/MISSION-MAP-UX/baseline-snapshot
+
+ ❯ src/ui/infected-world/map/projection.test.ts (3 tests | 1 failed | 2 skipped) 7ms
+   × layers filter rooms and internal edges, world uses only known cross-region routes without turning internal routes into self-loops 6ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 skipped (3)
+   Start at  08:15:49
+   Duration  1.51s (transform 35ms, setup 0ms, import 53ms, tests 7ms, environment 1.25s)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/ui/infected-world/map/projection.test.ts > layers filter rooms and internal edges, world uses only known cross-region routes without turning internal routes into self-loops
+AssertionError: expected [ '医院', '酒店', '酒店' ] to deeply equal [ '医院' ]
+
+- Expected
++ Received
+
+  [
+    "医院",
++   "酒店",
++   "酒店",
+  ]
+
+ ❯ src/ui/infected-world/map/projection.test.ts:8:51
+      6| const map:KnownMap={nodes,routes:[route('医院 / 同名入口','酒店 / 同名入口'),route…
+      7| it('layers filter rooms and internal edges, world uses only known cros…
+      8|  expect(mapLayer(map,'医院').nodes.map(n=>n.place)).toEqual(['医院'])
+       |                                                   ^
+      9|  expect(mapLayer(map,'酒店').nodes.map(n=>n.name)).toEqual(['同名入口','安置点'…
+     10|  expect(mapLayer(map,'医院').internal).toHaveLength(0);expect(mapLayer(m…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

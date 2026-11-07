@@ -9,7 +9,7 @@
 - BASE TREE: 382ec90c28f8a816a901c2d0e0d10faa1d4789e8
 - BRANCH: feature/world-ordinary-pickup-dec017-001
 - 工作目录：E:/projects/elevator-survival-worktrees/world-ordinary-pickup-dec017-001
-- 本文件随唯一任务提交绑定；准确 FINAL/PARENT/TREE 和最终 CI 回执由最终交付消息及仓库外 FINAL-RECEIPT 提供，避免文档自引用提交 SHA。
+- 本文件随本任务提交绑定；准确 FINAL/PARENT/TREE 和最终 CI 回执由最终交付消息及仓库外 FINAL-RECEIPT 提供，避免文档自引用提交 SHA。
 - 模型推荐为 GPT-6 Astra Pro / Extra High。实际模型产品档、推理档及 Standard 服务档未取得可核验宿主回执，记 UNCONFIRMED，不把建议当作已证配置。
 
 完整读取实际 AGENTS、原任务五文件、DEC-017、DEC-052 D03/D08、UIR-015 当前有效约定及相关当前源码。已沿用本轮开工的实际基线，没有因增量授权重新跑基线。原设计/切片/架构/决策文档与上一已读准确版本内容相同；本轮复核了当前相关规则和架构链。

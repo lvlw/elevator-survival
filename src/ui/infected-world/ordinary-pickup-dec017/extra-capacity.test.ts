@@ -36,4 +36,3 @@ it('task card, sample, component and module never enter ordinary pickup and stil
     expect(restored.carried).toEqual(value.carried)
   }
 })
-

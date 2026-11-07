@@ -98,4 +98,3 @@ it('manual invalid anchor remains editable after merge-only preview, then a lega
     expect(h.view().carried.filter(i=>i.container==='backpack'&&i.name===item.name).reduce((s,i)=>s+i.quantity,0)).toBe(3)
   }finally{await h.unmount()}
 })
-

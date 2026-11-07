@@ -20,6 +20,7 @@ export function GameShell({ view, feed, onAction, onRetrySave, describeAction, p
   view: PlayerReadyView; feed: readonly PreplayFeedEntry[]; onAction(action: PlayerAction, item?: PlayerItem): void
   onRetrySave(): void; describeAction: BrowserControls['describeAction']; previewAction: BrowserControls['preview']; children?: ReactNode; presentation?: ReactNode; narrative?: ReactNode
 }) {
+  const stageRef = useRef<HTMLElement>(null)
   const [utilitiesOpen, setUtilitiesOpen] = useState(false)
   const [panel, setPanel] = useState<'tasks' | 'body' | 'help' | 'map' | null>(null)
   const [drawer, setDrawer] = useState<'left' | 'right' | null>(null)
@@ -31,6 +32,8 @@ export function GameShell({ view, feed, onAction, onRetrySave, describeAction, p
 
   const [mapScope, setMapScope] = useState<MapScope>({ anchor: view.location?.place ?? null, world: false, place: view.location?.place ?? null, selected: null })
   const [mapTarget, setMapTarget] = useState<MapTarget | null>(null)
+  const ended = view.point === 'living-hub' || view.point === 'dead'
+  const taskTitle = ended ? '委托摘要' : '任务目标'
   const active = view.phase === 'active-world' && view.location !== null
   const safeTarget = active && mapTarget && uniqueTarget(view.map, mapTarget) ? mapTarget : null
   const locate = (target: MapTarget) => {
@@ -65,16 +68,17 @@ export function GameShell({ view, feed, onAction, onRetrySave, describeAction, p
       <div className="iw-game-layout">
         <aside className="iw-sidebar iw-framed" aria-label="任务与已知信息">
           <MissionGuide {...missionProps} />
-          <button type="button" onClick={() => setPanel('tasks')}>任务目标</button>
+          <button type="button" onClick={() => setPanel('tasks')}>{taskTitle}</button>
         </aside>
         <div className="iw-stage-column">
           {active && view.combat && <div className="iw-battle-map-link">
             <span>{areaRoomName(view.location!)}</span>
-            <button type="button" onClick={() => setPanel('map')}>已知地图</button>
+            <button type="button" aria-label="展开已知区域" onClick={() => setPanel('map')}>已知地图</button>
           </div>}
-          <WorldStage view={view} onAction={onAction} presentation={presentation} readAction={{ describeAction, preview: previewAction }}
+          <WorldStage stageRef={stageRef} view={view} onAction={onAction} presentation={presentation} readAction={{ describeAction, preview: previewAction }}
+            terminalReview={ended ? narrative : null}
             minimap={active && !view.combat ? <KnowledgeMap {...mapProps} onExpand={() => setPanel('map')} /> : null} />
-          {narrative}
+          {!ended && narrative}
         </div>
         <div className="iw-carrying iw-framed">
           <InventoryPanel view={view} onAction={onAction} describeAction={describeAction} />
@@ -87,9 +91,9 @@ export function GameShell({ view, feed, onAction, onRetrySave, describeAction, p
         <span className="iw-recent-feedback">{feed.at(-1)?.text ?? '当前会话尚无行动记录'}</span>
         <details className="iw-feed-drawer"><summary>行动记录</summary><FeedPanel feed={feed} /></details>
       </footer>
-      {panel && (panel !== 'map' || mapVisible) && <ContentLayer key={panel}
-        title={{ tasks: '任务目标', body: '身体', help: '帮助', map: '已知地图' }[panel]}
-        tier={panel === 'map' ? 'map' : panel === 'tasks' ? 'detail' : 'summary'} onClose={closePanel}>
+      {panel && (panel !== 'map' || mapVisible) && <ContentLayer key={panel} stageRef={stageRef}
+        title={{ tasks: taskTitle, body: '身体', help: '帮助', map: '已知地图' }[panel]}
+        tier={panel === 'map' ? 'map' : panel === 'tasks' ? 'mission' : 'summary'} onClose={closePanel}>
         {panel === 'tasks' ? <MissionGuide {...missionProps} detail /> : panel === 'map' ? <KnowledgeMap {...mapProps} compact={false} /> :
           panel === 'body' ? <BodyDetails view={view} /> : <HelpDetails />}
       </ContentLayer>}

@@ -24,7 +24,7 @@ describe('infected-world four terminal presentations', () => {
   it('explicit normal failure return commits once, keeps real empty overnight steps and never launches again', async () => {
     const observed = observeBrowser(), h = await mountUi()
     try {
-      await h.d.setup(); await h.d.send('进入封锁区'); observed.clear(); h.setItem.mockClear()
+      await h.d.setup(); await h.d.send('进入封锁区'); const before = h.view(); observed.clear(); h.setItem.mockClear()
       await h.d.button('失败止损返回')
       expect(document.querySelector('[aria-label="保护确认"]')).not.toBeNull()
       expect(h.view().phase).toBe('active-world'); expect(h.setItem).not.toHaveBeenCalled()
@@ -35,7 +35,9 @@ describe('infected-world four terminal presentations', () => {
       expect(h.view().point).toBe('living-hub'); expect(h.host.textContent).toContain('已止损返回')
       expect(observed.counts()).toMatchObject({ terminal: 1, dispatch: 1, current: 1, notices: 1, g1Cycle: 1 })
       expect(h.setItem).toHaveBeenCalledTimes(1)
-      expect(h.host.textContent).toContain('不会自动过夜、治疗或再次出发')
+      expect(h.host.textContent).toContain('没有下一关')
+      expect(h.view().body).toEqual(before.body); expect(h.view().taskDay).toBe(before.taskDay)
+      expect(h.view().actions).toEqual([]); expect(h.host.querySelector('.iw-travel,.iw-known-map')).toBeNull()
     } finally { await h.unmount() }
   })
 
@@ -52,11 +54,11 @@ describe('infected-world four terminal presentations', () => {
     try {
       expect(h.view()).toMatchObject({ point: 'living-hub', terminal: { result: { outcome: 'success' } }, tasks: { sample: 'delivered' } })
       expect(h.host.textContent).toContain('委托完成')
-      const summary = [...h.host.querySelectorAll('summary')].find(summary => summary.textContent === '实物处置')!
+      const summary = [...h.host.querySelectorAll('summary')].find(summary => summary.textContent === '查看物品处置')!
       await h.flush(() => summary.click())
       expect(h.host.textContent).toContain('密封病原样本箱 ×1 · 已交付')
       expect(h.host.querySelector('[aria-label="相邻方向"]')).toBeNull()
-      expect(h.host.textContent).toContain('当前没有后继内容')
+      expect(h.host.textContent).toContain('没有下一关'); expect(h.view().actions).toEqual([])
       expect(h.entropy).not.toHaveBeenCalled(); expect(h.setItem).not.toHaveBeenCalled()
       expect(observed.counts()).toMatchObject({ initial: 0, combat: 0, task: 0, terminal: 0, dispatch: 0, notices: 0, draw: 0, g1Action: 0, g1Cycle: 0 })
     } finally { await h.unmount() }
@@ -79,11 +81,12 @@ describe('infected-world four terminal presentations', () => {
       expect(receipt.steps.length).toBeGreaterThan(0)
       expect(h.host.textContent).toContain(dies ? '玩家死亡' : '期限已结束')
       expect(h.host.textContent).not.toMatch(/重新开始|进入封锁区|第 8 日/)
+      expect(h.host.textContent).toContain('本测试章节已结束'); expect(h.host.querySelector('.iw-travel,.iw-known-map')).toBeNull()
       expect(observed.counts()).toMatchObject({ terminal: 1, dispatch: 1, current: 1, notices: 1, g1Cycle: 1, initial: 0, combat: 0 })
       expect(h.setItem).toHaveBeenCalledTimes(1)
       if (dies) {
         expect(h.view().body.hp.current).toBe(0)
-        const summary = [...h.host.querySelectorAll('summary')].find(summary => summary.textContent === '实物处置')!
+        const summary = [...h.host.querySelectorAll('summary')].find(summary => summary.textContent === '查看物品处置')!
         await h.flush(() => summary.click())
         expect(h.host.textContent).toContain('未能安全带回')
       }

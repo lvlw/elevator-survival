@@ -23,10 +23,14 @@ export function MissionGuide({ view, detail = false, onLocate, describeAction }:
     </div> : <>
       <ol className="iw-mission-cards">{model.goals.map((goal, index) =>
         <li key={goal.id} data-goal={goal.id} data-complete={goal.complete}>
-          <header><h3><span aria-hidden="true">{index + 1}.</span> {goal.title}</h3><span className="iw-goal-state">{goal.status}</span></header>
+          <header>
+            <h3><span aria-hidden="true">{index + 1}.</span> {goal.title}</h3><span className="iw-goal-state">{goal.status}</span>
+            {detail && goal.next.target && !goal.complete && <button type="button" aria-label={`在地图查看：${goal.title}`}
+              onClick={() => onLocate(goal.next.target!)}>地图定位</button>}
+          </header>
           <p>{goal.purpose}</p>
           <p className="iw-goal-next">{goal.next.text}</p>
-          {goal.next.target && !goal.complete && <button type="button" aria-label={`在地图查看：${goal.title}`}
+          {!detail && goal.next.target && !goal.complete && <button type="button" aria-label={`在地图查看：${goal.title}`}
             onClick={() => onLocate(goal.next.target!)}>地图定位</button>}
         </li>
       )}</ol>

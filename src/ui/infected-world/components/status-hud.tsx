@@ -6,7 +6,8 @@ function Meter({ label, current, maximum, kind, low }: {
 }) {
   return <div className="iw-meter" data-resource={kind} data-low={low || undefined}>
     <div><span>{label}</span><strong>{current} / {maximum}</strong></div>
-    <meter aria-label={label} min={0} max={maximum} value={current} />
+    <meter className="iw-sr-only" aria-label={label} min={0} max={maximum} value={current} />
+    <span className="iw-meter-track" aria-hidden="true"><span style={{ width: (100 * current / maximum) + '%' }} /></span>
   </div>
 }
 export function StatusHud({ view, onBody, onHelp }: { view: PlayerReadyView; onBody?: () => void; onHelp?: () => void }) {

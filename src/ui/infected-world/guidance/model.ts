@@ -60,7 +60,7 @@ export function missionGuide(view: PlayerReadyView, installShortage: readonly st
     }
     const install = stepAt('医院', '转运平台', '查看「安装转运装置」所需材料。')
     if (power && install) return install
-    if (workorder) return workorder
+    if (workorder) return { ...workorder, text: location?.name === '后勤控制间' ? '调查停用工单，查明装接线索。' : '先从医院·后勤控制间的停用工单找装接线索。' }
     const method = !view.closure?.method && !view.closure?.componentCarried
       ? stepAt('物流', '周衡休息室', '找周衡核对处理办法（可选）。', '可以找周衡核对处理办法。') : undefined
     return method ??

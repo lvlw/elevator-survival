@@ -1,4 +1,4 @@
-import { useEffect, useId, useState, type KeyboardEvent } from 'react'
+import { useEffect, useState, type KeyboardEvent } from 'react'
 import { areaRoomName, fullName, mapLayer, observation, passage, uniqueTarget, type KnownMap, type MapTarget } from '../map/projection'
 import { corridor, diagramHeight, diagramWidth, positions } from '../map/layout'
 
@@ -62,7 +62,7 @@ export function KnowledgeMap({ map, compact = true, scope, onScope, target, onEx
   const chosen = state.selected ? layer.byName.get(state.selected) : null
   const selectedChannel = channels.get(state.selected ?? '')
   const details = selectedChannel?.routes ?? (chosen ? routes.filter(route => route.from === fullName(chosen) || route.to === fullName(chosen)) : [])
-  const marker = 'iw-map-arrow-' + useId()
+  const marker = compact ? 'iw-map-mini-arrow' : 'iw-map-expanded-arrow'
   useEffect(() => { if (previous.anchor !== anchor) change({ world: false, place: anchor, selected: null }) }, [previous.anchor, anchor])
   useEffect(() => { if (state.selected && !chosen && !selectedChannel) change({ selected: null }) }, [state.selected, chosen, selectedChannel])
   const keyboard = (event: KeyboardEvent, select: () => void) => {
@@ -119,6 +119,8 @@ export function KnowledgeMap({ map, compact = true, scope, onScope, target, onEx
           const select = () => world ? change({ world: false, place: name, selected: null }) :
             change({ selected: layer.byName.get(name) ? name : null })
           const split = label.length > 6
+          const firstLine = !split ? label : outside ? outside.place + '·' : label.slice(0, Math.ceil(label.length / 2))
+          const secondLine = split && label.slice(firstLine.length)
           return <g key={`${name}:${index}`} className={outside ? 'iw-map-external' : 'iw-map-node'}
             data-map-external={outside ? '' : undefined} data-current={active}
             data-visited={world ? map.nodes.some(entry => entry.place === name && entry.visited) : node?.visited}
@@ -127,8 +129,8 @@ export function KnowledgeMap({ map, compact = true, scope, onScope, target, onEx
             <title>{aria}</title><rect x={point.x - 48} y={point.y - 22} width="96" height="44" rx="3" />
             {active && <path d={`M ${point.x + 37} ${point.y - 20} l 10 0 l 0 10 Z`} fill="#e2bf7a" />}
             <text x={point.x} y={split ? point.y - 3 : point.y + 5} textAnchor="middle">
-              <tspan x={point.x}>{split ? label.slice(0, 6) : label}</tspan>
-              {split && <tspan x={point.x} dy="17">{label.slice(6)}</tspan>}
+              <tspan x={point.x}>{firstLine}</tspan>
+              {secondLine && <tspan x={point.x} dy="17">{secondLine}</tspan>}
             </text>
           </g>
         })}

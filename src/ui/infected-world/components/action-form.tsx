@@ -7,6 +7,7 @@ import { PlacementPicker } from './placement-picker'
 import { actionName, publicItemName } from '../labels'
 import { ItemPicture } from './item-inspection'
 import { TaskArtwork } from './task-artwork'
+import { itemPurpose } from '../story-interaction/short-hint'
 
 export function ActionForm({ action, inputs, view, controls, initialItem, onExecute, onCancel }: {
   action: PlayerAction; inputs: PlayerActionInputs; view: PlayerReadyView; controls: BrowserControls; initialItem?: PlayerItem;
@@ -73,9 +74,9 @@ export function ActionForm({ action, inputs, view, controls, initialItem, onExec
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus() }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus() }
     }
-  }}><form className={`iw-dialog iw-framed iw-action-form iw-tier-${action.family === 'inventory' && (has('placement') || has('placements')) ? 'organize' : 'parameters'}`} aria-label="行动参数" onSubmit={e => { e.preventDefault(); if (canExecute) onExecute(request) }} role="dialog" aria-modal="true">
+  }}><form className={`iw-dialog iw-framed iw-action-form ${pickup ? 'iw-pickup-form ' : ''}iw-tier-${action.family === 'inventory' && (has('placement') || has('placements')) ? 'organize' : 'parameters'}`} aria-label="行动参数" onSubmit={e => { e.preventDefault(); if (canExecute) onExecute(request) }} role="dialog" aria-modal="true">
     <h2>{actionName(action)}{selectedSource ? ` · ${publicItemName(source.name)}` : ''}</h2><div className="iw-form-content"><div className="iw-form-fields">
-      {selectedSource ? <div className="iw-form-item-art"><ItemPicture name={source.name} /><strong>{publicItemName(source.name)} ×{source.quantity}</strong></div> : inputs.outputs.length ? inputs.outputs.map((output, index) => <div key={index} className="iw-form-item-art"><ItemPicture name={output.name} /><strong>声明产物：{publicItemName(output.name)} ×{output.quantity}</strong></div>) : <TaskArtwork view={view} action={action} />}
+      {selectedSource ? <div className="iw-form-item-art"><ItemPicture name={source.name} /><div><strong>{publicItemName(source.name)} ×{source.quantity}</strong>{pickup && <small>{itemPurpose(source.name)}</small>}</div></div> : inputs.outputs.length ? inputs.outputs.map((output, index) => <div key={index} className="iw-form-item-art"><ItemPicture name={output.name} /><strong>声明产物：{publicItemName(output.name)} ×{output.quantity}</strong></div>) : <TaskArtwork view={view} action={action} />}
       {inputs.hints.map(h => <p key={h}>{h}</p>)}
       {has('item') && <label>物品<select aria-label="物品" value={item} onChange={e => { setItem(e.target.value); setTarget(''); setWound(''); setPlacements([]) }}>
         <option value="">请选择实际物品</option>{inputs.items.map((i, n) => <option key={n} value={n}>{publicItemName(i.name)} ×{i.quantity}</option>)}
@@ -104,7 +105,7 @@ export function ActionForm({ action, inputs, view, controls, initialItem, onExec
           value={placements[n] ?? null} onChange={p => setPlacements(Array.from({ length: placementCount }, (_, j) => j === n ? p : placements[j] ?? null))} />
       })}
     </div><aside aria-label="正式行动预览">
-      {pickupNote && <p className="iw-pickup-capacity-note" role="status">{pickupNote}可换格或旋转，也可取消拾取，留在现场后再整理背包。</p>}
+      {pickupNote && <p className="iw-pickup-capacity-note" role="status">{pickupNote}{source.canRotate ? '可换格或旋转' : '可换格'}，也可取消拾取，留在现场后再整理背包。</p>}
       {preview ? <SafeFacts metadata={preview} /> : <p>完成明确选择后显示正式预览；编辑不执行行动。</p>}</aside></div>
     <footer><button type="button" ref={cancel} onClick={onCancel}>取消</button><button type="submit" disabled={!canExecute}>执行行动</button></footer>
   </form></div>

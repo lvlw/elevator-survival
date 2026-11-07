@@ -5,7 +5,7 @@ import type { PlayerAction, PlayerItem } from '../../../state/residence-session/
 
 export type ReadAction = Pick<BrowserControls, 'describeAction' | 'preview'>
 export type MethodLimitation = { kind: 'missing' | 'unavailable'; text: string }
-const tools: Readonly<Record<string, string>> = { crow: '撬棍', toolbox: '工具箱', lit: '手电筒', card: '门禁卡' }
+const tools: Readonly<Record<string, string>> = { crow: '撬棍', toolbox: '工具箱', lit: '手电筒', card: '隔离区门禁卡' }
 
 /** A presentation filter for public physical methods only. It does not resolve or execute an action. */
 export function physicalMethodLimitation(action: PlayerAction, carried: readonly PlayerItem[], read: ReadAction): MethodLimitation | null {

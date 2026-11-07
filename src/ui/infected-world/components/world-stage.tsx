@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode, type Ref } from 'react'
 import type { PlayerAction, PlayerItem, PlayerReadyView } from '../../../state/residence-session/player-types'
 import { sceneArt } from '../assets'
 import { ItemPicture, useItemInspection } from './item-inspection'
@@ -14,9 +14,9 @@ import { TaskArtwork } from './task-artwork'
 import { itemPurpose } from '../story-interaction/short-hint'
 import { physicalMethodLimitation, type ReadAction, type MethodLimitation } from '../owner-playtest-ux/physical-methods'
 
-export function WorldStage({ view, onAction, presentation, minimap, readAction }: {
+export function WorldStage({ view, onAction, presentation, minimap, readAction, terminalReview, stageRef }: {
   view: PlayerReadyView; onAction(action: PlayerAction, item?: PlayerItem): void
-  presentation?: ReactNode; minimap?: ReactNode; readAction: ReadAction
+  presentation?: ReactNode; minimap?: ReactNode; readAction: ReadAction; terminalReview?: ReactNode; stageRef?: Ref<HTMLElement>
 }) {
   const [resultsOpen, setResultsOpen] = useState(true)
   const inspect = useItemInspection()
@@ -47,13 +47,13 @@ export function WorldStage({ view, onAction, presentation, minimap, readAction }
   const disabled = (action: PlayerAction, limitation: MethodLimitation) =>
     <><button type="button" disabled>{actionName(action)}</button><small>{limitation.text}</small></>
 
-  return <section className="iw-stage" data-scene={art?.key ?? 'neutral'}>
+  return <section ref={stageRef} className="iw-stage" data-scene={art?.key ?? 'neutral'}>
     {art && <img key={art.key} className="iw-scene-plate" src={art.src} alt="" aria-hidden="true"
       style={{ objectPosition: `${art.focal[0] * 100}% ${art.focal[1] * 100}%` }}
       onError={event => { event.currentTarget.hidden = true }} />}
     <div className="iw-scene-shade" aria-hidden="true" />
     {view.point === 'first-hub' ? <HubPanel view={view} onAction={onAction} /> :
-      view.point === 'living-hub' || view.point === 'dead' ? <TerminalPanel view={view} /> :
+      view.point === 'living-hub' || view.point === 'dead' ? <TerminalPanel view={view}>{terminalReview}</TerminalPanel> :
         view.combat ? <BattleStage view={view} onAction={onAction} presentation={presentation} /> :
           <div className="iw-room-layout">
             {minimap && <aside className="iw-stage-map" aria-label="场景地图">{minimap}</aside>}

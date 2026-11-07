@@ -7,6 +7,7 @@ import { CHECKPOINT_KEY, RESERVATION_KEY } from '../../../app/infected-browser/s
 import { observeBrowser } from '../../../app/infected-browser/test-observers'
 import { createCombatTestFactory } from '../../../core/residence-combat/test-fixtures'
 import { readCombatValue } from '../../../core/residence-combat/validation'
+import { addItemToBackpack, createBackpackSnapshot } from '../../../core/inventory'
 import { expectation } from '../../../state/residence-save/combat-test-fixtures'
 import { serializeCombatResidenceSave } from '../../../state/residence-save/combat-codec'
 import { domRouteA } from '../route-test-fixtures'
@@ -139,6 +140,18 @@ it('a full public footprint is informational, and a zero meter and low health re
       return { ...metal, selector: { selection: 'opaque' as const }, container: 'backpack' as const,
         placement: { x, y, rotated: false }, footprint: [{ x, y }] }
     })
+    // Physical TEST container only. The actual new-world placement primitive requires an empty position.
+    // It does not silently merge the incoming ground instance into another stack.
+    const { composition } = createReservation({
+      characterId: 'owner-ux-pack-test', runId: 'owner-ux-pack-run', seed: 'owner-ux-pack-seed', generation: 'owner-ux-pack-generation',
+    }, { tool: 'crow', specialty: 'engineer' })
+    const catalog = composition.dependencies.supply.catalog.physical
+    const definitionId = 'material_metal_parts'
+    const items = packed.map((_, index) => ({ instanceId: 'TEST-packed-metal-' + index, definitionId, quantity: 1 }))
+    const placements = packed.map((item, index) => ({ instanceId: items[index].instanceId, ...item.placement }))
+    const bag = createBackpackSnapshot({ width, height, items, placements }, catalog)
+    const incoming = { instanceId: 'TEST-incoming-metal', definitionId, quantity: 1 }
+    expect(() => addItemToBackpack(bag, incoming, { instanceId: incoming.instanceId, x: 0, y: 0, rotated: false }, catalog)).toThrow()
     const view = { ...live, carried: packed, body: { ...live.body, bleeding: true,
       hp: { ...live.body.hp, current: 2 }, energy: { ...live.body.energy, current: 0 } } }
     const onAction = vi.fn()

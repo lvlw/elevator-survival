@@ -354,3 +354,7 @@
 .iw-platform-panel[data-restored="true"] circle { fill:#b9d6a1; filter:drop-shadow(0 0 3px #b6db86); }
 .iw-platform-panel strong { color:#e1c890; }
 .iw-platform-panel p { margin:4px 0; font-size:15px; line-height:1.5; }
+
+.iw-closure-ending { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; padding:8px 12px; font-size:14px; background:#13252be8; border:1px solid #756b54; }
+.iw-closure-ending details { width:100%; }
+.iw-closure-ending p { margin:6px 0; }

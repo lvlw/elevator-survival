@@ -16,7 +16,9 @@ export function probeMotion(h: PlayerHarness, label: string, request: PlayerRequ
   const commit = result.value as CombatSessionCommit, value = commit.current
   expect(value).toBe(h.owner.getState().current)
   expect(value.character.revision).toBe(before.character.revision + 1)
-  expect(Object.keys(execution).sort()).toEqual(['committedAction', 'kind', 'preview', 'view'])
+  // Only the new optional closure envelope is removed; the original exact key oracle is unchanged.
+  const { closure: _closure, closureDiagnostic: _closureDiagnostic, ...legacyExecution } = execution
+  expect(Object.keys(legacyExecution).sort()).toEqual(['committedAction', 'kind', 'preview', 'view'])
   expect(Object.keys(commit).sort()).toEqual(['current', 'kind', 'maintenance', 'notificationErrors', 'persistence'])
   expect(observer.counts()).toMatchObject({ combat: 1, ctb: 1, current: 1, write: 1, batches: 1 })
   const pure = observer.spies.combat.mock.results[0].value!

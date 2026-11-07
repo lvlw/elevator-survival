@@ -28,7 +28,7 @@ it('only formal workorder investigation unlocks signed-order speech and original
  try{await h.d.setup();await h.d.send('进入封锁区');await h.d.walk(['大厅','后勤控制间']);await h.d.task('调查停用工单');await h.d.walk(['岗亭','登记室','周衡休息室'])
   await h.d.button('谈停运');expect(h.host.querySelector('[aria-label="医院叙事"]')?.textContent).toContain('有你的名字')
   await h.d.button('结束谈话');o.clear();h.setItem.mockClear();const energy=h.view().body.energy.current
-  await h.d.button('核对处理办法 · 原行动')
+  await h.d.button('核对处理办法')
   expect(h.view().closure?.method).toBe(true);expect(h.view().body.energy.current).toBeLessThan(energy)
   expect(h.host.querySelector('[aria-label="医院叙事"]')?.textContent).toContain('受力点')
   expect(o.counts()).toMatchObject({dispatch:1,current:1,notices:1,task:1});expect(h.setItem.mock.calls.filter(([k])=>k===CHECKPOINT_KEY)).toHaveLength(1)

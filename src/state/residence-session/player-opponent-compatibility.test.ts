@@ -17,7 +17,7 @@ describe('A complete historical DTO equivalence and formal phase semantics', () 
       const h = fromValue(value, f.deps), q = ready(h.player), current = h.owner.getState().current!
       const old = baselineProjectPlayerView(h.owner.getState(), createPlayerContext(current, h.deps), h.deps, labels)
       const combat = q.combat ? (({ opponent: _, ...rest }) => rest)(q.combat) : null
-      const { narrative: _entry, ...legacy } = q
+      const { narrative: _entry, closure: _closure, ...legacy } = q
       expect(normalize({ ...legacy, combat })).toEqual(normalize(old))
       expect(Object.keys(h.player).sort()).toEqual(['execute', 'preview', 'query', 'resolve', 'retrySave', 'setup', 'subscribe'])
     }
@@ -35,7 +35,7 @@ describe('A complete historical DTO equivalence and formal phase semantics', () 
         observed.add(q.combat.enemyStage)
         const old = baselineProjectPlayerView(h.owner.getState(), createPlayerContext(v, h.deps), h.deps, labels)
         const { opponent: _, ...combat } = q.combat
-        const { narrative: _entry, ...legacy } = q
+        const { narrative: _entry, closure: _closure, ...legacy } = q
         expect(normalize({ ...legacy, combat })).toEqual(normalize(old))
       }
     }

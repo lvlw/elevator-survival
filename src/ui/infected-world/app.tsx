@@ -17,6 +17,7 @@ import { ActionInformationProvider } from './components/action-information'
 import { actionName, publicItemName } from './labels'
 import { useCommittedPresentation } from './presentation/use-committed-presentation'
 import { CommittedActionCue } from './components/committed-action-cue'
+import { returnNote } from './narrative-closure/return-note'
 import { useClosureStory } from './narrative-closure/use-closure-story'
 import { ClosurePanel } from './narrative-closure/closure-panel'
 import { useEntryStory } from './narrative-entry/use-entry-story'
@@ -116,7 +117,7 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
   </GameShell>
     {draft && draftCurrent && <ActionForm action={draft.action} inputs={draft.inputs} view={view} controls={controls} initialItem={draft.item}
       onExecute={request => execute(request, draft.action)} onCancel={() => guarded(() => { controls.cancel(); setDraft(null) })} />}
-    {confirmation && confirmationCurrent && <ConfirmationLayer title={confirmation.title} metadata={confirmation.metadata}
+    {confirmation && confirmationCurrent && <ConfirmationLayer title={confirmation.title+(returnNote(view,confirmation.request)?" · "+returnNote(view,confirmation.request):"")} metadata={confirmation.metadata}
       onCancel={() => guarded(() => { controls.cancel(); setConfirmation(null) })} onConfirm={() => guarded(() => {
         const current = owner?.controls()
         if (current !== confirmation.controls) { setConfirmation(null); setMessage('确认已失效，请重新选择。'); return }

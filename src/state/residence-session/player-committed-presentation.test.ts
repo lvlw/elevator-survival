@@ -64,7 +64,7 @@ function runNativeCase(layer: 'facade' | 'controller', id: CompatibilityCase, ol
     let legacy: unknown
     if (app) {
       const ask = app.execute(request), result = ask.kind === 'confirmation-required' ? app.confirm(ask.confirmation!) : ask
-      const { presentation, exploration, explorationDiagnostic: _diagnostic, ...rest } = result; legacy = rest
+      const { presentation, exploration, explorationDiagnostic: _diagnostic, closure: _closure, closureDiagnostic: _closureDiagnostic, ...rest } = result; legacy = rest
       if (exploration) {
         const feed = rest.snapshot.feed, last = feed.at(-1)!, suffix = ' ' + explorationText(exploration.receipt)
         expect(last.text).toBe(publicActionFeed(sourceBefore, rest.snapshot.view!) + suffix)
@@ -73,7 +73,7 @@ function runNativeCase(layer: 'facade' | 'controller', id: CompatibilityCase, ol
       expect(Object.hasOwn(result, 'presentation')).toBe(!old && id !== 'move-enters-battle')
       expect(Boolean(presentation)).toBe(!old && id !== 'move-enters-battle')
     } else {
-      const result = h.player.execute(request), { committedAction, exploration: _entry, explorationDiagnostic: _diagnostic, ...rest } = result; legacy = rest
+      const result = h.player.execute(request), { committedAction, exploration: _entry, explorationDiagnostic: _diagnostic, closure: _closure, closureDiagnostic: _closureDiagnostic, ...rest } = result; legacy = rest
       expect(Object.hasOwn(result, 'committedAction')).toBe(!old && id !== 'move-enters-battle')
       expect(Boolean(committedAction)).toBe(!old && id !== 'move-enters-battle')
     }

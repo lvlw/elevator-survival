@@ -339,3 +339,11 @@
 
 /* Read-only map facts must sit above the stage, below existing modal layers. */
 .iw-sidebar:has(.iw-map-selection),.iw-sidebar:has(.iw-map[open]),.iw-sidebar:has(.iw-map-tools details[open]) { z-index:40; overflow:visible; }
+
+/* Finite hospital dialogue; original stage, maps and modal priorities stay in place. */
+.iw-closure-topics { display:flex; align-items:center; flex-wrap:wrap; gap:6px; padding:8px 12px; background:#142329e8; border:1px solid #817557; }
+.iw-closure-topics strong { margin-right:auto; color:#dec797; }
+.iw-closure-topics button { min-height:30px; padding:3px 10px; }
+.iw-closure-card .iw-story-copy { max-height:150px; overflow:auto; }
+.iw-closure-card .iw-story-copy p { margin:5px 0; }
+.iw-closure-card .iw-story-copy small { color:#d4b478; }

@@ -1,0 +1,13 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/narrative-closure/closure.test.tsx src/app/infected-browser/narrative-entry.test.ts src/ui/infected-world/narrative-r1.test.tsx
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-narrative-closure-001
+
+
+ Test Files  3 passed (3)
+      Tests  24 passed (24)
+   Start at  09:50:07
+   Duration  7.40s (transform 3.67s, setup 0ms, import 5.12s, tests 2.82s, environment 4.41s)
+

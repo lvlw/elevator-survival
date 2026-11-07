@@ -1,6 +1,7 @@
 import type { playerSupplyFacts } from '../../core/residence-supply/player-query'
 import type { playerCombatFacts } from '../../core/residence-combat/player-query'
 import type { playerTerminalFacts } from '../../core/residence-terminal/player-query'
+import type { ClosureKnowledge, ClosureReceipt } from './narrative-closure/types'
 import type { NarrativeKnowledge, ExplorationReceipt } from './narrative-entry/types'
 export type PlayerHandle = Readonly<{ selection: 'opaque' }>
 export type PlayerOpponentPresentation =
@@ -20,7 +21,7 @@ export type PlayerAction = Readonly<{ selector: PlayerHandle; family: string; la
   resourceCost?: NonNullable<ReturnType<typeof playerCombatFacts>>['actions'][number]['resourceCost'];
   quickConsumption?: Readonly<{ slot: number; quantity: 1 }> | null; signatureUsesRemaining?: number | null }>
 export type PlayerReadyView = Readonly<{ status: 'ready'; phase: 'first-hub' | 'active-world' | 'living-hub' | 'dead';
-  narrative?: NarrativeKnowledge;
+  narrative?: NarrativeKnowledge; closure?: ClosureKnowledge;
   point: 'first-hub' | 'stable-active' | 'battle-decision' | 'living-hub' | 'dead';
   first: Readonly<{ toolChoices: readonly string[]; specialtyChoices: readonly string[]; locked: true }>;
   location: Readonly<{ name: string; place: string }> | null; taskDay: number | null;
@@ -43,6 +44,7 @@ export type PlayerView = PlayerReadyView | Readonly<{ status: 'unbootstrapped' |
 export type PlayerPreview = Readonly<{ kind: 'available' | 'unavailable' | 'invalid-selection' | 'unknown'; cost: number | null }>
 export type PublicCombatAction = 'basic-attack' | 'signature' | 'temporary-attack' | 'defend' | 'retreat' | 'quick-use'
 export type PlayerExecution = Readonly<{ kind: 'committed' | 'rejected'; view: PlayerView; preview: PlayerPreview | null;
+  closure?: ClosureReceipt; closureDiagnostic?: 'projection-unavailable';
   exploration?: ExplorationReceipt; explorationDiagnostic?: 'projection-unavailable';
   committedAction?: Readonly<{ action: PublicCombatAction }> }>
 export type PlayerSession = Readonly<{ query(): PlayerView; setup(): Readonly<{ tools: readonly string[]; specialties: readonly string[] }>;

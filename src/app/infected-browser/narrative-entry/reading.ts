@@ -3,15 +3,18 @@ import { LOCK_NAME, NAMESPACE, SLOT, readJSON, type Reservation } from '../schem
 import type { BrowserStorage } from '../types'
 import { storyKeys, type StoryKey } from '../../../state/residence-session/narrative-entry/types'
 
+import { closureKeys, type ClosureKey } from '../../../state/residence-session/narrative-closure/types'
+const readingKeys = [...storyKeys, ...closureKeys] as const
+type ReadingKey = StoryKey | ClosureKey
 export const READING_KEY = `${NAMESPACE}.${SLOT}.narrative-entry.reading`
 export const STORY_VERSION = 'hospital-entry-v0.2.1'
-export type ReadingMark = Readonly<{ key: StoryKey; state: 'read' | 'skipped' | 'dismissed' }>
+export type ReadingMark = Readonly<{ key: ReadingKey; state: 'read' | 'skipped' | 'dismissed' }>
 export type ReadingView = Readonly<{ marks: readonly ReadingMark[]; warning: string | null }>
-type Current = Readonly<{ revision: number; persistedRevision: number; known: readonly StoryKey[]; saved: boolean }>
-const mark = z.strictObject({ key: z.enum(storyKeys), state: z.enum(['read', 'skipped', 'dismissed']), revision: z.number().int().nonnegative().safe() })
+type Current = Readonly<{ revision: number; persistedRevision: number; known: readonly ReadingKey[]; saved: boolean }>
+const mark = z.strictObject({ key: z.enum(readingKeys), state: z.enum(['read', 'skipped', 'dismissed']), revision: z.number().int().nonnegative().safe() })
 const schema = z.strictObject({ format: z.literal('infected-narrative-reading'), version: z.literal(1), storyVersion: z.literal(STORY_VERSION),
   binding: z.strictObject({ generation: z.string(), character: z.string(), execution: z.string(), versions: z.string(), lock: z.literal(LOCK_NAME) }),
-  marks: z.array(mark).max(storyKeys.length) })
+  marks: z.array(mark).max(readingKeys.length) })
 
 /** A subordinate record, not a save, lease, task fact or replay log. */
 export function createReadingRecord(storage: BrowserStorage, reservation: Reservation, active: () => boolean, current: () => Current | null) {
@@ -43,8 +46,8 @@ export function createReadingRecord(storage: BrowserStorage, reservation: Reserv
   }
   function acknowledge(input: readonly ReadingMark[]) {
     const c = valid()
-    if (!c || input.length > storyKeys.length) return query()
-    const parsed = z.array(mark.omit({ revision: true })).max(storyKeys.length).safeParse(input)
+    if (!c || input.length > readingKeys.length) return query()
+    const parsed = z.array(mark.omit({ revision: true })).max(readingKeys.length).safeParse(input)
     if (!parsed.success) return query()
     for (const m of parsed.data) if (c.known.includes(m.key)) {
       marks = marks.filter(old => old.key !== m.key); marks.push({ ...m, revision: c.revision }); dirty = true

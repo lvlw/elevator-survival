@@ -14,6 +14,7 @@ import type { ResidenceDomain } from './types'
 import { assertCombatSyncFunction } from './combat-composition'
 import { createPlayerPreplay } from './player-preplay'
 import { committedCombatAction } from './player-committed-presentation'
+import { closureReceipt } from './narrative-closure/receipt'
 import { explorationReceipt } from './narrative-entry/receipt'
 
 /** Trusted composition only. The supplied existing S is the sole current/writer. */
@@ -46,10 +47,15 @@ export function wrapPlayerSession(owner: CombatSession, policy: CombatResidenceP
       if (checked.kind !== 'available' && checked.kind !== 'unknown') return deepFreeze({ kind: 'rejected', view: query(), preview: checked })
       const command = resolvePlayerCommand(context!, input, deps)
       const before = context!.value
+      let closure: PlayerExecution['closure'], closureDiagnostic: PlayerExecution['closureDiagnostic']
       let exploration: PlayerExecution['exploration'], explorationDiagnostic: PlayerExecution['explorationDiagnostic']
       busy = true
       try {
         const commit = owner.dispatch(command)
+        try {
+          if (owner.getState().current !== commit.current) throw new Error('Commit no longer current')
+          closure = closureReceipt(before, commit.current, command) ?? undefined
+        } catch { closureDiagnostic = 'projection-unavailable' }
         // Projection defects after a successful commit must never turn it into a rejected action.
         try {
           if (owner.getState().current !== commit.current) throw new Error('Commit no longer current')
@@ -61,6 +67,7 @@ export function wrapPlayerSession(owner: CombatSession, policy: CombatResidenceP
       } finally { try { synchronize() } finally { busy = false } }
       const view = query(), committedAction = committedCombatAction(command)
       return deepFreeze({ kind: 'committed', view, preview: checked, ...(committedAction ? { committedAction } : {}),
+        ...(closure ? { closure } : {}), ...(closureDiagnostic ? { closureDiagnostic } : {}),
         ...(exploration ? { exploration } : {}), ...(explorationDiagnostic ? { explorationDiagnostic } : {}) })
     },
     retrySave: () => { if (busy) return query(); busy = true;

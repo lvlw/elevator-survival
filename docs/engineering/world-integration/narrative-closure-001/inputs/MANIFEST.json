@@ -1,0 +1,49 @@
+{
+  "task": "ENG-WORLD-NARRATIVE-CLOSURE-001",
+  "created": "2026-11-07",
+  "base": "e7372119672561618f7c2dc1664001104e708bd1",
+  "content_ref": "cbfbbe53c1be0a9748630ba6bcc39f1028966f53",
+  "status": "READY_FOR_OWNER_DISPATCH",
+  "files": [
+    {
+      "path": "ACCEPTANCE.md",
+      "bytes": 4122,
+      "sha256": "af261f187b7a8bc0746ba1d635bee1b50dbf2aa16d4cdb4b1d95a4c41c65109a"
+    },
+    {
+      "path": "CONTENT-ADOPTION.md",
+      "bytes": 4060,
+      "sha256": "1a484e16759902ed7921fc1208ba539e7c368afec85c93b8f4bc56febe0eae4d"
+    },
+    {
+      "path": "INTEGRATION-CONTRACT.md",
+      "bytes": 5049,
+      "sha256": "2038e29f7c2cc6e697902a9a1a8e3c602615e4b7f13667d4bef189e328748de8"
+    },
+    {
+      "path": "README-FIRST.md",
+      "bytes": 1567,
+      "sha256": "35c3c302b33e07ce88e6207b09edf4a3b281f4951d421b10b42f07b94d11391f"
+    },
+    {
+      "path": "SCOPE.json",
+      "bytes": 4544,
+      "sha256": "3111a06aa1e2cd01e06679064a8e861af4b56f77ea865d5e5fe7ef610176c3f7"
+    },
+    {
+      "path": "SEND-TO-CODEX.txt",
+      "bytes": 1748,
+      "sha256": "9257d44bfb18702e41f4d119cefd7edc7a95d24a5abbe0f1664c3d2d47c2badd"
+    },
+    {
+      "path": "SOURCE-READING.md",
+      "bytes": 2695,
+      "sha256": "4789749ad03b0d1acd811226f369dc949baf8882c81338fc91fd2875627308c5"
+    },
+    {
+      "path": "TASK.md",
+      "bytes": 6358,
+      "sha256": "20e2efa2dc9b33b90b1c32572a65dd3ca47655d05ddf9430056279e2551645d5"
+    }
+  ]
+}

@@ -7,6 +7,7 @@ import { preplaySnapshot } from './snapshot'
 import { publicPreplayError, isPlayerBusinessError } from './errors'
 import type { PreplayPorts, PreplayController, PreplayResult, PreplaySnapshot } from './types'
 import { createCommittedPresentationIssuer } from './committed-presentation'
+import { createClosureIssuer } from './narrative-closure/issuer'
 import { createExplorationIssuer, explorationText } from './narrative-entry/issuer'
 import type { ExplorationReceipt } from '../../state/residence-session/narrative-entry/types'
 
@@ -15,6 +16,7 @@ export function createPreplayController(ports: PreplayPorts): PreplayController 
   const drafts = createDraftStore(), confirmations = createConfirmationStore(), listeners = new Set<() => void>()
   const issuePresentation = createCommittedPresentationIssuer()
   const issueExploration = createExplorationIssuer()
+  const issueClosure = createClosureIssuer()
   let busy = false, notifying = false, scope = ports.preplay.scope(), listenerErrors = 0
   let snapshot: PreplaySnapshot = preplaySnapshot({ status: 'stable', view: ports.player.query(), error: null, draft: null, feed: Object.freeze([]) })
   const notify = () => { notifying = true; try { for (const listener of [...listeners]) { try { listener() } catch { listenerErrors++ } } } finally { notifying = false } }
@@ -76,6 +78,8 @@ export function createPreplayController(ports: PreplayPorts): PreplayController 
     const presentation = issuePresentation(before, executed)
     const execution = executed as PlayerExecution
     return Object.freeze({ ...completed, ...(presentation ? { presentation } : {}),
+      ...(execution.closure ? { closure: issueClosure(execution.closure) } : {}),
+      ...(execution.closureDiagnostic ? { closureDiagnostic: execution.closureDiagnostic } : {}),
       ...(execution.exploration ? { exploration: issueExploration(execution.exploration) } : {}),
       ...(execution.explorationDiagnostic ? { explorationDiagnostic: execution.explorationDiagnostic } : {}) })
   }

@@ -1,0 +1,13 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-narrative-closure-001
+
+
+ Test Files  360 passed (360)
+      Tests  5099 passed (5099)
+   Start at  09:35:10
+   Duration  691.10s (transform 10.91s, setup 0ms, import 104.55s, tests 531.83s, environment 587.02s)
+

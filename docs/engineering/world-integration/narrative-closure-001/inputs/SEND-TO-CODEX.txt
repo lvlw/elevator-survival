@@ -1,0 +1,31 @@
+执行附件 ENG-WORLD-NARRATIVE-CLOSURE-001-task-v1.0。
+
+我批准本包CONTENT-ADOPTION所列医院段落的有限DEV文案采用，
+以及TASK/SCOPE内的正式接入、验证和指定新分支普通commit/push。
+不批准整篇dot稿、新世界、实验规则或实验代码自动进入正式版。
+
+仓库：lvlw/elevator-survival
+BASE：e7372119672561618f7c2dc1664001104e708bd1
+新分支：feature/world-narrative-closure-001
+文案只读参考：lvlw/elevator-survival-lab @ cbfbbe53c1be0a9748630ba6bcc39f1028966f53
+
+这是原正式React游戏下一轮，不是A/B/C实验。
+先核对AGENTS、HEAD、diff与其他worktree，保护HTTP实验和Owner存档，
+实际test:run建立基线。不要从旧main开工，也不要合并实验分支。
+
+连续完成：
+M1 周衡真实现场主动会面、署名/未调查及已恢复变体，技术动作仍走原链；
+M2 真实安装后平台灯态与当前接驳回应、样本状态准确返程提示；
+M3 正式成功/止损/截止生还/死亡的短收束及完整代表路径验收。
+
+不让谈话变成必经门槛，不免费完成method或成果，
+不以query/冷恢复/保存重试补演安装，不修改原结算或游戏存档。
+保留首段、当前任务说明/两层地图与A/B1/C1/C2修复。
+不做全43场、林岑完整支线、B2、移动端、引擎迁移、新美术或部署。
+
+按包完成定向/相邻/负控、原check与准确SHA CI，
+在原DEV React交真实代表路径和4张原图（或仅图视觉包）。
+GitHub直审，不打重复源码ZIP。完成后停止等主线复审。
+
+配置沿用原工程编码模型高推理/Standard；当前确有此前Sol时用Sol/high。
+实际不可核验记UNCONFIRMED，不为换模型或普通设计选项阻塞。

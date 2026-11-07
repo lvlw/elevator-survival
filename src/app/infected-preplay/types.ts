@@ -2,6 +2,7 @@ import type { PlayerView, PlayerRequest, PlayerExecution, PlayerSession } from '
 import type { PlayerPreplay, PlayerIntentMetadata, PlayerActionInputs } from '../../state/residence-session/player-preplay-types'
 import type { PlayerHandle } from '../../state/residence-session/player-types'
 import type { CommittedCombatPresentation } from './committed-presentation'
+import type { CommittedClosure } from './narrative-closure/issuer'
 import type { CommittedExploration } from './narrative-entry/issuer'
 
 export type PreplayPorts = Readonly<{ player: PlayerSession; preplay: PlayerPreplay;
@@ -14,6 +15,7 @@ export type PreplaySnapshot = Readonly<{ status: 'stable' | 'busy' | 'projection
   error: PreplayError | null; draft: Readonly<{ token: PreplayDraft; request: PlayerRequest }> | null;
   feed: readonly PreplayFeedEntry[] }>
 export type PreplayResult = Readonly<{ kind: 'committed' | 'rejected' | 'updated' | 'confirmation-required';
+  closure?: CommittedClosure; closureDiagnostic?: 'projection-unavailable';
   exploration?: CommittedExploration; explorationDiagnostic?: 'projection-unavailable';
   snapshot: PreplaySnapshot; confirmation?: PreplayConfirmation; execution?: PlayerExecution['kind']; presentation?: CommittedCombatPresentation }>
 export type PreplayController = Readonly<{

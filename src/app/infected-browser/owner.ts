@@ -52,7 +52,9 @@ export function createInfectedBrowserOwner(options: BrowserOptions = {}): Browse
     if (!alive(c)) return
     if (first) controller.createFirst()
     if (!alive(c)) return
-    if (prepared.hasCurrent()) c.reading = createReadingRecord(storage, r, () => alive(c), prepared.readingCurrent)
+    if (prepared.hasCurrent()) c.reading = createReadingRecord(storage, r, () => alive(c), (() => { const original=prepared.readingCurrent(); const view=controller.getSnapshot().view;
+      return original ? { ...original, known: [...original.known, ...(view?.status==='ready' ? view.closure?.known??[] : [])] } : null
+    }))
     publish(controller.getSnapshot().view?.status === 'ready' ? 'ready' : 'blocked', controller.getSnapshot())
   }
   function freshContext(): Context {

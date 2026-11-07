@@ -9,7 +9,7 @@ import { cycleContext, ensure } from './shared-validation'
 import { supplyBodyAction } from './cycle-adapter'
 import { partitionRanges } from './provenance'
 import type { SupplyDependencies } from './types'
-import { requireSupplySplit, requireSupplyMerge, requireSupplyQuickTarget } from './inventory-qualification'
+import { requireSupplySplit, requireSupplyMerge, requireSupplyQuickTarget, ordinaryPickupCapacity } from './inventory-qualification'
 export const supplyPlacementSchema = z.strictObject({ x: countSchema, y: countSchema, rotated: z.boolean() })
 const base = { expectedRevision: countSchema }
 export const supplyInventorySchema = z.discriminatedUnion('kind', [
@@ -18,7 +18,7 @@ export const supplyInventorySchema = z.discriminatedUnion('kind', [
   z.strictObject({ ...base, kind: z.literal('merge'), instanceId: idSchema, targetId: idSchema, quantity: positiveSchema }),
   z.strictObject({ ...base, kind: z.literal('to-quick'), instanceId: idSchema, slot: countSchema }),
   z.strictObject({ ...base, kind: z.literal('to-backpack'), slot: countSchema, placement: supplyPlacementSchema }),
-  z.strictObject({ ...base, kind: z.literal('pickup'), instanceId: idSchema, placement: supplyPlacementSchema }),
+  z.strictObject({ ...base, kind: z.literal('pickup'), instanceId: idSchema, quantity: positiveSchema.optional(), placement: supplyPlacementSchema.optional() }),
   z.strictObject({ ...base, kind: z.literal('drop'), instanceId: idSchema }),
 ])
 export function splitSupplyStack<V extends SupplyDomain>(value: V, instanceId: string, amount: number, deps: SupplyDependencies) {
@@ -43,6 +43,18 @@ export function planSharedInventory<V extends SupplyDomain, P>(value: V, request
   const command = parseResidence(supplyInventorySchema, request)
   requireSupplyDomainAction(value)
   ensure(command.expectedRevision === value.character.revision, 'Stale inventory revision', 'STALE_AUTHORITY')
+  if (command.kind === 'pickup') {
+    const item = value.site!.ground.find(row => row.nodeId === value.site!.nodeId)!.items.find(item => item.instanceId === command.instanceId)
+    if (item && deps.catalog.data.items.some(entry => entry.physical.id === item.definitionId && entry.ordinary) &&
+      deps.catalog.physical.get(item.definitionId).stacking.kind === 'stackable') {
+      const pickup = ordinaryPickupCapacity(value, command.instanceId, command.quantity, command.placement, deps)
+      ensure(pickup.public.picked > 0, 'No pickup capacity', 'CANNOT_CARRY')
+      const next = context.read(applyOrdinaryPickup(value, pickup, deps))
+      const body = supplyBodyAction(value, deps, 'revealed-pickup', { kind: 'free', amount: 0 })
+      return context.issue(value, { ...next, character: body.snapshot }, 'inventory', body.steps)
+    }
+    ensure(command.quantity === undefined && command.placement, 'Whole-instance pickup requires placement')
+  }
   if (command.kind === 'pickup' || command.kind === 'drop') {
     const active = value.missions.find(m => m.status === 'active')!
     const result = planResidenceItemTransfer({ character: value.character, site: value.site, carried: value.carried, itemStates: value.itemStates },
@@ -91,4 +103,51 @@ export function planSharedInventory<V extends SupplyDomain, P>(value: V, request
   const checked = context.read(next)
   const body = supplyBodyAction(value, deps, 'organize', { kind: 'free', amount: 0 })
   return context.issue(value, { ...checked, character: body.snapshot }, 'inventory', body.steps)
+}
+
+function applyOrdinaryPickup<V extends SupplyDomain>(value: V, pickup: ReturnType<typeof ordinaryPickupCapacity>, deps: SupplyDependencies): V {
+  const { item, merges, position } = pickup
+  let remaining = item.quantity
+  let ranges = value.allocations.find(allocation => allocation.instanceId === item.instanceId)!.ranges
+  let items = [...value.carried.backpack.items]
+  const placements = [...value.carried.backpack.placements]
+  let allocations = [...value.allocations]
+  let states = [...value.itemStates.states]
+  const lineage = [...value.lineage], unitTransfers = [...value.unitTransfers]
+  const revision = value.character.revision
+  for (const merge of merges) {
+    const parts = partitionRanges(ranges, merge.quantity)
+    ranges = parts.kept
+    remaining -= merge.quantity
+    items = items.map(target => target.instanceId === merge.instanceId ? { ...target, quantity: target.quantity + merge.quantity } : target)
+    allocations = allocations.map(target => target.instanceId === merge.instanceId ? { ...target, ranges: [...target.ranges, ...parts.taken] } : target)
+    unitTransfers.push({ from: item.instanceId, to: merge.instanceId, revision, kind: 'merge', ranges: parts.taken })
+  }
+  const created = pickup.public.created
+  if (created > 0) {
+    let id = item.instanceId
+    if (created < remaining) {
+      id = deriveStableSplitInstanceId({ scope: 'supply-v1:' + revision, sourceInstanceId: item.instanceId,
+        sourceQuantityBeforeSplit: remaining, quantity: created })
+      ensure(!lineage.some(entry => entry.instanceId === id), 'Split identity reused')
+      const parts = partitionRanges(ranges, created)
+      ranges = parts.kept
+      allocations.push({ instanceId: id, ranges: parts.taken })
+      states.push({ ...states.find(state => state.instanceId === item.instanceId)!, instanceId: id })
+      lineage.push({ instanceId: id, parentId: item.instanceId, originId: null, revision, quantityBefore: remaining, quantity: created })
+      unitTransfers.push({ from: item.instanceId, to: id, revision, kind: 'split', ranges: parts.taken })
+    }
+    remaining -= created
+    items.push({ ...item, instanceId: id, quantity: created })
+    placements.push({ instanceId: id, ...position! })
+  }
+  const originalStillLive = remaining > 0 || items.some(candidate => candidate.instanceId === item.instanceId)
+  allocations = allocations.flatMap(allocation => allocation.instanceId !== item.instanceId ? [allocation] :
+    originalStillLive ? [{ ...allocation, ranges }] : [])
+  states = states.filter(state => state.instanceId !== item.instanceId || originalStillLive)
+  return { ...value, carried: { ...value.carried, backpack: createBackpackSnapshot({ ...value.carried.backpack, items, placements }, deps.catalog.physical) },
+    site: { ...value.site!, ground: value.site!.ground.map(row => row.nodeId !== value.site!.nodeId ? row : {
+      ...row, items: row.items.flatMap(candidate => candidate.instanceId !== item.instanceId ? [candidate] :
+        remaining > 0 ? [{ ...candidate, quantity: remaining }] : []),
+    }) }, allocations, itemStates: { states }, lineage, unitTransfers }
 }

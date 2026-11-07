@@ -1,0 +1,13 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/ordinary-pickup-dec017 src/ui/infected-world/medical-maintenance.test.tsx src/state/residence-session/ordinary-pickup-constructors.test.ts src/core/residence-supply/inventory.test.ts
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-ordinary-pickup-dec017-001
+
+
+ Test Files  10 passed (10)
+      Tests  21 passed (21)
+   Start at  22:41:07
+   Duration  32.44s (transform 3.70s, setup 0ms, import 7.42s, tests 33.13s, environment 20.96s)
+

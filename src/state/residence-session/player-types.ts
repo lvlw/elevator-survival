@@ -1,3 +1,4 @@
+import type { OrdinaryPickupPreview } from '../../core/residence-combat/player-query-types'
 import type { playerSupplyFacts } from '../../core/residence-supply/player-query'
 import type { playerCombatFacts } from '../../core/residence-combat/player-query'
 import type { playerTerminalFacts } from '../../core/residence-terminal/player-query'
@@ -41,7 +42,7 @@ export type PlayerReadyView = Readonly<{ status: 'ready'; phase: 'first-hub' | '
 export type PlayerView = PlayerReadyView | Readonly<{ status: 'unbootstrapped' | 'no-current' | 'read-error' | 'blocked';
   reason: 'not-started' | 'no-save' | 'read-failed' | 'load-blocked' | 'transaction-in-progress' | 'projection-unavailable';
   persistence: Readonly<{ feedback: 'not-attempted' | 'saved' | 'save-failed' }> }>
-export type PlayerPreview = Readonly<{ kind: 'available' | 'unavailable' | 'invalid-selection' | 'unknown'; cost: number | null }>
+export type PlayerPreview = Readonly<{ kind: 'available' | 'unavailable' | 'invalid-selection' | 'unknown'; cost: number | null; pickup?: OrdinaryPickupPreview }>
 export type PublicCombatAction = 'basic-attack' | 'signature' | 'temporary-attack' | 'defend' | 'retreat' | 'quick-use'
 export type PlayerExecution = Readonly<{ kind: 'committed' | 'rejected'; view: PlayerView; preview: PlayerPreview | null;
   closure?: ClosureReceipt; closureDiagnostic?: 'projection-unavailable';

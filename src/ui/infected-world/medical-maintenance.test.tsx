@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { mountUi } from './test-fixtures'
+import { mountUi } from './owner-playtest-ux/inventory-driver'
 import { observeBrowser } from '../../app/infected-browser/test-observers'
 
 afterEach(() => vi.restoreAllMocks())
@@ -10,6 +10,8 @@ describe('real DOM medical and maintenance input flow', () => {
     try {
       await h.d.setup(); await h.d.send('进入封锁区'); await h.d.move('大厅'); await h.d.task('大厅搜索', 'dark'); await h.d.button('拾取 金属零件')
       await h.d.walk(['后勤控制间', '岗亭', '登记室', '维修库']); await h.d.task('开启侧室', 'crow'); await h.d.task('物流侧室物资'); await h.d.button('拾取 金属零件')
+      // DEC-017 merges at pickup; explicit split preserves the original second-stack selection regression.
+      await h.d.menu('金属零件','拆分',{quantity:1,placement:[1,0]})
       await h.d.walk(['登记室', '岗亭', '后勤控制间', '大厅']); await h.d.rest()
       await h.d.task('隔离防火门', 'crow'); await h.d.move('隔离走廊'); await h.d.send('金属管攻击'); await h.d.send('蓄力打击'); await h.d.send('退却')
       expect(h.view().point).toBe('stable-active')

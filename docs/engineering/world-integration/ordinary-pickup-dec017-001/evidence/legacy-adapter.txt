@@ -1,0 +1,13 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/state/residence-save/supply-history.test.ts src/core/residence-supply/inventory.test.ts src/core/residence-task/sources.test.ts
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-ordinary-pickup-dec017-001
+
+
+ Test Files  3 passed (3)
+      Tests  60 passed (60)
+   Start at  22:51:48
+   Duration  15.06s (transform 2.58s, setup 0ms, import 3.66s, tests 16.34s, environment 7.78s)
+

@@ -1,0 +1,128 @@
+[
+  {
+    "id": "consumable_ration",
+    "ordinary": true,
+    "width": 1,
+    "height": 1,
+    "weight": 1,
+    "stackMaximum": 2,
+    "resource": "none"
+  },
+  {
+    "id": "consumable_bandage",
+    "ordinary": true,
+    "width": 1,
+    "height": 1,
+    "weight": 1,
+    "stackMaximum": 3,
+    "resource": "none"
+  },
+  {
+    "id": "consumable_disinfectant",
+    "ordinary": true,
+    "width": 1,
+    "height": 1,
+    "weight": 1,
+    "stackMaximum": 3,
+    "resource": "none"
+  },
+  {
+    "id": "consumable_infection_suppressant",
+    "ordinary": true,
+    "width": 1,
+    "height": 1,
+    "weight": 1,
+    "stackMaximum": 2,
+    "resource": "none"
+  },
+  {
+    "id": "consumable_painkiller",
+    "ordinary": true,
+    "width": 1,
+    "height": 1,
+    "weight": 1,
+    "stackMaximum": 3,
+    "resource": "none"
+  },
+  {
+    "id": "consumable_first_aid_kit",
+    "ordinary": true,
+    "width": 1,
+    "height": 2,
+    "weight": 2,
+    "stackMaximum": 1,
+    "resource": "none"
+  },
+  {
+    "id": "material_metal_parts",
+    "ordinary": true,
+    "width": 1,
+    "height": 1,
+    "weight": 1,
+    "stackMaximum": 5,
+    "resource": "none"
+  },
+  {
+    "id": "material_electronic_components",
+    "ordinary": true,
+    "width": 1,
+    "height": 1,
+    "weight": 1,
+    "stackMaximum": 5,
+    "resource": "none"
+  },
+  {
+    "id": "material_fabric",
+    "ordinary": true,
+    "width": 1,
+    "height": 1,
+    "weight": 1,
+    "stackMaximum": 5,
+    "resource": "none"
+  },
+  {
+    "id": "supply_standard_battery",
+    "ordinary": true,
+    "width": 1,
+    "height": 1,
+    "weight": 1,
+    "stackMaximum": 4,
+    "resource": "none"
+  },
+  {
+    "id": "access_card_isolation_ward",
+    "ordinary": false,
+    "width": 1,
+    "height": 1,
+    "weight": 0,
+    "stackMaximum": 1,
+    "resource": "none"
+  },
+  {
+    "id": "quest_sealed_pathogen_case",
+    "ordinary": false,
+    "width": 2,
+    "height": 2,
+    "weight": 4,
+    "stackMaximum": 1,
+    "resource": "none"
+  },
+  {
+    "id": "draft_transfer_control_component",
+    "ordinary": false,
+    "width": 2,
+    "height": 2,
+    "weight": 4,
+    "stackMaximum": 1,
+    "resource": "none"
+  },
+  {
+    "id": "draft_transfer_start_module",
+    "ordinary": false,
+    "width": 1,
+    "height": 2,
+    "weight": 2,
+    "stackMaximum": 1,
+    "resource": "none"
+  }
+]

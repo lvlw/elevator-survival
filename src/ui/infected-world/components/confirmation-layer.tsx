@@ -3,7 +3,14 @@ import type { PlayerIntentMetadata } from '../../../state/residence-session/play
 import { publicItemName } from '../labels'
 
 export function SafeFacts({ metadata }: { metadata: PlayerIntentMetadata }) {
+  const pickup = metadata.qualification.pickup
   return <div className="iw-facts">
+    {pickup && <section aria-label="拾取数量预览">
+      <p>可拾取 {pickup.picked}，另有 {pickup.remaining} 留在现场。</p>
+      <p>并入已有堆叠 {pickup.merged}，新建堆叠 {pickup.placements.length} 组，共 {pickup.created}。</p>
+      {pickup.placements.map((p, i) => <p key={i}>放置于 {p.x + 1},{p.y + 1} · 数量 {p.quantity}</p>)}
+      {pickup.limitedBy.length > 0 && <p>容量限制{pickup.limitedBy.map(reason => reason === 'weight' ? '负重' : '格位').join('、')}。可减少数量或取消后整理。</p>}
+    </section>}
     <p>正式资格：{({ available: '可执行', unknown: '目标资格未知', unavailable: '当前不能执行', 'invalid-selection': '选择已失效' })[metadata.qualification.kind]}</p>
     {metadata.qualification.cost !== null && <p>精力消耗：{metadata.qualification.cost}</p>}
     <p>{metadata.death.kind === 'guaranteed' ? '正式安全事实证明：本命令将导致死亡。' : metadata.death.kind === 'not-guaranteed' ? '未证明本命令必死；不代表没有风险。' : '完整后果未知，不作安全保证。'}</p>

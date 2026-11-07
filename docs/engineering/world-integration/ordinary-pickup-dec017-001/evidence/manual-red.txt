@@ -1,0 +1,30 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/ordinary-pickup-dec017/public-and-react.test.tsx
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-ordinary-pickup-dec017-001
+
+ ❯ src/ui/infected-world/ordinary-pickup-dec017/public-and-react.test.tsx (3 tests | 1 failed) 6829ms
+   × manual invalid anchor remains editable after merge-only preview, then a legal anchor receives the remainder 2012ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/ui/infected-world/ordinary-pickup-dec017/public-and-react.test.tsx > manual invalid anchor remains editable after merge-only preview, then a legal anchor receives the remainder
+AssertionError: expected null not to be null
+ ❯ src/ui/infected-world/ordinary-pickup-dec017/public-and-react.test.tsx:95:55
+     93|     await h.d.anchor(occupied.x,occupied.y)
+     94|     expect(h.host.querySelector('[aria-label="拾取数量预览"]')?.textContent)…
+     95|     expect(h.host.querySelector('.iw-placement')).not.toBeNull()
+       |                                                       ^
+     96|     await h.d.anchor(empty.x,empty.y)
+     97|     expect(h.host.querySelector('[aria-label="拾取数量预览"]')?.textContent)…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  23:12:20
+   Duration  14.12s (transform 3.13s, setup 0ms, import 3.95s, tests 6.83s, environment 2.97s)
+

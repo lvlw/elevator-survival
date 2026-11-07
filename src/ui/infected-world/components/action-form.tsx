@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { BrowserControls } from '../../../app/infected-browser/types'
 import type { PlayerActionInputs } from '../../../state/residence-session/player-preplay-types'
 import type { PlayerAction, PlayerItem, PlayerPlacement, PlayerReadyView, PlayerRequest } from '../../../state/residence-session/player-types'
+import { stackablePickupIntent } from '../ordinary-pickup-dec017/intent'
 import { SafeFacts } from './confirmation-layer'
 import { PlacementPicker } from './placement-picker'
 import { actionName, publicItemName } from '../labels'
@@ -14,7 +15,7 @@ export function ActionForm({ action, inputs, view, controls, initialItem, onExec
   onExecute: (request: PlayerRequest) => void; onCancel: () => void
 }) {
   const [item, setItem] = useState(() => initialItem ? inputs.items.findIndex(i => i.selector === initialItem.selector).toString() : '')
-  const [targetItem, setTargetItem] = useState(''), [quantity, setQuantity] = useState(''), [slot, setSlot] = useState('')
+  const [targetItem, setTargetItem] = useState(''), [quantity, setQuantity] = useState(inputs.convenience === 'ordinary-whole-pickup' && initialItem?.stackable && initialItem.quantity === 1 ? '1' : ''), [slot, setSlot] = useState('')
   const [wound, setWound] = useState(''), [target, setTarget] = useState('')
   const [placements, setPlacements] = useState<readonly (PlayerPlacement | null)[]>([])
   const [materials, setMaterials] = useState<Readonly<Record<string, string>>>({})
@@ -23,7 +24,9 @@ export function ActionForm({ action, inputs, view, controls, initialItem, onExec
   useEffect(() => { const prior = document.activeElement; cancel.current?.focus(); return () => { if (prior instanceof HTMLElement && prior.isConnected) prior.focus() } }, [])
   const source = inputs.items[Number(item)]
   const selectedSource = item !== '' && !!source
-  const has = (field: typeof inputs.fields[number]) => inputs.fields.includes(field)
+  const stackablePickup = selectedSource && source.pickup === 'stackable'
+  const has = (field: typeof inputs.fields[number]) => inputs.fields.includes(field) &&
+    !(field === 'quantity' && inputs.convenience === 'ordinary-whole-pickup' && selectedSource && !stackablePickup)
   const placementCount = has('placements') ? inputs.outputs.length : has('placement') ? 1 : 0
   const selectedMaterials = inputs.materials.flatMap((m, r) => m.choices.flatMap((i, c) => {
     const q = materials[`${r}:${c}`]
@@ -35,12 +38,12 @@ export function ActionForm({ action, inputs, view, controls, initialItem, onExec
   const requiresWound = clinical && !clinical.allowNoTarget && clinical.wound !== 'none' && !clinical.targets.length
   const complete = (!has('item') || selectedSource) && (!has('targetItem') || targetItem !== '') &&
     (!has('quantity') || quantity !== '') && (!has('slot') || slot !== '') &&
-    (placements.filter(Boolean).length === placementCount) &&
+    (stackablePickup || placements.filter(Boolean).length === placementCount) &&
     (!requiresWound || wound !== '') && (!clinical || clinical.allowNoTarget || !clinical.targets.length || target !== '') &&
     (target !== 'wound' || wound !== '') &&
     (!inputs.materials.length || inputs.materials.every((m, r) => m.choices.some((_, c) => !!materials[`${r}:${c}`]))) &&
     (!has('allocations') || selectedAllocations.length > 0)
-  const request: PlayerRequest = { action: action.selector,
+  const draftRequest: PlayerRequest = { action: action.selector,
     ...(has('item') && selectedSource ? { item: source.selector } : {}),
     ...(has('targetItem') && targetItem !== '' ? { targetItem: inputs.targetItems[Number(targetItem)]!.selector } : {}),
     ...(has('quantity') && quantity !== '' ? { quantity: Number(quantity) } : {}),
@@ -52,12 +55,13 @@ export function ActionForm({ action, inputs, view, controls, initialItem, onExec
     ...(has('materials') ? { materials: selectedMaterials } : {}),
     ...(has('allocations') ? { allocations: selectedAllocations } : {}),
   }
+  const request = complete && stackablePickup ? stackablePickupIntent(view.backpack.width, view.backpack.height, draftRequest, controls.preview) : draftRequest
   const preview = complete ? controls.preview(request) : null
   const canExecute = preview && ['available', 'unknown'].includes(preview.qualification.kind)
   const pickup = inputs.convenience === 'ordinary-whole-pickup' || action.family === 'task-transfer' && action.label === '拾取任务物'
   const anchor = placements[0]
   let pickupNote: string | null = null
-  if (pickup && selectedSource && anchor && preview?.qualification.kind === 'unavailable') {
+  if (pickup && !stackablePickup && selectedSource && anchor && preview?.qualification.kind === 'unavailable') {
     const width = anchor.rotated ? source.height : source.width
     const height = anchor.rotated ? source.width : source.height
     const outside = anchor.x + width > view.backpack.width || anchor.y + height > view.backpack.height
@@ -77,8 +81,9 @@ export function ActionForm({ action, inputs, view, controls, initialItem, onExec
   }}><form className={`iw-dialog iw-framed iw-action-form ${pickup ? 'iw-pickup-form ' : ''}iw-tier-${action.family === 'inventory' && (has('placement') || has('placements')) ? 'organize' : 'parameters'}`} aria-label="行动参数" onSubmit={e => { e.preventDefault(); if (canExecute) onExecute(request) }} role="dialog" aria-modal="true">
     <h2>{actionName(action)}{selectedSource ? ` · ${publicItemName(source.name)}` : ''}</h2><div className="iw-form-content"><div className="iw-form-fields">
       {selectedSource ? <div className="iw-form-item-art"><ItemPicture name={source.name} /><div><strong>{publicItemName(source.name)} ×{source.quantity}</strong>{pickup && <small>{itemPurpose(source.name)}</small>}</div></div> : inputs.outputs.length ? inputs.outputs.map((output, index) => <div key={index} className="iw-form-item-art"><ItemPicture name={output.name} /><strong>声明产物：{publicItemName(output.name)} ×{output.quantity}</strong></div>) : <TaskArtwork view={view} action={action} />}
+      {stackablePickup && <p>先补兼容堆叠，剩余按行优先放入空格。也可在下方明确选位，实际数量以预览为准。</p>}
       {inputs.hints.map(h => <p key={h}>{h}</p>)}
-      {has('item') && <label>物品<select aria-label="物品" value={item} onChange={e => { setItem(e.target.value); setTarget(''); setWound(''); setPlacements([]) }}>
+      {has('item') && <label>物品<select aria-label="物品" value={item} onChange={e => { setItem(e.target.value); setTarget(''); setWound(''); setPlacements([]); if (inputs.convenience === 'ordinary-whole-pickup') setQuantity(inputs.items[Number(e.target.value)]?.quantity === 1 ? '1' : '') }}>
         <option value="">请选择实际物品</option>{inputs.items.map((i, n) => <option key={n} value={n}>{publicItemName(i.name)} ×{i.quantity}</option>)}
       </select></label>}
       {has('targetItem') && <label>目标堆叠<select aria-label="目标堆叠" value={targetItem} onChange={e => setTargetItem(e.target.value)}>
@@ -98,7 +103,7 @@ export function ActionForm({ action, inputs, view, controls, initialItem, onExec
       </fieldset>)}
       {has('allocations') && <fieldset><legend>机械维修共享总池 {inputs.allocation?.pool}</legend>{inputs.allocation?.targets.map((i, n) => <label key={n}>{publicItemName(i.name)} {i.current}/{i.maximum}
         <input type="number" aria-label={`${publicItemName(i.name)}分配`} value={allocations[n] ?? ''} placeholder="不分配" onChange={e => setAllocations({ ...allocations, [n]: e.target.value })} /></label>)}</fieldset>}
-      {Array.from({ length: placementCount }, (_, n) => {
+      {stackablePickup && !placements[0] && preview?.qualification.pickup?.picked && !preview.qualification.pickup.created ? <p>本次可拾取数量全部并入已有堆叠，无需选择格位。</p> : Array.from({ length: placementCount }, (_, n) => {
         const geometry = inputs.outputs[n] ?? (selectedSource ? source : null)
         return geometry && <PlacementPicker key={n} label={publicItemName(inputs.outputs[n]?.name ?? '物品')}
           view={{ ...view, carried: view.carried.map(i => ({ ...i, name: publicItemName(i.name) })) }} width={geometry.width} height={geometry.height} canRotate={geometry.canRotate}

@@ -1,0 +1,191 @@
+{
+  "result": "PASS",
+  "cases": [
+    {
+      "case": "full-merge",
+      "requested": 1,
+      "picked": 1,
+      "sourceInstance": "11:combat-seed|392:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L1|6:source|10:L1-cabinet|8:contents|4:item|1:0",
+      "targetInstance": "supply-v1:21:420:11:combat-seed|390:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L2|6:source|9:L2-search|8:contents|4:item|1:0:2",
+      "sourceBefore": 2,
+      "sourceAfter": 1,
+      "targetBefore": 1,
+      "targetAfter": 2,
+      "sourceRangesBefore": [
+        {
+          "originId": "16:supply-origin-v1|8:ordinary|422:11:combat-seed|392:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L1|6:source|10:L1-cabinet|8:contents|4:item|1:0|17:consumable_ration|1:2|11:not-initial",
+          "start": 0,
+          "end": 2
+        }
+      ],
+      "sourceRangesAfter": [
+        {
+          "originId": "16:supply-origin-v1|8:ordinary|422:11:combat-seed|392:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L1|6:source|10:L1-cabinet|8:contents|4:item|1:0|17:consumable_ration|1:2|11:not-initial",
+          "start": 1,
+          "end": 2
+        }
+      ],
+      "targetRangesBefore": [
+        {
+          "originId": "16:supply-origin-v1|8:ordinary|420:11:combat-seed|390:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L2|6:source|9:L2-search|8:contents|4:item|1:0|17:consumable_ration|1:3|11:not-initial",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "targetRangesAfter": [
+        {
+          "originId": "16:supply-origin-v1|8:ordinary|420:11:combat-seed|390:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L2|6:source|9:L2-search|8:contents|4:item|1:0|17:consumable_ration|1:3|11:not-initial",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "originId": "16:supply-origin-v1|8:ordinary|422:11:combat-seed|392:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L1|6:source|10:L1-cabinet|8:contents|4:item|1:0|17:consumable_ration|1:2|11:not-initial",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "exactUnitCount": 29,
+      "unitSetSHA256": "c8823eac7f480a6b88af547cc5af6d652046ced950584df3d5cf1ece58973a47",
+      "originsUnchanged": true,
+      "itemStatesUnchanged": true,
+      "placementsUnchanged": true,
+      "newTransfers": [
+        {
+          "from": "11:combat-seed|392:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L1|6:source|10:L1-cabinet|8:contents|4:item|1:0",
+          "to": "supply-v1:21:420:11:combat-seed|390:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L2|6:source|9:L2-search|8:contents|4:item|1:0:2",
+          "revision": 41,
+          "kind": "merge",
+          "ranges": [
+            {
+              "originId": "16:supply-origin-v1|8:ordinary|422:11:combat-seed|392:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L1|6:source|10:L1-cabinet|8:contents|4:item|1:0|17:consumable_ration|1:2|11:not-initial",
+              "start": 0,
+              "end": 1
+            }
+          ]
+        }
+      ],
+      "revisionBefore": 41,
+      "revisionAfter": 42,
+      "coldExact": true,
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "browser": "157.0.4341.42",
+      "secure": true,
+      "webLocks": true,
+      "errors": [],
+      "checkpointBefore": "855446386144e5a6365950fcfe5e56320cd69fb41a913075d0b2533dbef9107f",
+      "checkpointAfter": "69f3f57c789e01927ac2ab9a365ff0723f02f54ab558923a87fa317dcef9e067"
+    },
+    {
+      "case": "partial",
+      "requested": 2,
+      "picked": 1,
+      "sourceInstance": "11:combat-seed|392:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L1|6:source|10:L1-cabinet|8:contents|4:item|1:0",
+      "targetInstance": "supply-v1:21:420:11:combat-seed|390:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L2|6:source|9:L2-search|8:contents|4:item|1:0:2",
+      "sourceBefore": 2,
+      "sourceAfter": 1,
+      "targetBefore": 1,
+      "targetAfter": 2,
+      "sourceRangesBefore": [
+        {
+          "originId": "16:supply-origin-v1|8:ordinary|422:11:combat-seed|392:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L1|6:source|10:L1-cabinet|8:contents|4:item|1:0|17:consumable_ration|1:2|11:not-initial",
+          "start": 0,
+          "end": 2
+        }
+      ],
+      "sourceRangesAfter": [
+        {
+          "originId": "16:supply-origin-v1|8:ordinary|422:11:combat-seed|392:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L1|6:source|10:L1-cabinet|8:contents|4:item|1:0|17:consumable_ration|1:2|11:not-initial",
+          "start": 1,
+          "end": 2
+        }
+      ],
+      "targetRangesBefore": [
+        {
+          "originId": "16:supply-origin-v1|8:ordinary|420:11:combat-seed|390:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L2|6:source|9:L2-search|8:contents|4:item|1:0|17:consumable_ration|1:3|11:not-initial",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "targetRangesAfter": [
+        {
+          "originId": "16:supply-origin-v1|8:ordinary|420:11:combat-seed|390:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L2|6:source|9:L2-search|8:contents|4:item|1:0|17:consumable_ration|1:3|11:not-initial",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "originId": "16:supply-origin-v1|8:ordinary|422:11:combat-seed|392:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L1|6:source|10:L1-cabinet|8:contents|4:item|1:0|17:consumable_ration|1:2|11:not-initial",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "exactUnitCount": 29,
+      "unitSetSHA256": "c8823eac7f480a6b88af547cc5af6d652046ced950584df3d5cf1ece58973a47",
+      "originsUnchanged": true,
+      "itemStatesUnchanged": true,
+      "placementsUnchanged": true,
+      "newTransfers": [
+        {
+          "from": "11:combat-seed|392:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L1|6:source|10:L1-cabinet|8:contents|4:item|1:0",
+          "to": "supply-v1:21:420:11:combat-seed|390:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L2|6:source|9:L2-search|8:contents|4:item|1:0:2",
+          "revision": 41,
+          "kind": "merge",
+          "ranges": [
+            {
+              "originId": "16:supply-origin-v1|8:ordinary|422:11:combat-seed|392:21:residence-location-v1|14:dec017-browser|29:infected-residence-local-v0.1|33:infected-residence-core-test-v0.1|25:infected-world-local-v0.1|19:unfinished-transfer|27:infected-transfer-local-001|15:DEC-052-pure-v1|14:test-execution|29:infected-residence-local-v0.1|43:infected-supply:infected-transfer-local-001|33:infected-world-entry-content-v0.1|1:L|2:L1|6:source|10:L1-cabinet|8:contents|4:item|1:0|17:consumable_ration|1:2|11:not-initial",
+              "start": 0,
+              "end": 1
+            }
+          ]
+        }
+      ],
+      "revisionBefore": 41,
+      "revisionAfter": 42,
+      "coldExact": true,
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "browser": "157.0.4341.42",
+      "secure": true,
+      "webLocks": true,
+      "errors": [],
+      "checkpointBefore": "855446386144e5a6365950fcfe5e56320cd69fb41a913075d0b2533dbef9107f",
+      "checkpointAfter": "69f3f57c789e01927ac2ab9a365ff0723f02f54ab558923a87fa317dcef9e067"
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "full-merge-after.png",
+      "bytes": 1287982,
+      "sha256": "ec2886729a3c809be175174a20e84d76452c6018cab091182d9ff34b32acceb1",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "name": "full-merge-preview.png",
+      "bytes": 1206425,
+      "sha256": "eb741b0c127f5530b92feca4e61ed4d6a9328fb44aa56a17fc801f507f1de4ae",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "name": "partial-after.png",
+      "bytes": 1287982,
+      "sha256": "ec2886729a3c809be175174a20e84d76452c6018cab091182d9ff34b32acceb1",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "name": "partial-preview.png",
+      "bytes": 1210037,
+      "sha256": "1235ca4452dc6b7e597c85ce0355aaa0f611e0452e233bb45b55e72eb1f411b2",
+      "width": 1440,
+      "height": 900
+    }
+  ]
+}

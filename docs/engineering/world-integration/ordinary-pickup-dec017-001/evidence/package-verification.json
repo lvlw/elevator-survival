@@ -1,0 +1,41 @@
+{
+  "zip": "D:\\浏览器下载\\ENG-WORLD-ORDINARY-PICKUP-DEC017-001-task-v1.0.zip",
+  "size": 8553,
+  "sha256": "057c72e82233bc9e00b1bd32adbc794420d9c3b8b3cb14abb58f2579221472af",
+  "crc": "PASS",
+  "extractedBytes": "PASS",
+  "files": [
+    {
+      "name": "ACCEPTANCE.md",
+      "size": 1431,
+      "sha256": "27f84d333d1ee169d6a36106802c2c7f9f158b68d947b9d6b283483d20c78b3d",
+      "crc32": "e373785e"
+    },
+    {
+      "name": "HANDOFF.txt",
+      "size": 1434,
+      "sha256": "4f650983cc57cb1c7cb42983ab53357bb22939ec4f8d41d9de1a71ca3ace7374",
+      "crc32": "240702e5"
+    },
+    {
+      "name": "README.md",
+      "size": 757,
+      "sha256": "098b09c5729cb4ff222d0c584703ae4c4415271d5990cddd4bffaceb6649708a",
+      "crc32": "eefa85a4"
+    },
+    {
+      "name": "SOURCES.md",
+      "size": 2280,
+      "sha256": "e12c34e0e526e901a3bf2fbdc0b17349b5a0a45eadc2762d134b9a83847796c8",
+      "crc32": "30e59bc1"
+    },
+    {
+      "name": "TASK.md",
+      "size": 8459,
+      "sha256": "c321c412947511a5696a1fa3c2068db287e345f9bc4891b8627fe8499af36072",
+      "crc32": "cdfe3f10"
+    }
+  ],
+  "packageVerifier": "NOT PROVIDED",
+  "manifest": "NOT PROVIDED"
+}

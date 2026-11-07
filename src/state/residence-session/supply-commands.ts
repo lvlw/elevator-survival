@@ -12,7 +12,7 @@ const inventory = z.discriminatedUnion('kind', [
   z.strictObject({ ...rev, kind: z.literal('merge'), instanceId: idSchema, targetId: idSchema, quantity: positiveSchema }),
   z.strictObject({ ...rev, kind: z.literal('to-quick'), instanceId: idSchema, slot: countSchema }),
   z.strictObject({ ...rev, kind: z.literal('to-backpack'), slot: countSchema, placement }),
-  z.strictObject({ ...rev, kind: z.literal('pickup'), instanceId: idSchema, placement }),
+  z.strictObject({ ...rev, kind: z.literal('pickup'), instanceId: idSchema, quantity: positiveSchema.optional(), placement: placement.optional() }),
   z.strictObject({ ...rev, kind: z.literal('drop'), instanceId: idSchema }),
 ])
 const transfer = z.discriminatedUnion('kind', [

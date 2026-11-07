@@ -8,6 +8,7 @@ import type { PlayerAction, PlayerItem, PlayerRequest } from '../../state/reside
 import { useBrowserOwner, type OwnerFactory } from './use-browser-owner'
 import { currentActions, requestStillVisible } from './interaction'
 import { firstFit } from './first-fit'
+import { stackablePickupIntent } from './ordinary-pickup-dec017/intent'
 import { GameShell } from './components/game-shell'
 import { SetupPanel } from './components/setup-panel'
 import { SystemScreen } from './components/system-screen'
@@ -87,7 +88,13 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
     if (!inputs.fields.length) { execute({ action: action.selector }, action); return }
     const unique = uniqueToolRequest(action, inputs, item)
     if (unique) { execute(unique, action); return }
-    if (inputs.convenience === 'ordinary-whole-pickup' && item?.ordinary && item.container === 'ground') {
+    if (inputs.convenience === 'ordinary-whole-pickup' && item?.ordinary && item.container === 'ground' && item.stackable) {
+      if (item.quantity === 1) {
+        const request = stackablePickupIntent(view.backpack.width, view.backpack.height,
+          { action: action.selector, item: item.selector, quantity: 1 }, controls.preview)
+        if (controls.preview(request).qualification.kind === 'available') { execute(request, action); return }
+      }
+    } else if (inputs.convenience === 'ordinary-whole-pickup' && item?.ordinary && item.container === 'ground') {
       const placement = firstFit(view.backpack.width, view.backpack.height, { action: action.selector, item: item.selector }, controls.preview)
       if (placement) { execute({ action: action.selector, item: item.selector, placement }, action); return }
       setMessage('未找到合法未旋转位置，请手动选择位置或旋转。')

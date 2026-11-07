@@ -14,7 +14,7 @@ export function resolvePlayerCommand(context: PlayerContext, input: unknown, dep
     task: ['item', 'placement', 'materials'], source: ['item', 'materials', 'placements'],
     inventory: a.key === 'move' ? ['item', 'placement'] : a.key === 'split' ? ['item', 'quantity', 'placement'] :
       a.key === 'merge' ? ['item', 'targetItem', 'quantity'] : a.key === 'to-quick' ? ['item', 'slot'] :
-        a.key === 'to-backpack' ? ['item', 'placement'] : a.key === 'pickup' ? ['item', 'placement'] : ['item'],
+        a.key === 'to-backpack' ? ['item', 'placement'] : a.key === 'pickup' ? ['item', 'quantity', 'placement'] : ['item'],
     'task-transfer': a.key === 'task-pickup' ? ['item', 'placement'] : ['item'],
     medical: ['item', 'wound', 'quantity', 'target'], maintenance: ['item', 'materials', 'allocations'],
   }

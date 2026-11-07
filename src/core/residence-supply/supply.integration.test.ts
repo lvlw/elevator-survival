@@ -6,6 +6,7 @@ import { planSupplyTaskAction } from '../residence-task/actions'
 import { planSupplyTaskTransfer } from '../residence-task/transfer'
 import * as sources from '../residence-task/sources'
 import * as taskPlans from '../residence-task/plans'
+import * as pickupQualification from './inventory-qualification'
 import * as itemTransfers from '../residence-location/items'
 import * as energy from '../residence-energy'
 import * as cycle from '../character-cycle'
@@ -137,6 +138,7 @@ describe('P10 P12 native independent producer counts', () => {
       origins = vi.spyOn(allocations, 'issueSupplyOrigin'), issued = vi.spyOn(plans, 'issueSupplyPlan'),
       closes = vi.spyOn(lifecycle, 'terminateMission'), materialized = vi.spyOn(taskPlans, 'materializeSupplySource'),
       itemMoves = vi.spyOn(itemTransfers, 'planResidenceItemTransfer'),
+      ordinaryPickups = vi.spyOn(pickupQualification, 'ordinaryPickupCapacity'),
       medicalEffects = vi.spyOn(condition, 'restoreHealth'), resourceEffects = vi.spyOn(resources, 'restoreItemResource'),
       terminalConsumers = vi.spyOn(terminal, 'planSupplyTerminal')
     const req = { kind: 'reveal', expectedRevision: base.character.revision, sourceId: 'H1-search', method: 'dark' }
@@ -149,7 +151,7 @@ describe('P10 P12 native independent producer counts', () => {
     actions.mockClear(); issued.mockClear()
     const mixed = { ...f, dependencies: deps, authorize }
     const picked = pickAlias(mixed, p.snapshot, 'metal', 0)
-    expect([actions.mock.calls.length, itemMoves.mock.calls.length, issued.mock.calls.length]).toEqual([1, 1, 1])
+    expect([actions.mock.calls.length, itemMoves.mock.calls.length, ordinaryPickups.mock.calls.length, issued.mock.calls.length]).toEqual([1, 0, 1, 1])
     actions.mockClear(); issued.mockClear()
     const repaired = planSupplyMaintenance(picked, { kind: 'mechanical', expectedRevision: picked.character.revision,
       inputs: [{ instanceId: picked.carried.backpack.items[0].instanceId, quantity: 1 }],

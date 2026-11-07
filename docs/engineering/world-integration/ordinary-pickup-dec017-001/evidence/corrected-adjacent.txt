@@ -1,0 +1,32 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/ordinary-pickup-dec017 src/ui/infected-world/parameters.test.tsx src/ui/infected-world/medical-maintenance.test.tsx src/ui/infected-world/longchain.integration.test.tsx src/ui/infected-world/mission-map-ux.test.tsx src/ui/infected-world/narrative-closure src/ui/infected-world/review-context-menu.test.tsx src/ui/infected-world/review-public-copy.test.tsx src/ui/infected-world/owner-playtest-ux/inventory-boundaries.test.tsx src/core/residence-supply/supply.integration.test.ts
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-ordinary-pickup-dec017-001
+
+ ❯ src/ui/infected-world/medical-maintenance.test.tsx (1 test | 1 failed) 1254ms
+     × after real retreat repairs with the explicitly selected second material stack then uses a real bandage 1252ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/ui/infected-world/medical-maintenance.test.tsx > real DOM medical and maintenance input flow > after real retreat repairs with the explicitly selected second material stack then uses a real bandage
+Error: DOM_TEST_ASSERTION: input 数量
+ ❯ assert src/ui/infected-world/route-test-fixtures.ts:12:99
+     10| export function createUiDriver(options: UiDriverOptions) {
+     11|   const doc = options.document, view = options.getView
+     12|   function assert(condition: unknown, message: string): asserts condit…
+       |                                                                                                   ^
+     13|   const buttons = () => [...doc.querySelectorAll<HTMLButtonElement>('b…
+     14|   async function button(label: string) {
+ ❯ Object.input src/ui/infected-world/route-test-fixtures.ts:35:5
+ ❯ src/ui/infected-world/medical-maintenance.test.tsx:12:151
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 18 passed (19)
+      Tests  1 failed | 63 passed (64)
+   Start at  22:38:49
+   Duration  86.06s (transform 5.85s, setup 0ms, import 15.43s, tests 107.55s, environment 42.17s)
+

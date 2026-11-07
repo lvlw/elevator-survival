@@ -1,0 +1,72 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/ordinary-pickup-dec017/scope-probe.test.tsx
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-ordinary-pickup-dec017-001
+
+ ❯ src/ui/infected-world/ordinary-pickup-dec017/scope-probe.test.tsx (3 tests | 3 failed) 401ms
+   × DEC017 requires compatible ground metal to merge into an occupied backpack stack 187ms
+   × ordinary pickup accepts an explicit legal quantity at the formal producer 61ms
+   × public PlayerSession accepts pickup quantity without losing the selected real item 152ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/ui/infected-world/ordinary-pickup-dec017/scope-probe.test.tsx > DEC017 requires compatible ground metal to merge into an occupied backpack stack
+InventoryError: 物品放置失败：OVERLAP
+ ❯ assertPreviewCanPlace src/core/inventory/backpack-operations.ts:18:11
+     16| ): void {
+     17|   if (!preview.canPlace) {
+     18|     throw new InventoryError(preview.reason, `物品放置失败：${preview.reason}…
+       |           ^
+     19|   }
+     20| }
+ ❯ addItemToBackpack src/core/inventory/backpack-operations.ts:34:3
+ ❯ planResidenceItemTransfer src/core/residence-location/items.ts:17:7
+ ❯ planSharedInventory src/core/residence-supply/shared-inventory.ts:48:20
+ ❯ planSupplyInventory src/core/residence-supply/inventory.ts:10:10
+ ❯ src/ui/infected-world/ordinary-pickup-dec017/scope-probe.test.tsx:17:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/ui/infected-world/ordinary-pickup-dec017/scope-probe.test.tsx > ordinary pickup accepts an explicit legal quantity at the formal producer
+AssertionError: expected [Function] to not throw an error but 'ResidenceError: Invalid residence val…' was thrown
+
+- Expected:
+undefined
+
++ Received:
+"ResidenceError: Invalid residence value shape or number"
+
+ ❯ src/ui/infected-world/ordinary-pickup-dec017/scope-probe.test.tsx:31:31
+     29|     expectedRevision: value.character.revision, kind: 'pickup', instan…
+     30|     quantity: 1, placement: { x: 0, y: 0, rotated: false },
+     31|   }, f.authorize(value))).not.toThrow()
+       |                               ^
+     32| })
+     33|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/ui/infected-world/ordinary-pickup-dec017/scope-probe.test.tsx > public PlayerSession accepts pickup quantity without losing the selected real item
+AssertionError: expected 'invalid-selection' to be 'available' // Object.is equality
+
+Expected: "available"
+Received: "invalid-selection"
+
+ ❯ src/ui/infected-world/ordinary-pickup-dec017/scope-probe.test.tsx:47:69
+     45|   const item = view.ground.find(item => item.ordinary && item.stackabl…
+     46|   expect(h.player.preview({ action: action.selector, item: item.select…
+     47|     quantity: 1, placement: { x: 0, y: 0, rotated: false } }).kind).to…
+       |                                                                     ^
+     48| })
+     49|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  21:57:04
+   Duration  5.86s (transform 2.49s, setup 0ms, import 3.07s, tests 401ms, environment 2.08s)
+

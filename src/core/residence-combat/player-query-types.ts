@@ -24,6 +24,11 @@ export type PlayerCoreCommand = DeepReadonly<
   | { kind: 'combat'; command: Revision & { kind: 'combat-action'; expectedBattleId: string;
       command: CombatPlayerActionCommand; instanceId?: string; quantity?: 1 } }
 >
+export type OrdinaryPickupPreview = Readonly<{
+  requested: number; picked: number; merged: number; created: number; remaining: number;
+  placements: readonly Readonly<{ x: number; y: number; rotated: boolean; quantity: number }>[];
+  limitedBy: readonly ('weight' | 'space')[]
+}>
 export type SafeCommandQualification = Readonly<{
-  kind: 'available' | 'unavailable' | 'invalid-selection' | 'unknown'; cost: number | null
+  kind: 'available' | 'unavailable' | 'invalid-selection' | 'unknown'; cost: number | null; pickup?: OrdinaryPickupPreview
 }>

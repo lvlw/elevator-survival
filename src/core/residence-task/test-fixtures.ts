@@ -48,8 +48,18 @@ export function searchAt(f: ReturnType<typeof fixture>, v: SupplyValue, sourceId
 export function pickAlias(f: ReturnType<typeof fixture>, v: SupplyValue, alias: string, x: number, y = 0) {
   const def = f.dependencies.tasks.data.items.find(i => i.alias === alias)!.id
   const item = v.site!.ground.find(g => g.nodeId === v.site!.nodeId)!.items.find(i => i.definitionId === def)!
-  return planSupplyInventory(v, { kind: 'pickup', expectedRevision: v.character.revision,
+  const picked = planSupplyInventory(v, { kind: 'pickup', expectedRevision: v.character.revision,
     instanceId: item.instanceId, placement: { x, y, rotated: false } }, f.authorize(v)).snapshot
+  // Legacy TEST arrangement requests a separate stack at x/y. DEC-017 now merges
+  // on acquisition; explicitly split the acquired amount to retain that precondition.
+  // Production and new DEC-017 regressions call the producer directly, never this arranger.
+  const transfers = picked.unitTransfers.slice(v.unitTransfers.length)
+  if (!picked.carried.backpack.items.some(i => i.instanceId === item.instanceId) && transfers.length === 1 &&
+    transfers[0].kind === 'merge' && transfers[0].ranges.reduce((n,r) => n+r.end-r.start,0) === item.quantity) {
+    return planSupplyInventory(picked, { kind: 'split', expectedRevision: picked.character.revision,
+      instanceId: transfers[0].to, quantity: item.quantity, placement: { x, y, rotated: false } }, f.authorize(picked)).snapshot
+  }
+  return picked
 }
 /** Two explicit TEST declarations; never registered in production content. */
 export function twoDeclarationFixture(base: ReturnType<typeof fixture>) {

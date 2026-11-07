@@ -1,0 +1,13 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/ordinary-pickup-dec017/public-and-react.test.tsx
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-ordinary-pickup-dec017-001
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  23:13:34
+   Duration  12.88s (transform 3.09s, setup 0ms, import 3.86s, tests 6.87s, environment 1.86s)
+

@@ -1,0 +1,13 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-ordinary-pickup-dec017-001
+
+
+ Test Files  369 passed (369)
+      Tests  5123 passed (5123)
+   Start at  21:50:22
+   Duration  829.51s (transform 12.08s, setup 0ms, import 124.31s, tests 665.31s, environment 704.56s)
+

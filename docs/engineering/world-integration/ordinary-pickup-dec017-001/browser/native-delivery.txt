@@ -1,0 +1,1 @@
+PASS: native full-grid merge and partial ground remainder; reload preserved exact checkpoint.

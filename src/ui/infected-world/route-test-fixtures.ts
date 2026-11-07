@@ -74,15 +74,16 @@ export function createUiDriver(options: UiDriverOptions) {
     await button(label); await fields(f); await button('执行行动'); await confirm(); options.onStep?.(label+' '+name, view())
   }
   async function pick(name: string, x: number, y=0) {
+    const priorQuantity = view().carried.filter(i => i.container === 'backpack' && i.name === name).reduce((sum,i)=>sum+i.quantity,0)
     const priorAnchors = view().carried.filter(i => i.container === 'backpack').map(i => `${i.placement!.x},${i.placement!.y}`)
     const i = view().ground.find(i => i.name === name); assert(i, 'ground '+name)
     await button((i.ordinary ? '拾取 ' : '拾取任务物 ')+publicItemName(name))
-    if (doc.querySelector('[aria-label="行动参数"]')) { await anchor(x,y); await button('执行行动'); await confirm() }
+    if (doc.querySelector('[aria-label="行动参数"]')) { if (doc.querySelector('[aria-label="数量"]')) await input('数量', String(i.quantity)); await anchor(x,y); await button('执行行动'); await confirm() }
     if (i.ordinary) {
       const same = view().carried.filter(i => i.container === 'backpack' && i.name === name)
-      // Whole-instance pickup never moves existing items. Locate its new public anchor,
+      // Ordinary pickup never moves existing items. Locate its new public anchor,
       // not hidden IDs, scope-bound handles, or an assumed canonical sort order.
-      const ordinal = same.findIndex(i => !priorAnchors.includes(`${i.placement!.x},${i.placement!.y}`)); assert(ordinal >= 0, 'real acquired instance')
+      const ordinal = same.findIndex(i => !priorAnchors.includes(`${i.placement!.x},${i.placement!.y}`)); if (ordinal < 0) { assert(same.reduce((sum,item)=>sum+item.quantity,0) === priorQuantity+i.quantity, 'exact acquired quantity merged'); return }
       await menu(name, '移动物品', { placement: [x,y] }, ordinal)
     }
     options.onStep?.('拾取 '+name, view())

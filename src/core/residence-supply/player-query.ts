@@ -2,7 +2,7 @@ import { deepFreeze } from '../config'
 import { requireSupplyDomainAction, ensure } from '../residence-supply/shared-validation'
 import { supplyPaidCost, supplyEnergyQuery } from '../residence-supply/cycle-adapter'
 import { requireSupplyClinicalTarget } from '../residence-supply/medical-qualification'
-import { requireSupplySplit, requireSupplyMerge, requireSupplyQuickTarget } from '../residence-supply/inventory-qualification'
+import { requireSupplySplit, requireSupplyMerge, requireSupplyQuickTarget, ordinaryPickupCapacity } from '../residence-supply/inventory-qualification'
 import { maintenancePool, requireMaintenanceAllocations, requireMaintenanceTarget, maintenanceRecipe } from '../residence-supply/maintenance-qualification'
 import { readSupplySourceSelection, supplySourceCost, checkSupplyExchangePlacement } from '../residence-task/shared-sources'
 import { requireTaskSelection, taskMethodCost } from '../residence-task/qualification'
@@ -137,7 +137,14 @@ export function qualifyPlayerCommand(v: CombatValue, c: PlayerCoreCommand, deps:
     if (cmd.kind === 'pickup' || cmd.kind === 'drop') {
       const items = cmd.kind === 'pickup' ? v.site.ground.find(g => g.nodeId === v.site.nodeId)!.items : v.carried.backpack.items
       const item = requireOrdinaryTransferItem(items, cmd.instanceId, s.catalog)
-      if (cmd.kind === 'pickup') placement(item, cmd.placement)
+      if (cmd.kind === 'pickup') {
+        if (s.catalog.physical.get(item.definitionId).stacking.kind === 'stackable') {
+          const pickup = ordinaryPickupCapacity(v, cmd.instanceId, cmd.quantity, cmd.placement, s).public
+          return deepFreeze({ kind: pickup.picked > 0 ? 'available' : 'unavailable', cost: 0, pickup })
+        }
+        ensure(cmd.quantity === undefined && cmd.placement, 'Whole-instance pickup requires placement')
+        placement(item, cmd.placement)
+      }
     }
     return yes()
   }

@@ -1,0 +1,170 @@
+{
+  "at": "2026-11-07T14:45:33.920Z",
+  "phase": "before-commit",
+  "worktrees": [
+    {
+      "path": "E:/projects/elevator-survival",
+      "head": "5e4a38b1d32719f3f7478ecee824c8efae454b8c",
+      "branch": "feature/world-ui-v1-integration-001",
+      "status": [
+        " M src/app/infected-browser/identity-materials.ts",
+        " M src/app/infected-browser/owner.ts",
+        " M src/app/infected-browser/types.ts",
+        " M src/ui/infected-world/components/system-screen.tsx",
+        "?? docs/engineering/world-integration/preplay/browser-owner/http-compatibility-20261102.md",
+        "?? docs/engineering/world-integration/preplay/browser-owner/native-http-frame.html",
+        "?? docs/engineering/world-integration/preplay/browser-owner/native-http.html",
+        "?? src/app/infected-browser/http-lease.test.ts",
+        "?? src/app/infected-browser/http-lease.ts",
+        "?? src/app/infected-browser/http-owner.test.ts"
+      ]
+    },
+    {
+      "path": "E:/projects/elevator-survival-worktrees/world-mission-map-ux-001",
+      "head": "e7372119672561618f7c2dc1664001104e708bd1",
+      "branch": "feature/world-mission-map-ux-001",
+      "status": []
+    },
+    {
+      "path": "E:/projects/elevator-survival-worktrees/world-narrative-closure-001",
+      "head": "de36343ae3cd59b81c92d96651b60ed888753d50",
+      "branch": "feature/world-narrative-closure-001",
+      "status": []
+    },
+    {
+      "path": "E:/projects/elevator-survival-worktrees/world-narrative-entry-001",
+      "head": "95cab5ad79e31d63aae93d97ab901c716cf75f89",
+      "branch": "feature/world-narrative-entry-001",
+      "status": []
+    },
+    {
+      "path": "E:/projects/elevator-survival-worktrees/world-ordinary-pickup-dec017-001",
+      "head": "a84adc827e56c4d8d01d4f8b541a90c9f35a6523",
+      "branch": "feature/world-ordinary-pickup-dec017-001",
+      "status": [
+        " M src/core/residence-combat/player-query-types.ts",
+        " M src/core/residence-supply/inventory-qualification.ts",
+        " M src/core/residence-supply/inventory.test.ts",
+        " M src/core/residence-supply/player-inputs.ts",
+        " M src/core/residence-supply/player-query.ts",
+        " M src/core/residence-supply/shared-inventory.ts",
+        " M src/core/residence-supply/supply.integration.test.ts",
+        " M src/state/residence-session/combat-commands.ts",
+        " M src/state/residence-session/player-commands.ts",
+        " M src/state/residence-session/player-types.ts",
+        " M src/state/residence-session/supply-commands.ts",
+        " M src/ui/infected-world/app.tsx",
+        " M src/ui/infected-world/components/action-form.tsx",
+        " M src/ui/infected-world/components/confirmation-layer.tsx",
+        " M src/ui/infected-world/medical-maintenance.test.tsx",
+        " M src/ui/infected-world/owner-playtest-ux/inventory-driver.ts",
+        " M src/ui/infected-world/parameters.test.tsx",
+        " M src/ui/infected-world/route-test-fixtures.ts",
+        "?? src/state/residence-session/ordinary-pickup-constructors.test.ts",
+        "?? src/ui/infected-world/ordinary-pickup-dec017/boundary-fixture.ts",
+        "?? src/ui/infected-world/ordinary-pickup-dec017/capacity.test.ts",
+        "?? src/ui/infected-world/ordinary-pickup-dec017/extra-capacity.test.ts",
+        "?? src/ui/infected-world/ordinary-pickup-dec017/fixture-record.test.ts",
+        "?? src/ui/infected-world/ordinary-pickup-dec017/intent.ts",
+        "?? src/ui/infected-world/ordinary-pickup-dec017/ordering.test.ts",
+        "?? src/ui/infected-world/ordinary-pickup-dec017/public-and-react.test.tsx",
+        "?? src/ui/infected-world/ordinary-pickup-dec017/record.ts",
+        "?? src/ui/infected-world/ordinary-pickup-dec017/scope-probe.test.tsx",
+        "?? src/ui/infected-world/ordinary-pickup-dec017/weight.test.ts"
+      ]
+    },
+    {
+      "path": "E:/projects/elevator-survival-worktrees/world-owner-playtest-ux-001",
+      "head": "a84adc827e56c4d8d01d4f8b541a90c9f35a6523",
+      "branch": "feature/world-owner-playtest-ux-001",
+      "status": []
+    }
+  ],
+  "againstPriorRecordedSnapshot": [
+    {
+      "path": "E:/projects/elevator-survival",
+      "head": true,
+      "branch": true,
+      "status": true,
+      "files": [
+        {
+          "path": "docs/engineering/world-integration/preplay/browser-owner/http-compatibility-20261102.md",
+          "sha256": "a97865e6e0218d9cb17755b845a0b507952a04b09c6057d3b5d8c99f62158e3a",
+          "unchanged": true
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/browser-owner/native-http-frame.html",
+          "sha256": "f9da9c452820fd0d0ee163e466319777c347064e15d06927e1abf6989c91d677",
+          "unchanged": true
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/browser-owner/native-http.html",
+          "sha256": "c3a2b01cb649d148a38b01f14ba6fd762c79885d24aaf2068719d0e62056dc00",
+          "unchanged": true
+        },
+        {
+          "path": "src/app/infected-browser/http-lease.test.ts",
+          "sha256": "952222f1d4147fab974fecb3134bc58963c80bb668403abb758c5684d396294d",
+          "unchanged": true
+        },
+        {
+          "path": "src/app/infected-browser/http-lease.ts",
+          "sha256": "d6aa01a9f55a47caf6e27893d67a1383425dec511f85f83fb99ed1b602d263a0",
+          "unchanged": true
+        },
+        {
+          "path": "src/app/infected-browser/http-owner.test.ts",
+          "sha256": "77b1589d8d2aae520180ad24fc429638dcd42a89d598d27291e9849909a73fd0",
+          "unchanged": true
+        },
+        {
+          "path": "src/app/infected-browser/identity-materials.ts",
+          "sha256": "65e3b218687070ff322bf2a9fd8133b29e2898665f6cf689aedb4bb265a6ef74",
+          "unchanged": true
+        },
+        {
+          "path": "src/app/infected-browser/owner.ts",
+          "sha256": "c12ef729e04c55e703a487d1833cbdb496793388c885cecc5b8e571254e77297",
+          "unchanged": true
+        },
+        {
+          "path": "src/app/infected-browser/types.ts",
+          "sha256": "b2eb964dbd799915e73eb415f43beab25d8f031c05110f4d20fd797ef4409aa7",
+          "unchanged": true
+        },
+        {
+          "path": "src/ui/infected-world/components/system-screen.tsx",
+          "sha256": "9a2e65b3d17b8dc4032bec612be6b1c0a9be582235b506976aaba3c04df5a635",
+          "unchanged": true
+        }
+      ]
+    },
+    {
+      "path": "E:/projects/elevator-survival-worktrees/world-mission-map-ux-001",
+      "head": true,
+      "branch": true,
+      "status": true,
+      "files": []
+    },
+    {
+      "path": "E:/projects/elevator-survival-worktrees/world-narrative-closure-001",
+      "head": true,
+      "branch": true,
+      "status": true,
+      "files": []
+    },
+    {
+      "path": "E:/projects/elevator-survival-worktrees/world-narrative-entry-001",
+      "head": true,
+      "branch": true,
+      "status": true,
+      "files": []
+    }
+  ],
+  "ownerPlaytest": {
+    "path": "E:/projects/elevator-survival-worktrees/world-owner-playtest-ux-001",
+    "head": "a84adc827e56c4d8d01d4f8b541a90c9f35a6523",
+    "branch": "feature/world-owner-playtest-ux-001",
+    "status": []
+  }
+}

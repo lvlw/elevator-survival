@@ -15,7 +15,7 @@ export type InputField = 'item' | 'targetItem' | 'quantity' | 'placement' | 'pla
 export type InputActionReference = Readonly<{ family: string; key: string; method?: string; slot?: number; woundId?: string }>
 export type InputClinical = Readonly<{ wound: 'none' | 'untreated' | 'any'; targets: readonly ('contusion' | 'wound')[]; allowNoTarget: boolean }>
 export type InputItem = Readonly<{ key: string; name: string; quantity: number; width: number; height: number; canRotate: boolean;
-  clinical?: InputClinical }>
+  clinical?: InputClinical; pickup?: 'stackable' | 'whole' }>
 export type InputOutput = Readonly<{ name: string; width: number; height: number; unitWeight: number; quantity: number; canRotate: boolean }>
 export type CoreActionInputs = Readonly<{ fields: readonly InputField[]; items: readonly InputItem[]; targetItems: readonly InputItem[];
   wounds: readonly Readonly<{ key: string; ordinal: number; kind: string; treatment: string }>[]; slots: readonly number[];
@@ -83,9 +83,10 @@ export function queryPlayerActionInputs(v: CombatValue, action: InputActionRefer
       const d = s.catalog.physical.get(i.definitionId)
       return k === 'pickup' || k === 'drop' ? ordinary(i) : k === 'split' ? d.stacking.kind === 'stackable' && i.quantity > 1 :
         k === 'merge' ? d.stacking.kind === 'stackable' : k === 'to-quick' ? s.catalog.containers.quickSlotCatalog.get(i.definitionId).kind === 'eligible' : true
-    }).map(option)
+    }).map(item => ({ ...option(item), ...(action.family === 'inventory' && k === 'pickup' ?
+      { pickup: s.catalog.physical.get(item.definitionId).stacking.kind === 'stackable' ? 'stackable' as const : 'whole' as const } : {}) }))
     if (['move', 'split', 'to-backpack', 'pickup', 'task-pickup'].includes(k)) fields.push('placement')
-    if (k === 'split' || k === 'merge') fields.push('quantity')
+    if (k === 'split' || k === 'merge' || k === 'pickup' && items.some(item => item.pickup === 'stackable')) fields.push('quantity')
     if (k === 'merge') { fields.push('targetItem'); targetItems = bag.filter(i => s.catalog.physical.get(i.definitionId).stacking.kind === 'stackable').map(option) }
     if (k === 'to-quick') { fields.push('slot'); slots = v.carried.quickSlots.slots.flatMap((i, n) => i === null ? [n] : []) }
   } else if (action.family === 'medical') {

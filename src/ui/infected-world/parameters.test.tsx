@@ -4,7 +4,7 @@ import { mountUi } from './owner-playtest-ux/inventory-driver'
 async function foodStack() {
   const h = await mountUi(); await h.d.setup(); await h.d.send('进入封锁区')
   await h.d.walk(['大厅', '后勤控制间', '岗亭', '登记室'])
-  await h.d.task('开启物流柜', 'crow'); await h.d.task('物流柜物资'); await h.d.button('拾取 压缩口粮')
+  await h.d.task('开启物流柜', 'crow'); await h.d.task('物流柜物资'); await h.d.button('拾取 压缩口粮'); await h.d.input('数量','2'); await h.d.button('执行行动')
   return h
 }
 function menuItem(host: HTMLElement, name: string, ordinal = 0) {

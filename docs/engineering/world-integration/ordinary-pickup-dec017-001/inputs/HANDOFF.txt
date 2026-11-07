@@ -1,0 +1,19 @@
+请执行附件 ENG-WORLD-ORDINARY-PICKUP-DEC017-001。
+
+这是独立于上一轮 UI 修订的核心实现任务。主线代码与规则核对发现：普通 stackable 物品拾取仍要求整个实例有空格放置，未实现 DEC-017 已确认的先补兼容堆叠、再放剩余数量、容量不足时部分拾取并留存余量。
+
+准确起点：
+BASE a84adc827e56c4d8d01d4f8b541a90c9f35a6523
+TREE 382ec90c28f8a816a901c2d0e0d10faa1d4789e8
+
+新分支：feature/world-ordinary-pickup-dec017-001
+
+只实现 ordinary && stackable 的普通物品拾取；任务物品、样本箱、门禁卡、组件和模块继续走原窄受控路径。严格保留 DEC-052 D08 的来源份额和 ItemState 守恒。
+
+请先读取实际 AGENTS、DEC-017、DEC-052 D03/D08、UIR-015 和源码，运行 npm run test:run 建立基线。按包内 TASK、ACCEPTANCE 和 SOURCES 执行。若有后续规则冲突，停止冲突部分并报告。
+
+授权仅限新分支普通 commit/push。不得推 main、合并、强推、部署、SSH、改依赖、改物品数值、改 DEC/内容配置或触碰其他 worktree/Owner 存档。
+
+推荐模型：GPT-6 Astra Pro；推理强度 Extra High（若当前可选）。理由：涉及核心库存、来源份额、ItemState、严格恢复和玩家预览的一致性，不能只改 UI。
+
+完成后提供准确 SHA、完整验证、真实浏览器证据和来源守恒报告，然后停止等待主线审查。

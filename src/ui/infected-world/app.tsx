@@ -70,7 +70,7 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
           title: actionName(action) + (item ? ' · ' + publicItemName(item.name) : ''), controls })
       } else {
         setDraft(null); setConfirmation(null)
-        setMessage(result.kind === 'rejected' ? '当前不能执行此选择；未自动更换对象或重试。' : null)
+        setMessage(result.closureDiagnostic ? '行动已生效，本次叙事反馈暂不可用；不会重发行动。' : result.kind === 'rejected' ? '当前不能执行此选择；未自动更换对象或重试。' : null)
       }
     })
   }
@@ -123,7 +123,7 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
         const result = presentation.perform(() => current.confirm(confirmation.token))
         story.receive(result, view, current)
         closure.receive(result, current)
-        setConfirmation(null); setMessage(result.kind === 'rejected' ? '确认已失效或行动被拒绝，请重新选择。' : null)
+        setConfirmation(null); setMessage(result.closureDiagnostic ? '行动已生效，本次叙事反馈暂不可用；不会重发行动。' : result.kind === 'rejected' ? '确认已失效或行动被拒绝，请重新选择。' : null)
       })} />}</ActionInformationProvider>
   </div>
 }

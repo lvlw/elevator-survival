@@ -4,6 +4,7 @@ import { sceneArt } from '../assets'
 import { ItemPicture, useItemInspection } from './item-inspection'
 import { actionName, publicItemName } from '../labels'
 import { ActionButton } from './action-information'
+import { PlatformPanel } from '../narrative-closure/platform-panel'
 import { HubPanel } from './hub-panel'
 import { TerminalPanel } from './terminal-panel'
 import { BattleStage } from './battle-stage'
@@ -32,7 +33,7 @@ export function WorldStage({ view, onAction, presentation, narrative }: { view: 
     <div className="iw-scene-shade" aria-hidden="true" />
     {view.point === 'first-hub' ? <HubPanel view={view} onAction={onAction} /> : view.point === 'living-hub' || view.point === 'dead' ? <TerminalPanel view={view} /> : view.combat ? <BattleStage view={view} onAction={onAction} presentation={presentation} /> : <>
       <header className="iw-room-heading"><div><p className="iw-eyebrow">{view.location?.place} / 当前地点</p><h1>{view.location?.name}</h1></div><div >{contextActions.length > 0 && <button type="button" className="iw-scene-details-trigger" onClick={() => { contextFocus.current = true; setContext(contextActions[0]!) }}>查看现场详情</button>}</div></header>
-      <div className="iw-scene-card"><div className="iw-room-content"><section className="iw-room-interactions" aria-label="当前现场互动">
+      <div className="iw-scene-card"><div className="iw-room-content"><PlatformPanel view={view}/><section className="iw-room-interactions" aria-label="当前现场互动">
         {view.sources.map((source, index) => <div className="iw-source" key={index}><strong>{source.label}</strong>{source.completed ? <span className="iw-muted">已处理</span> : <div className="iw-actions">{source.choices.map((action, n) => <ActionButton action={action} key={n} onAction={() => onAction(action)}>{actionName(action)}</ActionButton>)}</div>}</div>)}
         {view.tasks.choices.length > 0 && <section className="iw-task-actions" aria-label="任务操作">{taskGroups.map(group => <div key={group.label} className="iw-task-object"><h2>{group.label}</h2><div className="iw-actions">{group.choices.map((action, index) => <ActionButton action={action} key={index} onAction={() => onAction(action)}>{actionName(action)}</ActionButton>)}</div></div>)}</section>}
       </section>

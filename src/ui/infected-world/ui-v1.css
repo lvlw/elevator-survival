@@ -347,3 +347,10 @@
 .iw-closure-card .iw-story-copy { max-height:150px; overflow:auto; }
 .iw-closure-card .iw-story-copy p { margin:5px 0; }
 .iw-closure-card .iw-story-copy small { color:#d4b478; }
+
+.iw-platform-panel { display:flex; align-items:center; gap:16px; padding:10px 14px; border:1px solid #8c7952; background:#102229e8; margin-bottom:10px; }
+.iw-platform-panel svg { flex-shrink:0; }
+.iw-platform-panel circle { fill:#493e2b; stroke:#b49a62; stroke-width:2px; }
+.iw-platform-panel[data-restored="true"] circle { fill:#b9d6a1; filter:drop-shadow(0 0 3px #b6db86); }
+.iw-platform-panel strong { color:#e1c890; }
+.iw-platform-panel p { margin:4px 0; font-size:15px; line-height:1.5; }

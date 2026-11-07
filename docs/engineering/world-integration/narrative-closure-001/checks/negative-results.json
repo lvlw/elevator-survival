@@ -1,0 +1,18 @@
+{
+  "scope": "isolated final-source copy, not observed production defects",
+  "results": [
+    {
+      "name": "query-replay",
+      "exit": 1,
+      "assertionFailure": true,
+      "originalSha256": "da1b7f1f00c3d68a3dcf8ac68f3aeb143801941dead47f99c4b11fc56344625f"
+    },
+    {
+      "name": "talk-commits",
+      "exit": 1,
+      "assertionFailure": true,
+      "originalSha256": "80cda9227fef10146721262141fe4886b99e60a1e695c3ae0df353dd491b6b11"
+    }
+  ],
+  "restored": true
+}

@@ -1,0 +1,5 @@
+{
+  "ProcessId": 14940,
+  "ParentProcessId": 6676,
+  "CommandLine": "\"node\"   \"E:\\projects\\elevator-survival-worktrees\\world-narrative-closure-001\\node_modules\\.bin\\\\..\\vite\\bin\\vite.js\" --host 127.0.0.1 --port 5311 --strictPort"
+}

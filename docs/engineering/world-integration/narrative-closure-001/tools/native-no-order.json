@@ -1,0 +1,1 @@
+[{"button":"略过叙事，查看任务"},{"button":"准备出发"},{"radio":["tool","crow"]},{"radio":["specialty","engineer"]},{"button":"确定准备"},{"button":"进入封锁区"},{"move":"大厅"},{"move":"后勤控制间"},{"move":"岗亭"},{"move":"登记室"},{"move":"周衡休息室"},{"button":"谈停运"},{"assert":"为什么停了"},{"notAssert":"有你的名字"},{"button":"略过本段"},{"button":"取得作业方法"},{"assert":"受力点"},{"button":"结束谈话"}]

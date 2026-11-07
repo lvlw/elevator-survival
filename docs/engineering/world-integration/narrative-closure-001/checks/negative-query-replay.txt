@@ -1,0 +1,78 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/narrative-closure/platform.test.tsx
+
+
+ RUN  v4.1.10 C:/Users/zjl/.codex/visualizations/2026/10/30/01a18dbc-1d81-7312-99ab-903daead5d63/NARRATIVE-CLOSURE-001/negative-snapshot
+
+ ❯ src/ui/infected-world/narrative-closure/platform.test.tsx (1 test | 1 failed) 6803ms
+   × formal sample-first install commits once, survives save failure, plays once and never replays on retry/cold restore 6802ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  10:20:59
+   Duration  12.27s (transform 3.12s, setup 0ms, import 3.74s, tests 6.80s, environment 1.50s)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/ui/infected-world/narrative-closure/platform.test.tsx > formal sample-first install commits once, survives save failure, plays once and never replays on retry/cold restore
+AssertionError: expected <section …(2)>…(3)</section> to be null
+
+- Expected:
+null
+
++ Received:
+<section
+  aria-label="医院叙事"
+  class="iw-narrative iw-closure-card"
+>
+  <header>
+    <strong>
+      接驳端的回应
+    </strong>
+    <small>
+      1
+       /
+      3
+    </small>
+  </header>
+  <div
+    class="iw-story-copy"
+  >
+    <p>
+      <small>
+        旁白
+      </small>
+
+      最后一道固定件落进槽里。你把手从面板下抽出来。指示灯一盏接一盏亮起。
+    </p>
+  </div>
+  <div
+    class="iw-story-controls"
+  >
+    <button>
+      继续交谈
+    </button>
+    <button
+      class="iw-secondary"
+    >
+      略过本段
+    </button>
+    <button
+      class="iw-secondary"
+    >
+      结束谈话
+    </button>
+  </div>
+</section>
+
+ ❯ src/ui/infected-world/narrative-closure/platform.test.tsx:36:55
+     34|   expect(h.setItem.mock.calls.filter(([k])=>k===CHECKPOINT_KEY)).toHav…
+     35|   await h.remount();expect(h.view().closure?.transfer).toBe(true)
+     36|   expect(h.host.querySelector('[aria-label="医院叙事"]')).toBeNull();expec…
+       |                                                       ^
+     37|   await h.d.walk(['后勤控制间','岗亭','登记室','周衡休息室']);await h.d.button('与周衡交谈…
+     38|   const text=h.host.querySelector('[aria-label="医院叙事"]')!.textContent!
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯

@@ -1,0 +1,12 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/state/residence-session/player-committed-presentation.test.ts src/app/infected-preplay/presentation-preparation-probe.test.ts
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-narrative-closure-001
+
+
+ Test Files  2 passed (2)
+      Tests  37 passed (37)
+   Start at  10:17:27
+   Duration  9.35s (transform 4.62s, setup 0ms, import 5.94s, tests 4.70s, environment 3.70s)

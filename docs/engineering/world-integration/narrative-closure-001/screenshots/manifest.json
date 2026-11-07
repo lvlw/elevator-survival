@@ -1,0 +1,64 @@
+{
+  "task": "ENG-WORLD-NARRATIVE-CLOSURE-001",
+  "sourceCommit": "97d53b1ba52e9cbcf65873ce4a8c9b9090789a77",
+  "sourceTree": "38f9fd64fa46aa1807410cc93455efe5b46091e9",
+  "binding": "Production bytes verified against capture freeze. Evidence-only child commit does not change src. Older success-run action log schema omitted profile name; routes used dedicated profiles, not Owner storage.",
+  "url": "http://127.0.0.1:5311/?dev-infected-world=1",
+  "browser": "Microsoft Edge 156.0.4314.58 (headless, existing host Playwright)",
+  "cssViewport": {
+    "width": 1920,
+    "height": 1080,
+    "dpr": 1
+  },
+  "format": "Playwright viewport JPEG quality 90, raw bytes, no image processing",
+  "images": [
+    {
+      "file": "01-zhou.jpg",
+      "scene": "署名已调查的周衡会面",
+      "route": "withdraw",
+      "captureRecord": "2026-11-07T02:18:29.371Z",
+      "originalCaptureName": "01-zhou-final.jpg",
+      "recordedProfile": "edge-native-withdraw",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 441365,
+      "sha256": "a94de5dca6819d2c4b545bb783fe93005c63c35dec04846958739a11c4b32089"
+    },
+    {
+      "file": "02-platform.jpg",
+      "scene": "本次真实安装后的平台绿灯和接驳回应",
+      "route": "success",
+      "captureRecord": "2026-11-07T02:16:17.604Z",
+      "originalCaptureName": "02-platform-draft.jpg",
+      "recordedProfile": null,
+      "width": 1920,
+      "height": 1080,
+      "bytes": 413759,
+      "sha256": "90d7afee0c7cf08e13d58a93d5a512e20a884e513ba8b6ce92e3249b1a4909f6"
+    },
+    {
+      "file": "03-success.jpg",
+      "scene": "真实交付成功后的原结算与叙事",
+      "route": "success",
+      "captureRecord": "2026-11-07T02:17:21.225Z",
+      "originalCaptureName": "03-success-draft.jpg",
+      "recordedProfile": null,
+      "width": 1920,
+      "height": 1080,
+      "bytes": 348075,
+      "sha256": "c9554ed97ebed49987bcdd36aa492019f8a340a8d69f1e4e855382694e3eef75"
+    },
+    {
+      "file": "04-withdraw.jpg",
+      "scene": "真实主动止损后的原结算与叙事",
+      "route": "withdraw",
+      "captureRecord": "2026-11-07T02:18:29.918Z",
+      "originalCaptureName": "04-withdraw-final.jpg",
+      "recordedProfile": "edge-native-withdraw",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 349721,
+      "sha256": "f8945be6445a4ad151c98414247140ca24dd0ae2e85035d66fee9bcfa5032b1c"
+    }
+  ]
+}

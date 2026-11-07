@@ -1,8 +1,8 @@
-# 接续责任表（W0，尚未实现）
+# 接续责任表（W0 原始计划，已完成状态见 REPORT）
 
 BASE e7372119672561618f7c2dc1664001104e708bd1；独立worktree E:/projects/elevator-survival-worktrees/world-narrative-closure-001；分支feature/world-narrative-closure-001。
 
-任务包8条manifest通过；原输入inputs/；lab七份指定文件只读取自cbfbbe53，原文已存reference/，未合并lab代码。模型/推理/Standard实际UNCONFIRMED。
+任务包8条manifest通过；原输入inputs/；lab七份指定文件只读取自cbfbbe53，原文保留在仓库外任务产物的 reference/（未重打整篇实验文稿），未合并lab代码。模型/推理/Standard实际UNCONFIRMED。
 
 |场段|可信来源/触发|写入责任|
 |---|---|---|
@@ -17,4 +17,4 @@ BASE e7372119672561618f7c2dc1664001104e708bd1；独立worktree E:/projects/eleva
 
 计划验证：新正式facade/controller/BrowserOwner/真实React链；原首段、R1、任务地图窄R1、权限保存终局相邻；两项隔离受控负控；还原后一次原check及最终SHA CI。固定1920x1080专用origin原生成功/止损，四图原字节，不用checkpoint或假DOM冒充。
 
-当前状态：冻结BASE的npm test:run正在session 28346运行，未编辑任何跟踪文件，不可把历史5099写成本轮PASS。离线原lockfilenpm ci已完成。原HTTP十文件hash已存http-before.json、旧refs存refs-before.txt。尚未启动浏览器/服务或提交/推送。
+W0 冻结基线现已完成：360 文件 / 5099 项通过。M1—M3 和原生代表路线已完成，最终检查及准确 SHA 见 REPORT/交付回执。此表为开工责任设计，不以历史计划冒充检查结果。

@@ -1,0 +1,12 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/state/residence-session/player-opponent-compatibility.test.ts src/state/residence-session/player-motion-source-probe.test.ts
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-narrative-closure-001
+
+
+ Test Files  2 passed (2)
+      Tests  16 passed (16)
+   Start at  10:35:50
+   Duration  5.17s (transform 3.51s, setup 0ms, import 4.43s, tests 2.34s, environment 3.02s)

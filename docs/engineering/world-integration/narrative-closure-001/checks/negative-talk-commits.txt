@@ -1,0 +1,29 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/narrative-closure/closure.test.tsx
+
+
+ RUN  v4.1.10 C:/Users/zjl/.codex/visualizations/2026/10/30/01a18dbc-1d81-7312-99ab-903daead5d63/NARRATIVE-CLOSURE-001/negative-snapshot
+
+ ❯ src/ui/infected-world/narrative-closure/closure.test.tsx (3 tests | 1 failed) 1295ms
+   × real L5 meeting is optional and readonly; no-order wording never claims a signed investigation or method 543ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  10:21:12
+   Duration  6.78s (transform 3.08s, setup 0ms, import 3.67s, tests 1.30s, environment 1.56s)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/ui/infected-world/narrative-closure/closure.test.tsx > real L5 meeting is optional and readonly; no-order wording never claims a signed investigation or method
+AssertionError: the given combination of arguments (undefined and string) is invalid for this assertion. You can use an array, a map, an object, a set, a string, or a weakset instead of a string
+ ❯ src/ui/infected-world/narrative-closure/closure.test.tsx:13:94
+     11|  try{await h.d.setup();await h.d.send('进入封锁区');expect(h.host.textConte…
+     12|   const before=h.view(),cp=h.disk.get(CHECKPOINT_KEY);o.clear();h.setI…
+     13|   await h.d.button('与周衡交谈');expect(h.host.querySelector('[aria-label="…
+       |                                                                                              ^
+     14|   await h.d.button('继续交谈');expect(h.setItem).not.toHaveBeenCalled();aw…
+     15|   expect(h.owner().controls()!.getReading().marks).toContainEqual({key…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯

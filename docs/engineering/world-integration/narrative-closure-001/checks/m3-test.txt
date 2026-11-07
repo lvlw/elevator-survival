@@ -1,0 +1,36 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/narrative-closure/endings.test.tsx src/ui/infected-world/terminal.test.tsx
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-narrative-closure-001
+
+ ❯ src/ui/infected-world/narrative-closure/endings.test.tsx (5 tests | 1 failed) 9089ms
+   × TEST-boundary installation death keeps the actual installed history and shows death, never HC19 or a recall 1150ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/ui/infected-world/narrative-closure/endings.test.tsx > TEST-boundary installation death keeps the actual installed history and shows death, never HC19 or a recall
+CombatResidenceSaveError: Initial choices differ from independent bootstrap material
+ ❯ match src/state/residence-save/combat-validation.ts:14:18
+     12|
+     13| function match(ok: unknown, reason: string): asserts ok {
+     14|   if (!ok) throw new CombatResidenceSaveError('EXPECTED_MISMATCH', rea…
+       |                  ^
+     15| }
+     16| export function readCombatResidenceExpectation(input: CombatResidenceE…
+ ❯ src/state/residence-save/combat-validation.ts:53:5
+ ❯ combatDataBoundary src/state/residence-save/combat-body-history.ts:18:16
+ ❯ validateCombatResidenceAggregate src/state/residence-save/combat-validation.ts:48:10
+ ❯ createCombatResidenceEnvelope src/state/residence-save/combat-codec.ts:12:12
+ ❯ serializeCombatResidenceSave src/state/residence-save/combat-codec.ts:16:25
+ ❯ strictRecords src/ui/infected-world/committed-presentation-test-fixtures.tsx:20:62
+ ❯ src/ui/infected-world/narrative-closure/endings.test.tsx:62:181
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 8 passed (9)
+   Start at  09:55:46
+   Duration  13.95s (transform 4.36s, setup 0ms, import 5.71s, tests 11.26s, environment 3.27s)

@@ -1,0 +1,142 @@
+
+> elevator-survival@0.0.0 check
+> npm run validate:architecture && npm run typecheck && npm run test:run && npm run build
+
+
+> elevator-survival@0.0.0 validate:architecture
+> node scripts/validate-architecture.mjs
+
+Architecture validation passed: 53 DEC entries and 347 core production files checked.
+
+> elevator-survival@0.0.0 typecheck
+> tsc -b --pretty false
+
+
+> elevator-survival@0.0.0 test:run
+> vitest run
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-narrative-closure-001
+
+ ❯ src/state/residence-session/player-motion-source-probe.test.ts (11 tests | 2 failed) 1331ms
+     × death closes before presentation and never waits for an animation 95ms
+     × both-zero closes before presentation and never waits for an animation 114ms
+ ❯ src/state/residence-session/player-opponent-compatibility.test.ts (5 tests | 4 failed) 566ms
+     × baseline oracle compares every field, action and handle alias at all five complete points 284ms
+     × orderly query uses original stage selector at native reachable HP, including critical 101ms
+     × porter query uses original stage selector at native reachable HP, including critical 101ms
+     × technician query uses original stage selector at native reachable HP, including critical 77ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/state/residence-session/player-motion-source-probe.test.ts > B TEST-only original P/S/facade source observations > death closes before presentation and never waits for an animation
+ FAIL  src/state/residence-session/player-motion-source-probe.test.ts > B TEST-only original P/S/facade source observations > both-zero closes before presentation and never waits for an animation
+AssertionError: expected [ 'closure', 'committedAction', …(3) ] to deeply equal [ 'committedAction', 'kind', …(2) ]
+
+- Expected
++ Received
+
+  [
++   "closure",
+    "committedAction",
+    "kind",
+    "preview",
+    "view",
+  ]
+
+ ❯ probeMotion src/state/residence-session/player-motion-probe-fixtures.ts:19:41
+     17|   expect(value).toBe(h.owner.getState().current)
+     18|   expect(value.character.revision).toBe(before.character.revision + 1)
+     19|   expect(Object.keys(execution).sort()).toEqual(['committedAction', 'k…
+       |                                         ^
+     20|   expect(Object.keys(commit).sort()).toEqual(['current', 'kind', 'main…
+     21|   expect(observer.counts()).toMatchObject({ combat: 1, ctb: 1, current…
+ ❯ src/state/residence-session/player-motion-source-probe.test.ts:58:41
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  src/state/residence-session/player-opponent-compatibility.test.ts > A complete historical DTO equivalence and formal phase semantics > baseline oracle compares every field, action and handle alias at all five complete points
+AssertionError: expected { status: 'ready', …(19) } to deeply equal { status: 'ready', …(18) }
+
+- Expected
++ Received
+
+@@ -136,10 +136,21 @@
+        "stackable": true,
+        "unitWeight": 1,
+        "width": 1,
+      },
+    ],
++   "closure": {
++     "componentCarried": false,
++     "known": [],
++     "method": false,
++     "platform": false,
++     "power": false,
++     "returnPoint": false,
++     "transfer": false,
++     "workorder": false,
++     "zhou": false,
++   },
+    "combat": null,
+    "first": {
+      "locked": true,
+      "specialtyChoices": [
+        "engineer",
+
+ ❯ src/state/residence-session/player-opponent-compatibility.test.ts:21:48
+     19|       const combat = q.combat ? (({ opponent: _, ...rest }) => rest)(q…
+     20|       const { narrative: _entry, ...legacy } = q
+     21|       expect(normalize({ ...legacy, combat })).toEqual(normalize(old))
+       |                                                ^
+     22|       expect(Object.keys(h.player).sort()).toEqual(['execute', 'previe…
+     23|     }
+
+
+ Test Files  2 failed | 362 passed (364)
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  src/state/residence-session/player-opponent-compatibility.test.ts > A complete historical DTO equivalence and formal phase semantics > orderly query uses original stage selector at native reachable HP, including critical
+ FAIL  src/state/residence-session/player-opponent-compatibility.test.ts > A complete historical DTO equivalence and formal phase semantics > porter query uses original stage selector at native reachable HP, including critical
+ FAIL  src/state/residence-session/player-opponent-compatibility.test.ts > A complete historical DTO equivalence and formal phase semantics > technician query uses original stage selector at native reachable HP, including critical
+AssertionError: expected { status: 'ready', …(19) } to deeply equal { status: 'ready', …(18) }
+
+- Expected
++ Received
+
+@@ -125,10 +125,21 @@
+        "stackable": true,
+        "unitWeight": 1,
+        "width": 1,
+      },
+    ],
++   "closure": {
++     "componentCarried": false,
++     "known": [],
++     "method": false,
++     "platform": false,
++     "power": false,
++     "returnPoint": false,
++     "transfer": false,
++     "workorder": false,
++     "zhou": false,
++   },
+    "combat": {
+      "actions": [
+        {
+          "availability": "available",
+          "cost": null,
+
+ ❯ src/state/residence-session/player-opponent-compatibility.test.ts:39:50
+     37|         const { opponent: _, ...combat } = q.combat
+     38|         const { narrative: _entry, ...legacy } = q
+     39|         expect(normalize({ ...legacy, combat })).toEqual(normalize(old…
+       |                                                  ^
+     40|       }
+     41|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+      Tests  6 failed | 5107 passed (5113)
+   Start at  10:21:57
+   Duration  783.97s (transform 12.29s, setup 0ms, import 122.26s, tests 666.85s, environment 677.46s)

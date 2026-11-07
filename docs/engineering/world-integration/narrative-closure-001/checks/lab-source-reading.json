@@ -1,0 +1,42 @@
+{
+  "repo": "lvlw/elevator-survival-lab",
+  "ref": "cbfbbe53c1be0a9748630ba6bcc39f1028966f53",
+  "access": "GitHub connector, read only",
+  "files": [
+    {
+      "path": "hospital/hospital-contract-and-routes.md",
+      "bytes": 14746,
+      "sha256": "a2de7e9869080e4cb069fbbc5dc5b3518516c3352a720d654e126748eb550657"
+    },
+    {
+      "path": "hospital/hospital-screenplay.md",
+      "bytes": 75755,
+      "sha256": "32131c8b8ce6682e5e0fd69a6b5f05b7c38a556f2611f5d13e30faad921b02c5"
+    },
+    {
+      "path": "hospital/hospital-script.json",
+      "bytes": 137050,
+      "sha256": "2e8169d69f02ad7d55135c9c621c064cb7fca695734be436d1f7cff774aaa4ce"
+    },
+    {
+      "path": "hospital/hospital-storyboards-assets.md",
+      "bytes": 13218,
+      "sha256": "f1d43072189fc6fd2e6e478b6e0d6bc23edf9c4443077b5c2a1ef693cfc1736e"
+    },
+    {
+      "path": "hospital/player-reading-paths.md",
+      "bytes": 12548,
+      "sha256": "1d2a19b9b12b28e341585f7eef76e9202c8464b41952560def45b9cbd0339aa4"
+    },
+    {
+      "path": "hospital/production-cut.md",
+      "bytes": 4303,
+      "sha256": "ee94c05d35114f23e45490c3b6cae85c2dbe289fecd3a5730b6d32ca0835992d"
+    },
+    {
+      "path": "reviews/content-production-001/editorial-r1/REPORT.md",
+      "bytes": 6151,
+      "sha256": "1828e854b8fe4faf6c6bd5633955d12d7147fa610570182f249f250f319ee275"
+    }
+  ]
+}

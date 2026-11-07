@@ -1,0 +1,12 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/narrative-closure src/ui/infected-world/narrative-entry.test.tsx src/ui/infected-world/narrative-r1.test.tsx src/ui/infected-world/mission-map-ux.test.tsx src/ui/infected-world/mission-map-route-selection-r1.test.tsx src/ui/infected-world/ui-v1-review-lifecycle.test.tsx src/ui/infected-world/privacy.test.tsx src/ui/infected-world/committed-presentation-lifecycle.test.tsx src/state/residence-session/narrative-entry.test.ts src/state/residence-session/narrative-r1.test.ts src/state/residence-session/player-privacy.test.ts src/app/infected-preplay/controller.test.ts src/app/infected-browser/narrative-entry.test.ts src/app/infected-browser/lifecycle.test.ts src/app/infected-browser/privacy.test.ts
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-narrative-closure-001
+
+
+ Test Files  17 passed (17)
+      Tests  102 passed (102)
+   Start at  10:02:49
+   Duration  45.76s (transform 5.03s, setup 0ms, import 13.05s, tests 43.23s, environment 30.44s)

@@ -1,0 +1,156 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/state/residence-session/player-committed-presentation.test.ts src/app/infected-preplay/presentation-preparation-probe.test.ts src/state/residence-session/player-fields.test.ts
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-narrative-closure-001
+
+ ❯ src/state/residence-session/player-committed-presentation.test.ts (34 tests | 4 failed) 4454ms
+     × K17 facade death equals exact-base live oracle in the same locale after only the new property is removed 194ms
+     × K17 facade both-zero equals exact-base live oracle in the same locale after only the new property is removed 210ms
+     × K17 controller death equals exact-base live oracle in the same locale after only the new property is removed 137ms
+     × K17 controller both-zero equals exact-base live oracle in the same locale after only the new property is removed 204ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade death equals exact-base live oracle in the same locale after only the new property is removed
+AssertionError: expected { …(9) } to deeply equal { …(9) }
+
+- Expected
++ Received
+
+@@ -534,10 +534,14 @@
+    "currentBefore": "948210239c047a0d9c4960e43a76055eb0c41ba250e23dde822b3bb5e7eb1e2f",
+    "diskAfter": "12e9632f4f6d93b855473f385c9ed9014ddc36f5f947ac45a4dbd92aa9936a1c",
+    "diskBefore": "6c0ad0a7cb2bfa7e78c428661d4799fd98859b1773013d7255ad2e1b296b9b0c",
+    "dispatches": 1,
+    "result": {
++     "closure": {
++       "kind": "terminal",
++       "story": "HC29",
++     },
+      "kind": "committed",
+      "preview": {
+        "cost": null,
+        "kind": "available",
+      },
+
+ ❯ src/state/residence-session/player-committed-presentation.test.ts:31:21
+     29|     const expected = baseline.records.find(r => r.id === id && r.layer…
+     30|     const old = runNativeCase(layer, id, true), current = runNativeCas…
+     31|     expect(current).toEqual(old) // Every public field, array order, h…
+       |                     ^
+     32|     // The immutable Windows capture remains an independent canonical/…
+     33|     for (const result of [old, current]) {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade both-zero equals exact-base live oracle in the same locale after only the new property is removed
+AssertionError: expected { …(9) } to deeply equal { …(9) }
+
+- Expected
++ Received
+
+@@ -515,10 +515,14 @@
+    "currentBefore": "20dbc159919acbd4db3ff2f0547eb3ddf776b283b79725bed24f72377e596f10",
+    "diskAfter": "2551e646739f43ad57d32bc0d02eba58d70cc716c28fc6e826971e01d189c715",
+    "diskBefore": "0d3183109366899222757d729f44cf0cdbcabfd4b3fd2c168e4ca6016b6100cc",
+    "dispatches": 1,
+    "result": {
++     "closure": {
++       "kind": "terminal",
++       "story": "HC29",
++     },
+      "kind": "committed",
+      "preview": {
+        "cost": null,
+        "kind": "available",
+      },
+
+ ❯ src/state/residence-session/player-committed-presentation.test.ts:31:21
+     29|     const expected = baseline.records.find(r => r.id === id && r.layer…
+     30|     const old = runNativeCase(layer, id, true), current = runNativeCas…
+     31|     expect(current).toEqual(old) // Every public field, array order, h…
+       |                     ^
+     32|     // The immutable Windows capture remains an independent canonical/…
+     33|     for (const result of [old, current]) {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller death equals exact-base live oracle in the same locale after only the new property is removed
+AssertionError: expected { …(9) } to deeply equal { …(9) }
+
+- Expected
++ Received
+
+@@ -537,10 +537,18 @@
+    "currentBefore": "948210239c047a0d9c4960e43a76055eb0c41ba250e23dde822b3bb5e7eb1e2f",
+    "diskAfter": "12e9632f4f6d93b855473f385c9ed9014ddc36f5f947ac45a4dbd92aa9936a1c",
+    "diskBefore": "6c0ad0a7cb2bfa7e78c428661d4799fd98859b1773013d7255ad2e1b296b9b0c",
+    "dispatches": 1,
+    "result": {
++     "closure": {
++       "ordinal": 1,
++       "receipt": {
++         "kind": "terminal",
++         "story": "HC29",
++       },
++       "scope": {},
++     },
+      "kind": "committed",
+      "snapshot": {
+        "draft": null,
+        "error": null,
+        "feed": [
+
+ ❯ src/state/residence-session/player-committed-presentation.test.ts:31:21
+     29|     const expected = baseline.records.find(r => r.id === id && r.layer…
+     30|     const old = runNativeCase(layer, id, true), current = runNativeCas…
+     31|     expect(current).toEqual(old) // Every public field, array order, h…
+       |                     ^
+     32|     // The immutable Windows capture remains an independent canonical/…
+     33|     for (const result of [old, current]) {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller both-zero equals exact-base live oracle in the same locale after only the new property is removed
+AssertionError: expected { …(9) } to deeply equal { …(9) }
+
+- Expected
++ Received
+
+@@ -518,10 +518,18 @@
+    "currentBefore": "20dbc159919acbd4db3ff2f0547eb3ddf776b283b79725bed24f72377e596f10",
+    "diskAfter": "2551e646739f43ad57d32bc0d02eba58d70cc716c28fc6e826971e01d189c715",
+    "diskBefore": "0d3183109366899222757d729f44cf0cdbcabfd4b3fd2c168e4ca6016b6100cc",
+    "dispatches": 1,
+    "result": {
++     "closure": {
++       "ordinal": 1,
++       "receipt": {
++         "kind": "terminal",
++         "story": "HC29",
++       },
++       "scope": {},
++     },
+      "kind": "committed",
+      "snapshot": {
+        "draft": null,
+        "error": null,
+        "feed": [
+
+ ❯ src/state/residence-session/player-committed-presentation.test.ts:31:21
+     29|     const expected = baseline.records.find(r => r.id === id && r.layer…
+     30|     const old = runNativeCase(layer, id, true), current = runNativeCas…
+     31|     expect(current).toEqual(old) // Every public field, array order, h…
+       |                     ^
+     32|     // The immutable Windows capture remains an independent canonical/…
+     33|     for (const result of [old, current]) {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  4 failed | 36 passed (40)
+   Start at  10:14:09
+   Duration  8.43s (transform 3.68s, setup 0ms, import 4.96s, tests 5.06s, environment 4.67s)

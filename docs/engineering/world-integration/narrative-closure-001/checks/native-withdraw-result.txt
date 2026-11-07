@@ -1,0 +1,70 @@
+{
+  "url": "http://127.0.0.1:5311/?dev-infected-world=1",
+  "browser": "156.0.4314.58",
+  "geometry": {
+    "width": 1920,
+    "height": 1080,
+    "dpr": 1,
+    "scroll": 1080
+  },
+  "errors": [],
+  "text": "电梯求生\n任务进度\n第 1 日\n生命\n12 / 12\n精力\n64 / 100\n饱食\n6 / 6\n未达病程损耗档\n身体\n帮助\n未完成的转运\n供电：尚未恢复（未核查）\n转运：装接未完成\n指定样本：当前不可取得\n任务第 1 / 7 日\n任务目标\n已知地图\n世界\n\n当前不在活动建筑中\n\n尚无已知地点\n\n◆ 当前　实框已到达　虚框待探索\n\n回当前位置\n地图说明\n已知地图 只读记录\n展开已知区域\n\n静态中枢\n\n已止损返回\n\n本次返回已经结算。当前没有后继内容，不会自动过夜、治疗或再次出发。\n\n奖励\n0\n扣罚\n0\n失去\n0\n余额\n0\n实物处置\n表现选项\n查看本次收束\n“当前章节结束。可查看本次结果与已解锁记录。”\n主动止损也是这次的结果\n1 / 2\n\n中枢 “本次委托已结束。必要成果未全部达成。”\n\n旁白 你等了一会儿。屏幕没有继续催促，也没有替你改写结果。\n\n继续交谈\n略过本段\n结束谈话\n携带\n正常 · 重量 0\n背包\n装备\n\n6×4 · 右键物品 / 菜单键查看操作\n\n快捷位\n快捷 1\n绷带\n快捷 2\n空\n当前进度已保存\n委托已结束，返回静态中枢\n行动记录",
+  "buttons": [
+    {
+      "text": "身体",
+      "aria": null,
+      "disabled": false
+    },
+    {
+      "text": "帮助",
+      "aria": null,
+      "disabled": false
+    },
+    {
+      "text": "任务目标",
+      "aria": null,
+      "disabled": false
+    },
+    {
+      "text": "世界",
+      "aria": null,
+      "disabled": false
+    },
+    {
+      "text": "回当前位置",
+      "aria": null,
+      "disabled": false
+    },
+    {
+      "text": "展开已知区域",
+      "aria": null,
+      "disabled": false
+    },
+    {
+      "text": "查看本次收束",
+      "aria": null,
+      "disabled": false
+    },
+    {
+      "text": "继续交谈",
+      "aria": null,
+      "disabled": false
+    },
+    {
+      "text": "略过本段",
+      "aria": null,
+      "disabled": false
+    },
+    {
+      "text": "结束谈话",
+      "aria": null,
+      "disabled": false
+    },
+    {
+      "text": "",
+      "aria": "绷带 · 1×1 · 单位重量 1",
+      "disabled": false
+    }
+  ],
+  "dialogs": 0
+}

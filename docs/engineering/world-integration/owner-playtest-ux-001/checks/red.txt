@@ -1,0 +1,131 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/owner-playtest-ux
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-owner-playtest-ux-001
+
+ ❯ src/ui/infected-world/owner-playtest-ux/m2-red.test.tsx (2 tests | 2 failed) 445ms
+   × lamp users see real light search and can inspect, but cannot execute, a missing crow method 379ms
+   × shows the actual equipment, complete backpack footprint and quick slots at the same time 66ms
+ ❯ src/ui/infected-world/owner-playtest-ux/m1-red.test.tsx (2 tests | 2 failed) 558ms
+   × keeps status, purpose and the safe next step together for each of three goals 337ms
+   × draws the disclosed logistics gate in the scene and binds the same name to its real move 220ms
+ ❯ src/ui/infected-world/owner-playtest-ux/m3-red.test.tsx (1 test | 1 failed) 341ms
+   × ends a real withdrawal with an explicit chapter end and no active navigation or repeat settlement 340ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/ui/infected-world/owner-playtest-ux/m1-red.test.tsx > keeps status, purpose and the safe next step together for each of three goals
+AssertionError: expected [] to deeply equal [ 'power', 'transfer', 'sample' ]
+
+- Expected
++ Received
+
+- [
+-   "power",
+-   "transfer",
+-   "sample",
+- ]
++ []
+
+ ❯ src/ui/infected-world/owner-playtest-ux/m1-red.test.tsx:21:63
+     19|     const dialog = document.querySelector('[role="dialog"][aria-label=…
+     20|     const goals = [...dialog.querySelectorAll('[data-goal]')]
+     21|     expect(goals.map(goal => goal.getAttribute('data-goal'))).toEqual(…
+       |                                                               ^
+     22|     expect(goals[0].textContent).toContain('让医院转运支路恢复供电')
+     23|     expect(goals[1].textContent).toContain('供电恢复后')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  src/ui/infected-world/owner-playtest-ux/m1-red.test.tsx > draws the disclosed logistics gate in the scene and binds the same name to its real move
+AssertionError: public external endpoint in scene minimap: expected null not to be null
+ ❯ src/ui/infected-world/owner-playtest-ux/m1-red.test.tsx:52:69
+     50|     h.entropy.mockClear()
+     51|     const marker = h.host.querySelector<SVGGElement>('.iw-stage-map [d…
+     52|     expect(marker, 'public external endpoint in scene minimap').not.to…
+       |                                                                     ^
+     53|     expect(h.host.querySelector('.iw-sidebar .iw-known-map')).toBeNull…
+     54|     const button = [...h.host.querySelectorAll('.iw-travel button')].f…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  src/ui/infected-world/owner-playtest-ux/m2-red.test.tsx > lamp users see real light search and can inspect, but cannot execute, a missing crow method
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/ui/infected-world/owner-playtest-ux/m2-red.test.tsx:20:74
+     18|
+     19|     const actions = [...h.host.querySelectorAll<HTMLButtonElement>('.i…
+     20|     expect(actions.some(button => button.textContent?.includes('使用撬棍')…
+       |                                                                          ^
+     21|     expect(actions.some(button => button.textContent?.includes('照明搜索')…
+     22|     const alternate = h.host.querySelector<HTMLDetailsElement>('.iw-ot…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  src/ui/infected-world/owner-playtest-ux/m2-red.test.tsx > shows the actual equipment, complete backpack footprint and quick slots at the same time
+AssertionError: expected <div class="iw-tabs" …(2)>…(2)</div> to be null
+
+- Expected:
+null
+
++ Received:
+<div
+  aria-label="携带视图"
+  class="iw-tabs"
+  role="tablist"
+>
+  <button
+    aria-selected="true"
+    role="tab"
+    type="button"
+  >
+    背包
+  </button>
+  <button
+    aria-selected="false"
+    role="tab"
+    type="button"
+  >
+    装备
+  </button>
+</div>
+
+ ❯ src/ui/infected-world/owner-playtest-ux/m2-red.test.tsx:44:54
+     42|     const before = h.view()
+     43|     h.setItem.mockClear()
+     44|     expect(h.host.querySelector('[role="tablist"]')).toBeNull()
+       |                                                      ^
+     45|     const equipment = h.host.querySelector('section[aria-label="装备"]')!
+     46|     expect(equipment.textContent).toContain('手电筒')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  src/ui/infected-world/owner-playtest-ux/m3-red.test.tsx > ends a real withdrawal with an explicit chapter end and no active navigation or repeat settlement
+AssertionError: expected '静态中枢已止损返回本次返回已经结算。当前没有后继内容，不会自动过夜、治疗或…' to contain '本测试章节已结束'
+
+Expected: "本测试章节已结束"
+Received: "静态中枢已止损返回本次返回已经结算。当前没有后继内容，不会自动过夜、治疗或再次出发。奖励0扣罚0失去0余额0实物处置"
+
+ ❯ src/ui/infected-world/owner-playtest-ux/m3-red.test.tsx:17:34
+     15|     expect(before.terminal.result?.outcome).toBe('voluntary-failure')
+     16|     const terminal = h.host.querySelector('[aria-label="终局摘要"]')!
+     17|     expect(terminal.textContent).toContain('本测试章节已结束')
+       |                                  ^
+     18|     expect(terminal.textContent).toContain('没有下一关')
+     19|     expect(terminal.textContent).toContain('确认保存成功后即可关闭页面')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  5 failed (5)
+   Start at  17:33:51
+   Duration  8.32s (transform 4.44s, setup 0ms, import 6.18s, tests 1.34s, environment 5.22s)

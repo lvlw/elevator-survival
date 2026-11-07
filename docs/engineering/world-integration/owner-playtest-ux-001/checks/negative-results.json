@@ -1,0 +1,23 @@
+{
+  "isolated": "C:\\Users\\zjl\\.codex\\visualizations\\2026\\10\\30\\01a18dbc-1d81-7312-99ab-903daead5d63\\WORLD-OWNER-PLAYTEST-UX-001\\negative-snapshot-final",
+  "results": [
+    {
+      "id": "missing-crow-primary",
+      "path": "src/ui/infected-world/components/world-stage.tsx",
+      "test": "src/ui/infected-world/owner-playtest-ux/carrying-and-tools.test.tsx",
+      "exit": 1,
+      "detected": true,
+      "restored": true,
+      "originalSha256": "f9bca5aaeafe818b36b062e0146486f7ceda3621ac4cc2255ca9e27bd5b86fe2"
+    },
+    {
+      "id": "invented-map-endpoint",
+      "path": "src/ui/infected-world/map/projection.ts",
+      "test": "src/ui/infected-world/owner-playtest-ux/map-privacy.test.tsx",
+      "exit": 1,
+      "detected": true,
+      "restored": true,
+      "originalSha256": "e84b52763219a40673f0dbdb1d90d2ff48da67fbdb9b8dd86cf008c1252e28b4"
+    }
+  ]
+}

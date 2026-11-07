@@ -1,0 +1,12 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-owner-playtest-ux-001
+
+
+ Test Files  364 passed (364)
+      Tests  5113 passed (5113)
+   Start at  17:14:51
+   Duration  739.74s (transform 10.80s, setup 0ms, import 112.06s, tests 582.28s, environment 618.11s)

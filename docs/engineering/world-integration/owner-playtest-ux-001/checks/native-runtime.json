@@ -1,0 +1,7 @@
+{
+  "port": 54827,
+  "address": "127.0.0.1",
+  "vitePid": 4148,
+  "npmPid": 34620,
+  "command": "\"node\"   \"E:\\projects\\elevator-survival-worktrees\\world-owner-playtest-ux-001\\node_modules\\.bin\\\\..\\vite\\bin\\vite.js\" --host 127.0.0.1 --port 54827 --strictPort"
+}

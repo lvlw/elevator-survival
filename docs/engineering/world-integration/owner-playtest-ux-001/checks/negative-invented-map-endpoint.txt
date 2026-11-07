@@ -1,0 +1,36 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/owner-playtest-ux/map-privacy.test.tsx -t an unresolved route row never manufactures
+
+
+ RUN  v4.1.10 C:/Users/zjl/.codex/visualizations/2026/10/30/01a18dbc-1d81-7312-99ab-903daead5d63/WORLD-OWNER-PLAYTEST-UX-001/negative-snapshot-final
+
+ ❯ src/ui/infected-world/owner-playtest-ux/map-privacy.test.tsx (1 test | 1 failed) 413ms
+   × an unresolved route row never manufactures a destination, map marker or task locator 411ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  18:22:37
+   Duration  7.44s (transform 3.98s, setup 0ms, import 4.75s, tests 413ms, environment 1.99s)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/ui/infected-world/owner-playtest-ux/map-privacy.test.tsx > an unresolved route row never manufactures a destination, map marker or task locator
+AssertionError: expected '医院 / 电梯前室 → 医院 / 大厅 · 已知可通行 · 当前观察医院 …' not to match /供电所|转运支路柜/
+
+- Expected:
+/供电所|转运支路柜/
+
++ Received:
+"医院 / 电梯前室 → 医院 / 大厅 · 已知可通行 · 当前观察医院 / 大厅 → 医院 / 电梯前室 · 已知可通行 · 上次观察通信 / 入口 → 医院 / 电梯前室 · 已知可通行 · 上次观察医院 / 电梯前室 → 通信 / 入口 · 已知可通行 · 当前观察医院 / 电梯前室 → 酒店 / 酒店入口 · 已知可通行 · 当前观察酒店 / 酒店入口 → 医院 / 电梯前室 · 已知可通行 · 上次观察医院 / 电梯前室 → 供电所 / 转运支路柜 · 已知可通行 · 当前观察查看医院 / 电梯前室 · 当前位置电梯前室查看医院 / 大厅 · 已知未到达大厅查看外部入口 供电所·转运支路柜 · 已知未到达供电所·转运支路柜查看外部入口 酒店·酒店入口 · 已知未到达酒店·酒店入口查看外部入口 通信·入口 · 已知未到达通信·入口"
+
+ ❯ src/ui/infected-world/owner-playtest-ux/map-privacy.test.tsx:24:67
+     22|     await act(async () => root.render(<><KnowledgeMap map={map} />
+     23|       <MissionGuide view={{ ...view, map }} detail onLocate={() => { t…
+     24|     expect(host.querySelector('.iw-map-canvas')?.textContent).not.toMa…
+       |                                                                   ^
+     25|     expect(host.querySelector('.iw-mission-cards')?.textContent).not.t…
+     26|     expect(host.querySelector('.iw-map-routes')?.textContent).toContai…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯

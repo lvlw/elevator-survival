@@ -37,6 +37,12 @@
 - **已知欠账／待核查：** 部分医疗额外确认、first-fit 重复 Preview 的性能、Feed 文案深化、既有 CI 依赖审计摘要与 bundle／Actions 告警，以及浏览器补验。
 - **未来候选／暂停：** 拖拽、Context-aware Preflight、正式玩家背身美术、声音重设计与完整 Audio Pack。Audio Probe 技术接入不等于听感认可；70/30 方向仍为 provisional，后续生产暂停。
 
+### 新感染世界 DEV 的 Owner 局部呈现覆盖
+
+- `ENG-WORLD-OWNER-PLAYTEST-UX-001` 在已审新世界 Shell 内把本地图放到场景右上角。公开跨区入口的建筑与房间名同原 Travel Cluster，地图、切层和任务定位只读。委托按三个目标就地呈现状态与下一步。
+- 该入口采用装备、背包、两个快捷位同时可见的右栏，并显示实际格位、负重和公开资源。普通拾取遵从新世界正式放置预览。公开物理方法可以按当前工具和资源在界面标记受阻。
+- 本测试委托结束后使用静态结算与回顾。任务摘要无活动导航。工程分支已实现，单一主桌面验证及其边界见 [本轮报告](engineering/world-integration/owner-playtest-ux-001/REPORT.md)，待主线复审。
+
 ## UIR-001：桌面优先的首版控制台
 
 - 状态：Confirmed

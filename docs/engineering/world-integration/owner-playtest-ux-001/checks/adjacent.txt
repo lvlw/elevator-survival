@@ -1,0 +1,12 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world src/app/infected-browser src/app/infected-preplay
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-owner-playtest-ux-001
+
+
+ Test Files  88 passed (88)
+      Tests  522 passed (522)
+   Start at  18:22:45
+   Duration  227.95s (transform 7.84s, setup 0ms, import 53.38s, tests 177.23s, environment 196.27s)

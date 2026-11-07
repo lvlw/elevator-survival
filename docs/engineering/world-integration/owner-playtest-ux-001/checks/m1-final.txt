@@ -1,0 +1,12 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/owner-playtest-ux/mission-and-map.test.tsx src/ui/infected-world/owner-playtest-ux/map-privacy.test.tsx src/ui/infected-world/mission-map-ux.test.tsx src/ui/infected-world/mission-map-route-selection-r1.test.tsx src/ui/infected-world/ui-v1-map.test.tsx src/ui/infected-world/ui-v1-shell.test.tsx src/ui/infected-world/map/projection.test.ts
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-owner-playtest-ux-001
+
+
+ Test Files  7 passed (7)
+      Tests  29 passed (29)
+   Start at  17:43:33
+   Duration  16.91s (transform 3.74s, setup 0ms, import 7.10s, tests 11.63s, environment 12.01s)

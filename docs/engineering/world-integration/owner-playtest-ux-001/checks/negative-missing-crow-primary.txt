@@ -1,0 +1,36 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/owner-playtest-ux/carrying-and-tools.test.tsx -t lamp users see real light search
+
+
+ RUN  v4.1.10 C:/Users/zjl/.codex/visualizations/2026/10/30/01a18dbc-1d81-7312-99ab-903daead5d63/WORLD-OWNER-PLAYTEST-UX-001/negative-snapshot-final
+
+ ❯ src/ui/infected-world/owner-playtest-ux/carrying-and-tools.test.tsx (2 tests | 1 failed | 1 skipped) 426ms
+   × lamp users see real light search and can inspect, but cannot execute, a missing crow method 424ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 skipped (2)
+   Start at  18:22:28
+   Duration  7.33s (transform 3.97s, setup 0ms, import 4.72s, tests 426ms, environment 1.91s)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/ui/infected-world/owner-playtest-ux/carrying-and-tools.test.tsx > lamp users see real light search and can inspect, but cannot execute, a missing crow method
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/ui/infected-world/owner-playtest-ux/carrying-and-tools.test.tsx:20:74
+     18|
+     19|     const actions = [...h.host.querySelectorAll<HTMLButtonElement>('.i…
+     20|     expect(actions.some(button => button.textContent?.includes('使用撬棍')…
+       |                                                                          ^
+     21|     expect(actions.some(button => button.textContent?.includes('照明搜索')…
+     22|     const alternate = h.host.querySelector<HTMLDetailsElement>('.iw-ot…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯

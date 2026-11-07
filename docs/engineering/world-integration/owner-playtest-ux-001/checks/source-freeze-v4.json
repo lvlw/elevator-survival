@@ -1,0 +1,207 @@
+[
+  {
+    "path": "src/content/infected-world-v0.1/mission-guidance-copy.ts",
+    "sha256": "f8bd2ceaad3ca538d196b1b3d1794854adcba4b9c8d2e975dffa1005f7b9c1f3",
+    "blob": "41dec02e2d6a666feedf580cbb216ccc96cade4b"
+  },
+  {
+    "path": "src/content/infected-world-v0.1/player-ui-catalog.ts",
+    "sha256": "cc6bd4fa517ce7711dbba4184086df7f64fc1837679b52fb376aaf819a88934c",
+    "blob": "2634563c448a564e6d41e40808204b21d9af31ca"
+  },
+  {
+    "path": "src/ui/infected-world/app.tsx",
+    "sha256": "24c310eedb010e6888622db370b569b79d09816fc7d217821e1250bfaa938406",
+    "blob": "e0a978e51d53dd23f59c58c5375acc85b34eaac3"
+  },
+  {
+    "path": "src/ui/infected-world/committed-presentation-native.integration.test.tsx",
+    "sha256": "b58342ed28d5cd9cec14dbbbb99dfe1c9a9f056773b75d6894c13aa37ed3465e",
+    "blob": "f87da13a4521302facd2b6609e5207db9e808ee2"
+  },
+  {
+    "path": "src/ui/infected-world/components/action-form.tsx",
+    "sha256": "724c842572843fb6d12c4461317dd35991e93502be2a59304d736761a71c0aab",
+    "blob": "589956e5402e96712ab46e7663671973521b16d7"
+  },
+  {
+    "path": "src/ui/infected-world/components/content-layer.tsx",
+    "sha256": "80abfd417dcfbefa09e817e5c441963fd2939cc0001cb4b35a26fa2d2fafc4d2",
+    "blob": "8f613171d24f7f5d6b5dda2ace41a19528e58470"
+  },
+  {
+    "path": "src/ui/infected-world/components/game-shell.tsx",
+    "sha256": "e05a75f626de09e9a1fdbaa6e53493a9df7896f9c729995468e21b86b608168b",
+    "blob": "2475d80b972fd41c859c72500da6919f4d165778"
+  },
+  {
+    "path": "src/ui/infected-world/components/inventory-panel.tsx",
+    "sha256": "c0a0d8df45c36c12c5cf2cda30fba25a8ee116fcbf480cd597df8c420c161a4a",
+    "blob": "c34a67778364f6c7844e4ab2766af99a925a35ba"
+  },
+  {
+    "path": "src/ui/infected-world/components/knowledge-map.tsx",
+    "sha256": "adb305a847dbf7c1fac9ac063fa35544b0ad5152956ed87c6e3a003b403e29c6",
+    "blob": "d66ebf73ce5d891e0e3a9fb4fd4c252fcbf85c99"
+  },
+  {
+    "path": "src/ui/infected-world/components/mission-guide.tsx",
+    "sha256": "61e4ca701b77de68c41b9a636279d9cf737409718619c54ecce86d9806ecf799",
+    "blob": "92458035644a6ace7013d76fa0a9b2c7e7405cb7"
+  },
+  {
+    "path": "src/ui/infected-world/components/status-hud.tsx",
+    "sha256": "7e3a6905f69c805b3c13c2f77a43e27f3b0799f3310b15ea3fd3f9c1daae7831",
+    "blob": "242138a45a41888d95c5337cd17297affbbb7cdd"
+  },
+  {
+    "path": "src/ui/infected-world/components/terminal-panel.tsx",
+    "sha256": "12e6db1dfa3d38a43bad7464b569635341811bc3fbc5d52b83ac9d458260e769",
+    "blob": "44a6ce14ef5e134767b4babd8513b135291bf5ec"
+  },
+  {
+    "path": "src/ui/infected-world/components/travel-cluster.tsx",
+    "sha256": "2fc2992e089a569fe14d9402bb2f913c514c3b7b55ba598465a6f09c24d3646f",
+    "blob": "96b86253945e9acf2f35d17f201ac24b824a2e69"
+  },
+  {
+    "path": "src/ui/infected-world/components/world-stage.tsx",
+    "sha256": "f9bca5aaeafe818b36b062e0146486f7ceda3621ac4cc2255ca9e27bd5b86fe2",
+    "blob": "3cb41296447856130762b155482089bc718587e5"
+  },
+  {
+    "path": "src/ui/infected-world/enemy-art-native.integration.test.tsx",
+    "sha256": "cd465950f04b93cad931654752fde2233ae4e55b440ec4d89a1b2b3c36ea7ab7",
+    "blob": "7db69bf85685d976f70c379a63d36c80e048a3ec"
+  },
+  {
+    "path": "src/ui/infected-world/guidance/model.ts",
+    "sha256": "faf0c8e99b9f630d2ad04fb94963dd17553bac0921aeb1a334ac7bb369c71a89",
+    "blob": "e1a29a8588e0600dc74f1e38944afd7b010c0eff"
+  },
+  {
+    "path": "src/ui/infected-world/labels.ts",
+    "sha256": "250db41e85756a71aaaa8d6720d838b4caf5a0316d69156f1901d87e577ae443",
+    "blob": "ce000bf08f82f4f6082e75d01b5f1ab9e8648a27"
+  },
+  {
+    "path": "src/ui/infected-world/longchain.integration.test.tsx",
+    "sha256": "1d59293179d07af8a6f7969efdaa4c68247426b0dae951ee8521bd50f94eb2fd",
+    "blob": "63191092a3fc5b0e39c76b17e6362e6cea7f1b1a"
+  },
+  {
+    "path": "src/ui/infected-world/map/layout.ts",
+    "sha256": "9d5ea5c22f926615d346a0dc9472fdcbc235b0bf4ee7f10945bd31bc604cbed2",
+    "blob": "6be2819ba072af76660569a83c0585ee48b629ee"
+  },
+  {
+    "path": "src/ui/infected-world/map/projection.ts",
+    "sha256": "e84b52763219a40673f0dbdb1d90d2ff48da67fbdb9b8dd86cf008c1252e28b4",
+    "blob": "62e62f0c4371e4e6f1eebb76ed48947780d5a55a"
+  },
+  {
+    "path": "src/ui/infected-world/mission-map-route-selection-r1.test.tsx",
+    "sha256": "db4ceba1f455cd48b6251d20b2306da847646191f28839149f4bebc7fab0fae7",
+    "blob": "8c03aa2869b4163ef559573e175294ee171b6984"
+  },
+  {
+    "path": "src/ui/infected-world/mission-map-ux.test.tsx",
+    "sha256": "1428971e78548ad209f8e8b80b93fcdc6235da5df547cfd22e6d22e0f0995c4c",
+    "blob": "3d5bc43c1eadabb851a7850762a141dc6bba7896"
+  },
+  {
+    "path": "src/ui/infected-world/narrative-closure/closure-panel.tsx",
+    "sha256": "119e32b166d569102492e32db4c720e54ac8ee406c5213e521290e5acf5a3f9d",
+    "blob": "fb5e15e373052439de03c4c75ae33cee444074a0"
+  },
+  {
+    "path": "src/ui/infected-world/narrative-closure/endings.test.tsx",
+    "sha256": "8d2fae16e6498c15ae9da7d8e6e8f04c1ce912fa4f2da2c963a94720f9b447eb",
+    "blob": "5e7d31cd4f5dc00294b49ce4f5ec5f316e8cbd7f"
+  },
+  {
+    "path": "src/ui/infected-world/narrative-closure/platform.test.tsx",
+    "sha256": "1e4ceef0247b1e97475f4dcf23eda05c26c374da740fd95efebfb28f2a708b63",
+    "blob": "e0b8d49023b4765259de207dfe90d1fc1838b06a"
+  },
+  {
+    "path": "src/ui/infected-world/owner-playtest-ux/bag-occupancy.ts",
+    "sha256": "97ca0f37ad40df3cdd7ccf1f67c54d437eec7a29943822b3e28055f93ecbb7f7",
+    "blob": "0fe5a8d35d7d424535488d584fe1a31020882c69"
+  },
+  {
+    "path": "src/ui/infected-world/owner-playtest-ux/carrying-and-tools.test.tsx",
+    "sha256": "87fa4976f4b3a620fe4f99dbd30eef7aa1243e8e9cadd038741310f6f789160b",
+    "blob": "f6198508c880af9a7fd6687dda55bd5c74a0af89"
+  },
+  {
+    "path": "src/ui/infected-world/owner-playtest-ux/chapter-end.test.tsx",
+    "sha256": "3dbef531d81b8cff5af8beef55f93bef745786afe06858420a8ccc70f8e61418",
+    "blob": "b4fb74907d149693fd4d6fdced990f551430a27e"
+  },
+  {
+    "path": "src/ui/infected-world/owner-playtest-ux/inventory-boundaries.test.tsx",
+    "sha256": "d5910e223cb61bcea4d335f651839a8207578e639fa62f3b95991aa99e556713",
+    "blob": "0fea8c5bbdc140a411e7abd22a3759cad5ee087e"
+  },
+  {
+    "path": "src/ui/infected-world/owner-playtest-ux/inventory-driver.ts",
+    "sha256": "408a63c6b59cf81869afc4d2a8da3054d082b3d7461daeebb2bacb461747148a",
+    "blob": "c327f88e98739f534bd41e232cba42939fd185a2"
+  },
+  {
+    "path": "src/ui/infected-world/owner-playtest-ux/map-privacy.test.tsx",
+    "sha256": "baf4fee510206848598a0be962b5ac614460ef4453faae8f33275b6bcebf0fc0",
+    "blob": "8f2272310d553f7e09ca592d9a70a9a9594de515"
+  },
+  {
+    "path": "src/ui/infected-world/owner-playtest-ux/mission-and-map.test.tsx",
+    "sha256": "580c3010dfe21265c12d1849c80bee297990132e51722c8ac5d4911995dbd49b",
+    "blob": "0bc1bc34d0f3aaccc8fee5512c3dc798dd8fe382"
+  },
+  {
+    "path": "src/ui/infected-world/owner-playtest-ux/physical-methods.ts",
+    "sha256": "511b7e536cff2fffd3e414a28edcc139cc35f4ff9047aaae436b216b5862001e",
+    "blob": "77ec43c4189eebb885462d806ff1589e116f284e"
+  },
+  {
+    "path": "src/ui/infected-world/parameters.test.tsx",
+    "sha256": "13afbf7e40b8c942c704f08332e78867715e11cfdefd4ccfc560e9a9de0eb58e",
+    "blob": "b1ec8fe065d0088508829e6bfee5486ae5d4871c"
+  },
+  {
+    "path": "src/ui/infected-world/phases.test.tsx",
+    "sha256": "793499a3365b21da55c7b244c75628d983772429662528394467d65993e2319c",
+    "blob": "7f1fdab73a81e96f019545ebce4ee8fe9eaeda99"
+  },
+  {
+    "path": "src/ui/infected-world/presentation.test.tsx",
+    "sha256": "487854d9a0299c0d0ece7413aab801f88b7c6fa85d0db544d4f00d69dd070660",
+    "blob": "a37b8c24ed5f65d6e442609796f788ce7b45e6a7"
+  },
+  {
+    "path": "src/ui/infected-world/review-context-menu.test.tsx",
+    "sha256": "73ade164a6852ef76789f8d9dae52ed75856a5762c3c53dc56e2da852642f542",
+    "blob": "716249c6340bef5b89235e38c19b96625167913d"
+  },
+  {
+    "path": "src/ui/infected-world/review-public-copy.test.tsx",
+    "sha256": "e4b92061975ae329536c0dde7d4a4c4acbccb539dc551123add361f24a84e583",
+    "blob": "6ca9ce3e514ec94cdd2671981aa367810ef3bd02"
+  },
+  {
+    "path": "src/ui/infected-world/terminal.test.tsx",
+    "sha256": "47882654bd124243bea0b193d8059faff9ed9289a2174a5da7d534fff675686e",
+    "blob": "aa322dd6a5eca1d991ee154dd9f107df47922270"
+  },
+  {
+    "path": "src/ui/infected-world/ui-v1-review-lifecycle.test.tsx",
+    "sha256": "3abad3a6dede2fbeb3ce4f08849783c44724f0ca33fd349fcd056ff05693d3e5",
+    "blob": "df9c40c7d87f3da3fe615c01bf60eeab7d75fc26"
+  },
+  {
+    "path": "src/ui/infected-world/ui-v1.css",
+    "sha256": "fdf91fd5bdc68437d4b76a43009c156ba7cc4bdfd3bb12e088e57464c07bc3be",
+    "blob": "64cfcfd030ddd89947d5170120dc857b210990f6"
+  }
+]

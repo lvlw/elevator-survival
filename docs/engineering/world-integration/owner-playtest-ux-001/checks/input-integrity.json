@@ -1,0 +1,85 @@
+{
+  "task": "ENG-WORLD-OWNER-PLAYTEST-UX-001",
+  "version": "1.0",
+  "originalZipSha256": "85a2296f1f7ba00c82d03e4e315441e4078c5d9ce70fad482ca417b4a369a0f9",
+  "verifiedEntries": [
+    {
+      "path": "ACCEPTANCE.md",
+      "bytes": 5100,
+      "sha256": "d5dab56edf7122a2fb8e01a1a52865f7c187786201ab851e5b147ded9bb72a29",
+      "verified": true
+    },
+    {
+      "path": "OWNER-FEEDBACK.md",
+      "bytes": 2246,
+      "sha256": "50f8d99485ed66da3d067ede18ae824a2fafb58db5ef73c0d7bf960ad83d9fd5",
+      "verified": true
+    },
+    {
+      "path": "README-FIRST.md",
+      "bytes": 2156,
+      "sha256": "1b9c6b4c6dbba3e1a10b500e839fb505b21f8379180e4948783e529ddf444b02",
+      "verified": true
+    },
+    {
+      "path": "SCOPE.json",
+      "bytes": 3516,
+      "sha256": "fd30efcd738b8f4c29df1a38f7a688dcc5326c07045cbc5074b099afb140c4b2",
+      "verified": true
+    },
+    {
+      "path": "SEND-TO-CODEX.txt",
+      "bytes": 2003,
+      "sha256": "1f36935b292ee3ed29f1a5825cd25cbe5e570eca121659e4ef9640b117cfcb94",
+      "verified": true
+    },
+    {
+      "path": "SOURCE-NOTES.md",
+      "bytes": 3345,
+      "sha256": "58516a539d9246b937e9b397a6c2b415772434a64492295befb2bb4f31734958",
+      "verified": true
+    },
+    {
+      "path": "TASK.md",
+      "bytes": 6027,
+      "sha256": "32ee5579fb63abe46b1e1584d8188a68ccff7aa0af13895d515714e7b173356e",
+      "verified": true
+    },
+    {
+      "path": "UX-CONTRACT.md",
+      "bytes": 11336,
+      "sha256": "b02a5994a98f0e840eae1b86617c307edc7c49e6f15bf73741a0dce9f4f7d40e",
+      "verified": true
+    },
+    {
+      "path": "references/01-owner-map-and-exit.png",
+      "bytes": 2301022,
+      "sha256": "fb8e91ce284abb6bda81557c0ad6ae7b6ebdde3eec3e131b6644f1316243e548",
+      "pixels": [
+        1466,
+        952
+      ],
+      "verified": true
+    },
+    {
+      "path": "references/02-owner-mission-panel.png",
+      "bytes": 2657784,
+      "sha256": "2d3ac29d6f1693a6da73f64e489927ba69f4109dc0a0be5b3e51d26f5f0639c5",
+      "pixels": [
+        1466,
+        952
+      ],
+      "verified": true
+    },
+    {
+      "path": "references/03-owner-ended-screen.png",
+      "bytes": 1928007,
+      "sha256": "489dcd500661ff87c0a4bcddb1013023b2c64ca9409fe72297177083d159a8ba",
+      "pixels": [
+        1466,
+        952
+      ],
+      "verified": true
+    }
+  ]
+}

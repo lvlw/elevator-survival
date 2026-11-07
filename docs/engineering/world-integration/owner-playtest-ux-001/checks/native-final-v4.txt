@@ -1,0 +1,135 @@
+{
+  "status": "done",
+  "browser": "157.0.4341.42",
+  "geometry": {
+    "width": 1440,
+    "height": 900,
+    "dpr": 1,
+    "scrollWidth": 1440,
+    "scrollHeight": 900,
+    "secure": true,
+    "webLocks": true,
+    "stage": {
+      "x": 267.03125,
+      "y": 92,
+      "width": 802.96875,
+      "height": 744,
+      "right": 1070,
+      "bottom": 836,
+      "scrollWidth": 803,
+      "clientWidth": 803,
+      "scrollHeight": 744,
+      "clientHeight": 744
+    },
+    "map": null,
+    "mapCanvas": null,
+    "travel": null,
+    "ground": null,
+    "carrying": {
+      "x": 1082,
+      "y": 92,
+      "width": 342,
+      "height": 744,
+      "right": 1424,
+      "bottom": 836,
+      "scrollWidth": 340,
+      "clientWidth": 340,
+      "scrollHeight": 742,
+      "clientHeight": 742
+    },
+    "bag": {
+      "x": 1109,
+      "y": 351.15625,
+      "width": 288,
+      "height": 192,
+      "right": 1397,
+      "bottom": 543.15625,
+      "scrollWidth": 288,
+      "clientWidth": 288,
+      "scrollHeight": 192,
+      "clientHeight": 192
+    },
+    "equipment": {
+      "x": 1109,
+      "y": 164,
+      "width": 288,
+      "height": 146.765625,
+      "right": 1397,
+      "bottom": 310.765625,
+      "scrollWidth": 288,
+      "clientWidth": 288,
+      "scrollHeight": 147,
+      "clientHeight": 147
+    },
+    "quick": {
+      "x": 1109,
+      "y": 575.34375,
+      "width": 288,
+      "height": 119.390625,
+      "right": 1397,
+      "bottom": 694.734375,
+      "scrollWidth": 288,
+      "clientWidth": 288,
+      "scrollHeight": 118,
+      "clientHeight": 118
+    },
+    "sidebar": {
+      "x": 16,
+      "y": 92,
+      "width": 239.03125,
+      "height": 744,
+      "right": 255.03125,
+      "bottom": 836,
+      "scrollWidth": 237,
+      "clientWidth": 237,
+      "scrollHeight": 742,
+      "clientHeight": 742
+    },
+    "modal": null,
+    "modalBody": null,
+    "hud": [
+      {
+        "label": "生命",
+        "value": 12,
+        "max": 12,
+        "height": 10
+      },
+      {
+        "label": "精力",
+        "value": 10,
+        "max": 100,
+        "height": 10
+      },
+      {
+        "label": "饱食",
+        "value": 6,
+        "max": 6,
+        "height": 10
+      }
+    ],
+    "mapNodes": 0,
+    "exits": 0
+  },
+  "state": {
+    "room": "已止损返回",
+    "hp": "12",
+    "energy": "10",
+    "satiety": "6",
+    "bag": [
+      "格位 2 / 24"
+    ],
+    "carrying": [
+      "携带重量 2 · 正常",
+      "武器金属管耐久 25 / 30防具厚实外套完整度 10 / 12实用装备手电筒电量 5 / 8",
+      "快捷 1绷带 ×1快捷 2空"
+    ],
+    "settlement": [
+      "奖励0扣罚0失去0余额0"
+    ],
+    "feedback": [
+      "当前进度已保存",
+      "委托已结束，返回静态中枢"
+    ]
+  },
+  "errors": []
+}

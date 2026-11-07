@@ -1,0 +1,72 @@
+
+> elevator-survival@0.0.0 check
+> npm run validate:architecture && npm run typecheck && npm run test:run && npm run build
+
+
+> elevator-survival@0.0.0 validate:architecture
+> node scripts/validate-architecture.mjs
+
+Architecture validation passed: 53 DEC entries and 347 core production files checked.
+
+> elevator-survival@0.0.0 typecheck
+> tsc -b --pretty false
+
+
+> elevator-survival@0.0.0 test:run
+> vitest run
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-owner-playtest-ux-001
+
+
+ Test Files  369 passed (369)
+      Tests  5123 passed (5123)
+   Start at  18:26:40
+   Duration  852.34s (transform 13.41s, setup 0ms, import 128.47s, tests 767.59s, environment 703.14s)
+
+
+> elevator-survival@0.0.0 build
+> tsc -b && vite build
+
+vite v8.1.5 building client environment for production...
+[2K
+transforming...✓ 425 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                        0.52 kB │ gzip:   0.37 kB
+dist/assets/aud_ui_select_a-Bl7dnnGQ.wav                              12.28 kB
+dist/assets/aud_ui_select_b-j1aM4wvC.wav                              13.72 kB
+dist/assets/aud_combat_player_basic_a-CXPp4J_9.wav                    36.04 kB
+dist/assets/aud_combat_player_hurt_a-9-3b4LUM.wav                     40.36 kB
+dist/assets/aud_scene_door_card_a-BJz9mM9J.wav                        51.88 kB
+dist/assets/aud_scene_move_a-DD78AcgL.wav                             60.52 kB
+dist/assets/aud_scene_search_complete_a-DTKbxmDt.wav                  69.16 kB
+dist/assets/icon_metal_pipe_v01-BCDO9L7x.png                          99.73 kB
+dist/assets/icon_flashlight_v01-C0vZLyc1.png                         129.95 kB
+dist/assets/icon_isolation_access_card_v02-DdE-T6n3.png              185.82 kB
+dist/assets/icon_bandage_v02-B7MTBhYT.png                            209.81 kB
+dist/assets/icon_sealed_pathogen_case_v02-ClC7VxX6.png               239.21 kB
+dist/assets/icon_heavy_coat_v01-hfPxxItT.png                         243.00 kB
+dist/assets/enemy_infected_orderly_pristine_v02-8Az5x4q-.png         735.18 kB
+dist/assets/enemy_infected_orderly_wounded_v02-DK3m9WaO.png          764.99 kB
+dist/assets/enemy_infected_orderly_critical_v02-B75-Lgt1.png         805.32 kB
+dist/assets/enemy_infected_orderly_heavy_wounded_v02-BTMnj74y.png    873.71 kB
+dist/assets/enemy_infected_orderly_disabled_v02-BDGZLM_Z.png       1,018.81 kB
+dist/assets/objective_pathogen_case_v02-CEDGSldL.png               1,190.96 kB
+dist/assets/event_isolation_fire_door_v02-izBJ5OFl.png             1,472.28 kB
+dist/assets/bg_elevator_hub_v01-CQ13gBfC.png                       1,888.87 kB
+dist/assets/bg_emergency_hall_v01-D4aN5xcz.png                     1,978.78 kB
+dist/assets/bg_isolation_corridor_v01-HoEGF2k3.png                 2,225.93 kB
+dist/assets/styles-BzrxvUWF.css                                       52.07 kB │ gzip:  11.48 kB
+dist/assets/production-bootstrap-BnZRX4GJ.js                           0.12 kB │ gzip:   0.11 kB
+dist/assets/run-save-MwM4qZY2.js                                       0.72 kB │ gzip:   0.38 kB
+dist/assets/production-bootstrap-BGpY2tsz.js                           0.91 kB │ gzip:   0.43 kB
+dist/assets/production-composition-D9tT1rEn.js                         1.36 kB │ gzip:   0.75 kB
+dist/assets/jsx-runtime-QtymfJMM.js                                    7.92 kB │ gzip:   2.99 kB
+dist/assets/run-store-EIUkCeEm.js                                      9.52 kB │ gzip:   2.71 kB
+dist/assets/presentation-VJjyzHRF.js                                  55.81 kB │ gzip:  17.08 kB
+dist/assets/index-D0HR1Oh6.js                                        185.20 kB │ gzip:  58.64 kB
+dist/assets/App-jUhJdP9Y.js                                          188.40 kB │ gzip:  44.37 kB
+dist/assets/run-save-BMWdTkae.js                                     455.99 kB │ gzip: 113.48 kB
+
+✓ built in 290ms

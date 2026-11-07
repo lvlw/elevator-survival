@@ -1,0 +1,12 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/owner-playtest-ux/carrying-and-tools.test.tsx src/ui/infected-world/owner-playtest-ux/inventory-boundaries.test.tsx src/ui/infected-world/first-fit.test.ts src/core/residence-supply/inventory.test.ts
+
+
+ RUN  v4.1.10 E:/projects/elevator-survival-worktrees/world-owner-playtest-ux-001
+
+
+ Test Files  4 passed (4)
+      Tests  11 passed (11)
+   Start at  17:54:37
+   Duration  16.09s (transform 4.95s, setup 0ms, import 7.27s, tests 11.94s, environment 9.70s)

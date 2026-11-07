@@ -1,0 +1,12 @@
+{
+  "testServerStopped": true,
+  "port": 54827,
+  "vitePid": 4148,
+  "oldListeners": [
+    {
+      "port": 54731,
+      "pid": 30044,
+      "sameListener": true
+    }
+  ]
+}

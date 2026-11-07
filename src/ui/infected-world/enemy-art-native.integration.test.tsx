@@ -3,6 +3,7 @@ import { boundaryRecords } from '../../../docs/engineering/world-integration/pre
 import { observeBrowser } from '../../app/infected-browser/test-observers'
 import { CHECKPOINT_KEY } from '../../app/infected-browser/schema'
 import { domRouteA } from './route-test-fixtures'
+import { withInventoryDriver } from './owner-playtest-ux/inventory-driver'
 import { mountPresentation } from './committed-presentation-test-fixtures'
 import { installEnemyArtImages } from './enemy-art-test-fixtures'
 
@@ -29,7 +30,7 @@ describe('C2 real React/BrowserOwner/P/R/S integration with controlled resource 
   it('read-null setup and original visible entry route prepare only the actual current opponent, without extra commit or synthetic cue', async () => {
     const h = await mountPresentation()
     try {
-      expect(h.disk.size).toBe(0); await h.d.setup(); await domRouteA(h.d, 0)
+      expect(h.disk.size).toBe(0); await h.d.setup(); await domRouteA(withInventoryDriver(h).d, 0)
       expect(h.view().combat!.opponent.visualKey).toBe('infected-orderly'); expect(images.requests).toHaveLength(5)
       expect(h.cue().textContent).toBe(''); expect(h.originals.every(r => !r.presentation)).toBe(true)
       const writes = h.setItem.mock.calls.length; await images.finish(); expect(h.setItem).toHaveBeenCalledTimes(writes)

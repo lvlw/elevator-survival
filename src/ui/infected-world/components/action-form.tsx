@@ -53,6 +53,18 @@ export function ActionForm({ action, inputs, view, controls, initialItem, onExec
   }
   const preview = complete ? controls.preview(request) : null
   const canExecute = preview && ['available', 'unknown'].includes(preview.qualification.kind)
+  const pickup = inputs.convenience === 'ordinary-whole-pickup' || action.family === 'task-transfer' && action.label === '拾取任务物'
+  const anchor = placements[0]
+  let pickupNote: string | null = null
+  if (pickup && selectedSource && anchor && preview?.qualification.kind === 'unavailable') {
+    const width = anchor.rotated ? source.height : source.width
+    const height = anchor.rotated ? source.width : source.height
+    const outside = anchor.x + width > view.backpack.width || anchor.y + height > view.backpack.height
+    const overlap = view.carried.some(item => item.container === 'backpack' && item.footprint.some(cell =>
+      cell.x >= anchor.x && cell.x < anchor.x + width && cell.y >= anchor.y && cell.y < anchor.y + height))
+    pickupNote = outside ? '所选摆法超出背包边界。' : overlap ? '物品无法全部放入所选位置，所选格位已有物品。' :
+      '本次放置未通过正式预览，请检查空间和当前负重。'
+  }
   return <div className="iw-overlay" onKeyDown={e => {
     if (e.key === 'Escape') onCancel()
     if (e.key === 'Tab') {
@@ -91,7 +103,9 @@ export function ActionForm({ action, inputs, view, controls, initialItem, onExec
           view={{ ...view, carried: view.carried.map(i => ({ ...i, name: publicItemName(i.name) })) }} width={geometry.width} height={geometry.height} canRotate={geometry.canRotate}
           value={placements[n] ?? null} onChange={p => setPlacements(Array.from({ length: placementCount }, (_, j) => j === n ? p : placements[j] ?? null))} />
       })}
-    </div><aside aria-label="正式行动预览">{preview ? <SafeFacts metadata={preview} /> : <p>完成明确选择后显示正式预览；编辑不执行行动。</p>}</aside></div>
+    </div><aside aria-label="正式行动预览">
+      {pickupNote && <p className="iw-pickup-capacity-note" role="status">{pickupNote}可换格或旋转，也可取消拾取，留在现场后再整理背包。</p>}
+      {preview ? <SafeFacts metadata={preview} /> : <p>完成明确选择后显示正式预览；编辑不执行行动。</p>}</aside></div>
     <footer><button type="button" ref={cancel} onClick={onCancel}>取消</button><button type="submit" disabled={!canExecute}>执行行动</button></footer>
   </form></div>
 }

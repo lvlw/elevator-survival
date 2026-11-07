@@ -1,5 +1,5 @@
 import { expect, it, vi } from 'vitest'
-import { mountUi } from './test-fixtures'
+import { mountUi } from './owner-playtest-ux/inventory-driver'
 import { domRouteA, domRouteB } from './route-test-fixtures'
 import { observeBrowser } from '../../app/infected-browser/test-observers'
 

@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { observeBrowser } from '../../app/infected-browser/test-observers'
 import { CHECKPOINT_KEY } from '../../app/infected-browser/schema'
 import { domRouteA } from './route-test-fixtures'
+import { withInventoryDriver } from './owner-playtest-ux/inventory-driver'
 import { mountPresentation } from './committed-presentation-test-fixtures'
 
 afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks(); document.body.replaceChildren() })
@@ -59,7 +60,7 @@ describe('C1 original producers and cold checkpoints reach actual React DOM', ()
   it('real read-null setup, parameters, movement and entry never synthesize an action record', async () => {
     const h = await mountPresentation()
     try {
-      await h.d.setup(); await domRouteA(h.d, 0)
+      await h.d.setup(); await domRouteA(withInventoryDriver(h).d, 0)
       expect(h.view().point).toBe('battle-decision'); expect(h.view().combat!.opponent.name).toBe('感染护工')
       expect(h.originals.every(r => !r.presentation)).toBe(true); expect(h.cue().textContent).toBe('')
       await h.combat('防御'); expect(h.cue().textContent).toBe('防御已执行')

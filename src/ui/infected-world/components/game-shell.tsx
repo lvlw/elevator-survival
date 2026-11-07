@@ -16,9 +16,9 @@ import { ContentLayer } from './content-layer'
 import { BodyDetails, HelpDetails } from './shell-information'
 import { ItemInspectionProvider } from './item-inspection'
 
-export function GameShell({ view, feed, onAction, onRetrySave, describeAction, presentation, narrative, children }: {
+export function GameShell({ view, feed, onAction, onRetrySave, describeAction, previewAction, presentation, narrative, children }: {
   view: PlayerReadyView; feed: readonly PreplayFeedEntry[]; onAction(action: PlayerAction, item?: PlayerItem): void
-  onRetrySave(): void; describeAction: BrowserControls['describeAction']; children?: ReactNode; presentation?: ReactNode; narrative?: ReactNode
+  onRetrySave(): void; describeAction: BrowserControls['describeAction']; previewAction: BrowserControls['preview']; children?: ReactNode; presentation?: ReactNode; narrative?: ReactNode
 }) {
   const [utilitiesOpen, setUtilitiesOpen] = useState(false)
   const [panel, setPanel] = useState<'tasks' | 'body' | 'help' | 'map' | null>(null)
@@ -72,7 +72,7 @@ export function GameShell({ view, feed, onAction, onRetrySave, describeAction, p
             <span>{areaRoomName(view.location!)}</span>
             <button type="button" onClick={() => setPanel('map')}>已知地图</button>
           </div>}
-          <WorldStage view={view} onAction={onAction} presentation={presentation}
+          <WorldStage view={view} onAction={onAction} presentation={presentation} readAction={{ describeAction, preview: previewAction }}
             minimap={active && !view.combat ? <KnowledgeMap {...mapProps} onExpand={() => setPanel('map')} /> : null} />
           {narrative}
         </div>

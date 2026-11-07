@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { mountUi } from './test-fixtures'
+import { mountUi } from './owner-playtest-ux/inventory-driver'
 
 async function foodStack() {
   const h = await mountUi(); await h.d.setup(); await h.d.send('进入封锁区')

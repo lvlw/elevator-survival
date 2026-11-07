@@ -18,7 +18,7 @@ export function loadName(value: string): string {
   return ({ normal: '正常', loaded: '负载', overloaded: '超载', 'cannot-carry': '无法携带' } as Record<string, string>)[value] ?? '当前负重'
 }
 export function resourceName(value: string): string {
-  return ({ durability: '耐久', integrity: '完整度', battery: '电量' } as Record<string, string>)[value] ?? '资源'
+  return ({ durability: '耐久', integrity: '完整度', battery: '电量', charge: '电量' } as Record<string, string>)[value] ?? '资源'
 }
 export const phaseNames: Readonly<Record<string, string>> = {
   'first-hub': '准备出发', 'stable-active': '探索', 'battle-decision': '战斗', 'living-hub': '返回中枢', dead: '死亡',

@@ -108,7 +108,7 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
   return <div className="iw-app" onClickCapture={event => {
     if (event.target instanceof Element && event.target.closest('button') && !event.target.closest('.iw-entry-story')) { story.cancel(); closure.cancel() }
     if (event.detail > 1) { event.preventDefault(); event.stopPropagation() }
-  }} onContextMenuCapture={()=>{story.cancel();closure.cancel()}}><ActionInformationProvider view={view} controls={controls}><GameShell view={view} feed={snapshot.preplay!.feed} onAction={choose} describeAction={controls.describeAction}
+  }} onContextMenuCapture={()=>{story.cancel();closure.cancel()}}><ActionInformationProvider view={view} controls={controls}><GameShell view={view} feed={snapshot.preplay!.feed} onAction={choose} describeAction={controls.describeAction} previewAction={controls.preview}
     narrative={!draftCurrent && !confirmationCurrent ? <>{!closure.selection&&<StoryPanel story={story} view={view} controls={controls} />}<ClosurePanel story={closure} view={view} onAction={choose}/></> : null}
     onRetrySave={() => guarded(() => { controls.retrySave() })}
     presentation={<CommittedActionCue cue={presentation.cue} reduced={presentation.reduced} localReduced={presentation.localReduced} inBattle={view.combat !== null}

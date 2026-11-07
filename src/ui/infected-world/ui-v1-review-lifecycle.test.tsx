@@ -102,7 +102,7 @@ describe('R1-01 real React / original producer / controls lifecycle', () => {
     const h = await mountReview(), host = document.createElement('div'), root = createRoot(host)
     document.body.append(host)
     const controls = h.owner().controls()!, live = h.view(), onAction = vi.fn(), onRetrySave = vi.fn(), frames: number[] = []
-    const render = async (view: PlayerReadyView) => { await act(async () => root.render(<Profiler id="R1-shell-render-boundary" onRender={() => frames.push(host.ownerDocument.querySelectorAll('[aria-label="药食与维护"]').length)}><GameShell view={view} feed={[]} onAction={onAction} onRetrySave={onRetrySave} describeAction={controls.describeAction} /></Profiler>)) }
+    const render = async (view: PlayerReadyView) => { await act(async () => root.render(<Profiler id="R1-shell-render-boundary" onRender={() => frames.push(host.ownerDocument.querySelectorAll('[aria-label="药食与维护"]').length)}><GameShell view={view} feed={[]} onAction={onAction} onRetrySave={onRetrySave} describeAction={controls.describeAction} previewAction={controls.preview} /></Profiler>)) }
     try {
       await render(live)
       await h.flush(() => host.querySelector<HTMLButtonElement>('.iw-utility-button')!.click())

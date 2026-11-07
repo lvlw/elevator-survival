@@ -1,5 +1,5 @@
 import { afterEach, expect, it, vi } from 'vitest'
-import { mountUi } from '../test-fixtures'
+import { mountUi } from '../owner-playtest-ux/inventory-driver'
 import { domRouteA } from '../route-test-fixtures'
 import { observeBrowser } from '../../../app/infected-browser/test-observers'
 import { CHECKPOINT_KEY } from '../../../app/infected-browser/schema'

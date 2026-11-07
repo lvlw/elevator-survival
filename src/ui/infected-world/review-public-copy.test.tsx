@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { mountUi } from './test-fixtures'
+import { mountUi } from './owner-playtest-ux/inventory-driver'
 import { domRouteA } from './route-test-fixtures'
 import { itemImage } from './assets'
 

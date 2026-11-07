@@ -15,7 +15,8 @@ describe('infected-world local presentation contract', () => {
   it('missing art uses a neutral item placeholder and ordinary markup contains no hidden identities', async () => {
     const h = await mountUi('DOM-privacy-seed')
     try {
-      await h.d.setup('crow', 'engineer'); await h.d.button('装备')
+      await h.d.setup('crow', 'engineer')
+      expect(h.host.querySelector('section[aria-label="装备"]')).not.toBeNull()
       const crow = [...h.host.querySelectorAll<HTMLButtonElement>('.iw-equipment .iw-item')].find(button => button.getAttribute('aria-label')?.startsWith('撬棍'))!
       expect(crow.querySelector('img')?.getAttribute('src')).toBe(itemImage('撬棍'))
       expect(itemImage('撬棍')).not.toBe(itemPlaceholder)

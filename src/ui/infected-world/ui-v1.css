@@ -358,3 +358,65 @@
 .iw-closure-ending { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; padding:8px 12px; font-size:14px; background:#13252be8; border:1px solid #756b54; }
 .iw-closure-ending details { width:100%; }
 .iw-closure-ending p { margin:6px 0; }
+
+/* Owner playtest: objectives and known routes are separate, read-only surfaces. */
+.iw-game .iw-sidebar { overflow-y:auto; overflow-x:hidden; }
+.iw-mission-tracker .iw-eyebrow,.iw-mission-detail .iw-eyebrow { margin:0 0 4px; }
+.iw-mission-cards { display:grid; gap:9px; list-style:none; padding:0!important; margin:0; }
+.iw-mission-cards > li { min-width:0; padding:9px 10px; border:1px solid #4b5e60; border-left:2px solid #a78b59; background:#101c24e8; }
+.iw-mission-cards > li[data-complete="true"] { border-left-color:#8fb5a5; }
+.iw-mission-cards header { display:flex; align-items:baseline; flex-wrap:wrap; gap:3px 8px; }
+.iw-mission-cards header h3 { margin:0; font-size:15px; font-weight:600; letter-spacing:0; }
+.iw-mission-cards header h3 span { color:#c4a878; }
+.iw-goal-state { color:#e2c089; font-size:12px; }
+.iw-mission-cards [data-complete="true"] .iw-goal-state { color:#add4bf; }
+.iw-mission-cards p { margin:4px 0 0; font-size:13px; line-height:1.5; overflow-wrap:anywhere; }
+.iw-goal-next { color:#c6d6d1; }
+.iw-app .iw-mission-cards button { min-height:25px; margin-top:5px; padding:2px 7px; font-size:12px; }
+.iw-mission-detail .iw-mission-cards { gap:10px; }
+.iw-mission-detail .iw-mission-cards > li { padding:9px 12px; }
+.iw-mission-detail .iw-mission-cards h3 { font-size:17px; }
+.iw-mission-detail .iw-mission-cards p { font-size:16px; }
+.iw-mission-rules { margin-top:10px; color:#bfccca; font-size:14px; }
+.iw-mission-rules p { margin:6px 0 0; }
+.iw-mission-ended strong { color:#dfca99; }
+.iw-mission-ended p { margin:4px 0 0; color:#b9c8c3; font-size:14px; }
+
+.iw-room-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0, min(346px,46%));
+  grid-template-rows:auto minmax(0,1fr) auto auto; gap:10px 16px; height:100%; min-height:0; padding:18px 22px 12px; }
+.iw-room-layout .iw-room-heading { position:static; display:block; grid-column:1; grid-row:1; min-width:0; }
+.iw-room-layout .iw-room-heading h1 { margin:4px 0 8px; }
+.iw-room-layout .iw-room-content { grid-column:1; grid-row:2; display:flex; flex-direction:column; justify-content:safe end;
+  min-height:0; padding:4px; max-height:none; overflow:auto; }
+.iw-room-layout .iw-room-content > * { flex:none; }
+.iw-room-layout .iw-ground-items { grid-template-columns:minmax(0,1fr); max-height:none; overflow:visible; }
+.iw-room-layout .iw-room-navigation { grid-column:1/-1; grid-row:3; display:grid; gap:6px; }
+.iw-room-layout .iw-travel { padding-top:8px; }
+.iw-room-layout .iw-room-feedback { grid-column:1/-1; grid-row:4; min-width:0; }
+.iw-room-layout .iw-presentation-settings { position:relative; inset:auto; width:fit-content; margin-left:auto; }
+.iw-room-layout .iw-presentation-settings > div { position:absolute; z-index:10; right:0; bottom:calc(100% + 6px); min-width:200px; }
+.iw-stage-map { grid-column:2; grid-row:1/3; align-self:start; min-width:0; min-height:0; padding:8px 9px 5px;
+  border:1px solid #586963; background:#101b23f0; box-shadow:0 5px 20px #0007; }
+.iw-stage-map .iw-map-canvas { max-height:278px!important; }
+.iw-stage-map .iw-map-current { font-size:12px; }
+.iw-stage-map .iw-map-toolbar strong { font-size:14px; }
+.iw-map-toolbar > div { display:flex; gap:4px; }
+.iw-stage-map .iw-map-toolbar button { min-height:26px; padding:2px 7px; font-size:12px; }
+.iw-stage-map .iw-map-legend { font-size:11px; white-space:normal; }
+.iw-stage-map .iw-map-selection { max-height:74px; margin:4px 0 0; font-size:12px; }
+.iw-stage-map .iw-map-selection button { min-height:24px; padding:2px 7px; }
+.iw-map-external { cursor:pointer; }
+.iw-map-external rect { fill:#242b26; stroke:#c4a36a; stroke-width:1.5px; }
+.iw-map-external[data-visited="false"] rect { stroke-dasharray:4 3; }
+.iw-map-external[data-target="true"] rect,.iw-map-external:focus-visible rect,.iw-map-external:hover rect { stroke:#f0d292; stroke-width:3px; }
+.iw-map-external text { fill:#f0d9a8; }
+.iw-map-channel:focus-visible .iw-map-edge,.iw-map-channel:hover .iw-map-edge { stroke:#f0d292; }
+.iw-battle-map-link { flex:none; align-self:flex-end; display:flex; align-items:center; gap:8px; font-size:12px; color:#b5c2c0; }
+.iw-app .iw-battle-map-link button { min-height:27px; padding:2px 8px; font-size:12px; }
+@media(max-height:780px) {
+  .iw-stage-map .iw-map-canvas { max-height:216px!important; }
+}
+@media(max-width:780px) {
+  .iw-room-layout { padding:50px 10px 10px; grid-template-columns:minmax(0,1fr) minmax(0,42%); gap:8px; }
+  .iw-stage-map .iw-map-canvas { max-height:170px!important; }
+}

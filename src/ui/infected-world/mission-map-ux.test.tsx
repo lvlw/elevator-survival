@@ -12,8 +12,8 @@ it('real early task details explain the relationship and only locate public room
  try {await h.d.setup();await h.d.send('进入封锁区');const before=h.view();o.clear();h.setItem.mockClear();h.entropy.mockClear()
   await h.d.button('任务目标')
   const dialog=document.querySelector('[aria-label="任务目标"]')!
-  expect(dialog.textContent).toContain('先恢复相关供电');expect(dialog.textContent).toContain('不等于转运已经恢复')
-  expect(dialog.textContent).toContain('亲自带回医院电梯前室交付');expect(dialog.textContent).toContain('当前真实成果')
+  expect(dialog.querySelector('[data-goal=transfer]')?.textContent).toContain('供电恢复后，装好转运装置')
+  expect(dialog.querySelector('[data-goal=sample]')?.textContent).toContain('带回医院·电梯前室交付');expect(dialog.querySelectorAll('.iw-goal-state')).toHaveLength(3)
   expect(dialog.textContent).not.toMatch(/周衡|转运支路柜|冷藏室|检修间/)
   const locate=[...dialog.querySelectorAll<HTMLButtonElement>('button')].find(b=>b.getAttribute('aria-label')?.startsWith('在地图查看：'))!
   await h.flush(()=>locate.click());expect(document.querySelector('[aria-label="已知地图"]')).not.toBeNull()
@@ -26,23 +26,23 @@ it('formal sample-first production path keeps unfinished power/transport explici
  const h=await mountUi()
  try {await h.d.setup();for(let s=0;s<=4;s++)await domRouteA(h.d,s)
   expect(h.view().tasks.sample).toBe('carried');const m=missionGuide(h.view())
-  expect(m.power).toBe(false);expect(m.transfer).toBe(false);expect(m.sample).toContain('待交付')
-  expect(m.status).toContain('携带不等于');expect(m.clues.map(c=>c.text).join('|')).not.toContain('提取样本')
+  expect(m.power).toBe(false);expect(m.transfer).toBe(false);expect(m.goals.find(g=>g.id==='sample')?.status).toContain('待交付')
+  expect(m.goals.find(g=>g.id==='sample')?.next.text).toContain('完成供电与装接后携回交付');expect(m.goals.map(g=>g.next.text).join('|')).not.toContain('提取样本')
   await h.d.button('任务目标');const text=document.querySelector('.iw-mission-detail')!.textContent!
-  expect(text).toContain('装接未完成');expect(text).toContain('样本已取得，但委托未完成')
-  expect(text).not.toContain('当前可以交付返回')
+  expect(text).toContain('未装接');expect(text).toContain('样本在身上。完成供电与装接后携回交付')
+  expect(text).not.toContain('选择「交付返回」')
   await h.d.button('关闭')
   await h.d.walk(['隔离走廊','大厅','后勤控制间','岗亭','配线廊','转运支路柜']);await h.d.rest()
   expect(h.view().narrative?.powerSurvey).toBe(false);expect(missionGuide(h.view()).power).toBe(false)
   await h.d.task('调查供电');expect(h.view().narrative?.powerSurvey).toBe(true);expect(missionGuide(h.view()).power).toBe(false)
   await h.d.task('恢复供电');expect(missionGuide(h.view()).power).toBe(true);expect(missionGuide(h.view()).transfer).toBe(false)
-  expect(missionGuide(h.view()).clues.find(c=>c.id==='sample-held')?.text).not.toContain('还需恢复供电')
+  expect(missionGuide(h.view()).goals.find(g=>g.id==='sample')?.next.text).toBe('样本在身上。装好转运装置后携回交付。')
   await h.d.walk(['配线廊','岗亭','后勤控制间','转运平台']);await h.d.task('安装转运装置',undefined,{materials:['component','module','金属零件','电子元件']})
   expect(missionGuide(h.view()).transfer).toBe(true);expect(h.view().terminal.eligibility.deliver).toBe(false)
-  expect(missionGuide(h.view()).clues.find(c=>c.id==='sample-held')?.target).toEqual({place:'医院',name:'电梯前室'})
+  expect(missionGuide(h.view()).goals.find(g=>g.id==='sample')?.next.target).toEqual({place:'医院',name:'电梯前室'})
   await h.d.walk(['后勤控制间','大厅','电梯前室']);expect(h.view().terminal.eligibility.deliver).toBe(true)
-  expect(missionGuide(h.view()).status).toBe('当前可以交付返回。');await h.d.send('交付返回')
-  expect(h.view().tasks.sample).toBe('delivered');expect(missionGuide(h.view()).ended).toBe(true);expect(missionGuide(h.view()).clues).toEqual([])
+  expect(missionGuide(h.view()).goals.find(g=>g.id==='sample')?.next.text).toBe('在电梯前室选择「交付返回」。');await h.d.send('交付返回')
+  expect(h.view().tasks.sample).toBe('delivered');expect(missionGuide(h.view()).ended).toBe(true);expect(missionGuide(h.view()).goals).toEqual([])
 
  }finally{await h.unmount()}
 },30000)
@@ -50,11 +50,11 @@ it('workorder is explicitly named, reading is not investigation, and the real pr
  const o=observeBrowser(),h=await mountUi()
  try{await h.d.setup();await h.d.send('进入封锁区');await h.d.walk(['大厅','后勤控制间'])
   expect(h.view().narrative?.workorder).toBe(false);expect(h.host.textContent).not.toContain('执行人：周衡')
-  expect(missionGuide(h.view()).clues.some(c=>c.text.includes('调查停用工单'))).toBe(true)
+  expect(missionGuide(h.view()).goals.some(g=>g.next.text.includes('调查停用工单'))).toBe(true)
   o.clear();h.setItem.mockClear();await h.d.task('调查停用工单')
   expect(h.view().narrative?.workorder).toBe(true);expect(o.counts()).toMatchObject({dispatch:1,current:1,notices:1})
   expect(h.setItem.mock.calls.filter(([k])=>k===CHECKPOINT_KEY)).toHaveLength(1)
-  expect(missionGuide(h.view()).workorder).toContain('主动停用')
+  expect(h.view().narrative?.known).toContain('H07');expect(missionGuide(h.view()).goals.some(g=>g.next.text.includes('调查停用工单'))).toBe(false)
  }finally{await h.unmount()}
 })
 it('actual cross-building move retains original cost/entry and switches the default local layer, never teleports to another room',async()=>{
@@ -64,7 +64,8 @@ it('actual cross-building move retains original cost/entry and switches the defa
   expect(h.view().location).toEqual({place:'酒店',name:'酒店入口'})
   expect(h.view().body.energy.current).toBe(before.body.energy.current-cost)
   expect(h.host.querySelector('.iw-known-map')?.getAttribute('data-map-place')).toBe('酒店')
-  expect(h.host.querySelector('.iw-map-canvas')?.textContent).not.toMatch(/药房|后勤控制间|电梯前室/)
+  expect([...h.host.querySelectorAll('.iw-map-canvas .iw-map-node')].map(node=>node.textContent).join('')).not.toMatch(/药房|后勤控制间|电梯前室/)
+  expect(h.host.querySelector('[data-map-external][aria-label*="医院·电梯前室"]')).not.toBeNull()
   expect(o.counts()).toMatchObject({dispatch:1,current:1,notices:1});expect(h.setItem.mock.calls.filter(([k])=>k===CHECKPOINT_KEY)).toHaveLength(1)
  }finally{await h.unmount()}
 })
@@ -75,9 +76,9 @@ it('public input alone drives layers and clues; inventory names, private-looking
   expect(missionGuide(irrelevant)).toEqual(missionGuide(v));expect(mapLayer(irrelevant.map,'医院')).toEqual(mapLayer(v.map,'医院'))
   const g=knownGraph(v.map);expect(g.places).not.toContain('供电所');expect(g.byName.has('医院 / 冷藏室')).toBe(false)
   const room=v.map.nodes.find(n=>n.name==='后勤控制间')!;const ambiguous={...v,map:{...v.map,nodes:[...v.map.nodes,{...room,current:false}]}}
-  expect(missionGuide(ambiguous).clues.find(c=>c.id==='record')).toMatchObject({title:'医院 / 后勤控制间',text:expect.stringContaining('查看现场记录')})
-  expect(missionGuide(ambiguous).clues.find(c=>c.id==='record')?.target).toBeUndefined()
-  expect(missionGuide(v).clues.some(c=>c.title.includes('冷藏室'))).toBe(false)
+  expect(missionGuide(ambiguous).goals.find(g=>g.id==='power')?.next.text).toContain('医院·后勤控制间有同名地点')
+  expect(missionGuide(ambiguous).goals.find(g=>g.id==='power')?.next.target).toBeUndefined()
+  expect(missionGuide(v).goals.some(g=>g.next.text.includes('冷藏室'))).toBe(false)
  }finally{await h.unmount()}
 })
 it('owner loss removes task/map selection and old positioning controls cannot execute or write',async()=>{
@@ -97,6 +98,6 @@ it('formal power-first route needs neither a sample nor transport completion and
   await h.d.task('调查供电');expect(missionGuide(h.view()).power).toBe(false)
   await h.d.task('恢复供电');const m=missionGuide(h.view())
   expect(m.power).toBe(true);expect(m.transfer).toBe(false);expect(h.view().tasks.sample).toBe('not-acquired')
-  expect(m.clues.some(c=>c.id==='power')).toBe(false);expect(m.status).not.toBe('当前可以交付返回。')
+  expect(m.goals.find(g=>g.id==='power')?.complete).toBe(true);expect(m.goals.find(g=>g.id==='sample')?.next.text).not.toContain('选择「交付返回」')
  }finally{await h.unmount()}
 })

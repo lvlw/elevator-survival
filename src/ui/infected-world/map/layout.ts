@@ -9,12 +9,12 @@ export function positions(names:readonly string[],place:string|null):Point[] {
 const inside=(p:Point,c:Point,pad=0)=>p.x>c.x-48-pad&&p.x<c.x+48+pad&&p.y>c.y-22-pad&&p.y<c.y+22+pad
 const hit=(a:Point,b:Point,c:Point,pad=0)=>a.x===b.x ? a.x>c.x-48-pad&&a.x<c.x+48+pad&&Math.max(a.y,b.y)>c.y-22-pad&&Math.min(a.y,b.y)<c.y+22+pad : a.y>c.y-22-pad&&a.y<c.y+22+pad&&Math.max(a.x,b.x)>c.x-48-pad&&Math.min(a.x,b.x)<c.x+48+pad
 /** Deterministic orthogonal shortest path around every public room rectangle. */
-export function corridor(a:Point,b:Point,rooms:readonly Point[]) {
+export function corridor(a:Point,b:Point,rooms:readonly Point[], bounds = { width: diagramWidth, height: diagramHeight }) {
  const horizontal=Math.abs(a.x-b.x)>Math.abs(a.y-b.y)
  const sign=horizontal?Math.sign(b.x-a.x):Math.sign(b.y-a.y)
  const start={x:a.x+(horizontal?sign*49:0),y:a.y+(horizontal?0:sign*23)},end={x:b.x-(horizontal?sign*49:0),y:b.y-(horizontal?0:sign*23)}
- const xs=[...new Set([2,248,start.x,end.x,...rooms.flatMap(p=>[p.x-58,p.x,p.x+58])])].filter(x=>x>=2&&x<=248).sort((a,b)=>a-b)
- const ys=[...new Set([3,317,start.y,end.y,...rooms.flatMap(p=>[p.y-32,p.y,p.y+32])])].filter(y=>y>=3&&y<=317).sort((a,b)=>a-b)
+ const xs=[...new Set([2,bounds.width-2,start.x,end.x,...rooms.flatMap(p=>[p.x-58,p.x,p.x+58])])].filter(x=>x>=2&&x<=bounds.width-2).sort((a,b)=>a-b)
+ const ys=[...new Set([3,bounds.height-3,start.y,end.y,...rooms.flatMap(p=>[p.y-32,p.y,p.y+32])])].filter(y=>y>=3&&y<=bounds.height-3).sort((a,b)=>a-b)
  const key=(p:Point)=>`${p.x},${p.y}`, queue=[start], costs=new Map([[key(start),0]]),previous=new Map<string,Point>()
  while(queue.length) {
   queue.sort((p,q)=>costs.get(key(p))!-costs.get(key(q))!);const p=queue.shift()!

@@ -1,43 +1,92 @@
 import type { PlayerReadyView } from '../../../state/residence-session/player-types'
-import { knownGraph, uniqueTarget, type MapTarget } from '../map/projection'
-export type Clue = Readonly<{ id:string; title:string; text:string; target?:MapTarget }>
-/** Derived exclusively from the current safe DTO. Never a gameplay or knowledge owner. */
-export function missionGuide(v: PlayerReadyView) {
- const power=v.tasks.publicObjectives.find(o=>o.label==='恢复供电')?.state==='completed'
- const transfer=v.tasks.publicObjectives.find(o=>o.label==='急救转运')?.state==='completed'
- const sample=({'not-acquired':'尚未取得',carried:'已携带，待交付','left-in-world':'留置现场，返回前需取回',delivered:'已交付',unavailable:'当前不可取得'})[v.tasks.sample]
- const ended=v.phase==='dead'||v.phase==='living-hub'
- const clues:Clue[]=[]
- const add=(id:string,place:string,name:string|undefined,text:string)=>{
-  const target={place,...(name?{name}:{})}
-  const disclosed=name?v.map.nodes.some(n=>n.place===place&&n.name===name):v.map.nodes.some(n=>n.place===place)
-  if(disclosed)clues.push({id,title:name?`${place} / ${name}`:place,text,...(uniqueTarget(v.map,target)?{target}:{})})
- }
- const current=knownGraph(v.map)
- if(!ended&&v.phase==='active-world') {
-  if(v.combat)clues.push({id:'encounter',title:'当前遭遇',text:'先处理当前遭遇。地图只供查看，已知路线不代表此刻能移动。'})
-  else if(v.terminal.eligibility.deliver) add('deliver','医院','电梯前室','当前已具备原交付资格，可使用“交付返回”；仍需原保护确认。')
-  else {
-   const visible=v.tasks.choices.filter(a=>!(v.tasks.sample==='carried'&&a.label==='提取样本')).map(a=>a.label)
-   if(visible.length&&v.location) add('here',v.location.place,v.location.name,`当前现场可调查或处理：${[...new Set(visible)].join('、')}。具体要求以原行动说明为准。`)
-   if(!power) {
-    const text=v.narrative?.powerSurvey?'供电已核查，仍待恢复。到设备现场核对“恢复供电”的实际要求。':'调查已知供电设备，查明转运支路的情况；尚未调查不代表供电已恢复。'
-    if(current.byName.get('供电所 / 转运支路柜'))add('power','供电所','转运支路柜',text)
-    else add('power','供电所',undefined,'查找相关供电设备，调查转运恢复所需的供电条件。')
-   }
-   if(!v.narrative?.workorder&&!visible.includes('调查停用工单'))add('record','医院','后勤控制间','查看现场记录，查明转运停摆的原因；到现场可“调查停用工单”。')
-   if(!transfer)add('install','医院','转运平台',power?'供电已恢复，转运设备仍待装接。到设备现场核对“安装转运装置”的要求。':'转运设备尚未装接。先恢复相关供电；可在已知设备现场核对装接需求。')
-   if(v.tasks.sample==='carried')clues.push({id:'sample-held',title:'指定样本',...(power&&transfer&&uniqueTarget(v.map,{place:'医院',name:'电梯前室'})?{target:{place:'医院',name:'电梯前室'}}:{}),text:power&&transfer?'成果已齐备，携原样本回医院电梯前室，核对原交付资格。':`样本已取得，但委托未完成；还需${[!power?'恢复供电':null,!transfer?'完成转运装接':null].filter(Boolean).join('、')}，再携回交付。`})
-   else if(v.tasks.sample==='left-in-world')clues.push({id:'sample-left',title:'指定样本留置',text:'样本留在现场，返回前需取回；没有公开位置时不猜测它所在的房间。'})
-   else if(v.tasks.sample==='not-acquired')add('sample','医院','冷藏室','调查已知冷藏区域的现场任务信息，核对指定样本的提取要求；位置已知不等于样本已取得。')
-   if(!clues.some(c=>c.target)) {
-    const n=v.map.nodes.find(n=>n.current)??v.map.nodes.find(n=>n.visited)
-    if(n)add('explore',n.place,n.name,'查看当前已知出口与现场信息，继续调查供电、转运和指定样本线索；不要求固定先后路线。')
-   }
+import { missionCopy } from '../../../content/infected-world-v0.1/mission-guidance-copy'
+import { areaRoomName, travelDestination, uniqueTarget, type MapTarget } from '../map/projection'
+
+type GoalId = keyof typeof missionCopy.goals
+type Step = Readonly<{ text: string; target?: MapTarget }>
+type Goal = Readonly<{ id: GoalId; title: string; purpose: string; status: string; complete: boolean; next: Step }>
+
+const sampleStatus: Record<PlayerReadyView['tasks']['sample'], string> = {
+  'not-acquired': '未取得', carried: '已携带，待交付', 'left-in-world': '留在现场', delivered: '已交付', unavailable: '当前不可取得',
+}
+
+/** Every suggested place or locator comes from this view's public map. */
+export function missionGuide(view: PlayerReadyView, installShortage: readonly string[] = []) {
+  const { map, location } = view
+  const power = view.tasks.publicObjectives.some(goal => goal.label === '恢复供电' && goal.state === 'completed')
+  const transfer = view.tasks.publicObjectives.some(goal => goal.label === '急救转运' && goal.state === 'completed')
+  const sample = view.tasks.sample
+  const ended = view.phase === 'dead' || view.phase === 'living-hub'
+  const outcome = view.terminal.result?.outcome
+  const resultTitle = outcome ? missionCopy.outcomes[outcome] : view.phase === 'dead' ? '玩家死亡' : '委托已结束'
+  if (ended) return { power, transfer, sample, ended, resultTitle, goals: [] as readonly Goal[] }
+
+  const here = (target: Required<MapTarget>) => location?.place === target.place && location.name === target.name
+  const stepAt = (place: string, name: string, action: string, localAction = action): Step | undefined => {
+    const target = { place, name }
+    const matching = map.nodes.filter(node => node.place === place && node.name === name)
+    if (!matching.length) return undefined
+    if (!uniqueTarget(map, target)) return { text: `已知${areaRoomName(target)}有同名地点，先核对路线。` }
+    return { text: here(target) ? localAction : `到${areaRoomName(target)}${action}`, target }
   }
- }
- return {power,transfer,sample,clues,ended,
-  status:ended?(v.phase==='dead'?'本次委托已终止，不能继续旧委托。':'本次委托已正式结束，以原结算结果为准。'):v.phase==='first-hub'?'准备确认后，仍由你决定何时进入医院。':v.terminal.eligibility.deliver?'当前可以交付返回。':v.tasks.sample==='carried'?'样本在身上；携带不等于委托完成。':'按已知线索调查，路线和顺序由你选择。',
-  workorder:v.narrative?.workorder?'已查工单：转运曾被主动停用并隔离污染侧。':null,
- }
+  const workorder = !view.narrative?.workorder
+    ? stepAt('医院', '后勤控制间', '调查停用工单。', '调查停用工单，查明停运线索。') : undefined
+  const explore = (): Step => {
+    if (view.phase === 'first-hub') return { text: '准备好后，从中枢进入封锁区。' }
+    const source = view.sources.find(source => !source.completed && source.choices.length)
+    if (source && location && uniqueTarget(map, location)) {
+      return { text: `尚无线索。先查看${areaRoomName(location)}的「${source.label}」。`, target: location }
+    }
+    const choices = view.move.options.flatMap(action => {
+      const target = travelDestination(map, action.label)
+      return target ? [target] : []
+    })
+    const next = choices.find(node => !node.visited) ?? choices[0]
+    if (next) return { text: `尚无线索。可先到${areaRoomName(next)}查看现场。`, target: { place: next.place, name: next.name } }
+    return { text: '尚无线索。查看当前现场和已知出口。' }
+  }
+  const powerStep = (): Step => {
+    if (power) return { text: '支路已通电，可以着手装接转运装置。' }
+    const action = view.narrative?.powerSurvey ? '恢复供电' : '调查供电'
+    return stepAt('供电所', '转运支路柜', action + '。') ??
+      stepAt('供电所', '配线廊', '查看已知出口，寻找供电设备。') ?? workorder ?? explore()
+  }
+  const transferStep = (): Step => {
+    if (transfer) return { text: '装接已完成，留意样本目标的返程提示。' }
+    if (installShortage.length) return { text: '装接还缺' + installShortage.join('、') + '。' }
+    const visible = view.tasks.choices.find(action => ['修复转运组件', '取得转运组件', '取得通信模块'].includes(action.label))
+    if (visible && location) {
+      return { text: `查看「${visible.label}」所需条件。`, ...(uniqueTarget(map, location) ? { target: location } : {}) }
+    }
+    const install = stepAt('医院', '转运平台', '查看「安装转运装置」所需材料。')
+    if (power && install) return install
+    if (workorder) return workorder
+    const method = !view.closure?.method && !view.closure?.componentCarried
+      ? stepAt('物流', '周衡休息室', '找周衡核对处理办法（可选）。', '可以找周衡核对处理办法。') : undefined
+    return method ??
+      stepAt('物流', '装卸场', '查看转运组件的作业要求。') ??
+      stepAt('通信', '机房', '查看通信模块的取得条件。') ??
+      stepAt('物流', '岗亭', '从已知出口找装接线索。') ?? install ?? explore()
+  }
+  const sampleStep = (): Step => {
+    if (sample === 'delivered') return { text: '指定样本已交付。' }
+    if (sample === 'carried') {
+      if (view.terminal.eligibility.deliver) return { text: '在电梯前室选择「交付返回」。' }
+      if (power && transfer) return stepAt('医院', '电梯前室', '交付样本。') ?? { text: '把样本带回医院·电梯前室交付。' }
+      return { text: power ? '样本在身上。装好转运装置后携回交付。' : '样本在身上。完成供电与装接后携回交付。' }
+    }
+    if (sample === 'left-in-world') return { text: '返程前取回留置的样本。地图未标注物品位置。' }
+    if (sample === 'unavailable') return { text: '目前无法取得样本，查看已公开的现场记录。' }
+    return stepAt('医院', '冷藏室', '查看「提取样本」的要求。', '查看「提取样本」，为样本箱留出位置。') ?? explore()
+  }
+  const goal = (id: GoalId, status: string, complete: boolean, step: Step): Goal => ({
+    id, ...missionCopy.goals[id], status, complete,
+    next: view.combat && !complete ? { ...step, text: '遭遇结束后：' + step.text } : step,
+  })
+  const goals = [
+    goal('power', power ? '已恢复' : view.narrative?.powerSurvey ? '待恢复' : '未核查', power, powerStep()),
+    goal('transfer', transfer ? '已装接' : '未装接', transfer, transferStep()),
+    goal('sample', sampleStatus[sample], sample === 'delivered', sampleStep()),
+  ]
+  return { power, transfer, sample, ended, resultTitle, goals }
 }

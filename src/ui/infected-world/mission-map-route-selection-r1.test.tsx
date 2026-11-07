@@ -139,7 +139,8 @@ it('formal same-building knowledge expansion preserves the selected corridor thr
     expect(h.setItem.mock.calls.filter(([key]) => key === CHECKPOINT_KEY)).toHaveLength(1)
     // All subsequent map viewing is readonly beside the real owner.
     observed.clear(); h.setItem.mockClear(); h.entropy.mockClear()
-    await h.d.button('世界'); await h.d.button('本地'); await h.d.button('回当前位置')
+    await h.d.button('世界'); await h.d.button('本地')
+    expect(h.host.querySelector('.iw-known-map')?.getAttribute('data-map-place')).toBe('医院')
     expect(h.host.querySelector('.iw-map-selection')).toBeNull()
     expect(h.view()).toBe(after); expect(h.setItem).not.toHaveBeenCalled(); expect(h.entropy).not.toHaveBeenCalled()
     expect(observed.counts()).toMatchObject({ dispatch: 0, current: 0, notices: 0, draw: 0 })

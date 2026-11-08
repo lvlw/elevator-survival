@@ -1,0 +1,36 @@
+[
+  {
+    "configuration": "infected-world-entry-test-v0.1",
+    "roll": 66,
+    "energyBefore": 96,
+    "energyAfter": 84,
+    "units": {
+      "bandage": 1,
+      "firstaid": 1,
+      "disinfect": 0,
+      "painkiller": 0,
+      "metal": 0,
+      "electronic": 0,
+      "cloth": 0,
+      "battery": 0,
+      "food": 0
+    }
+  },
+  {
+    "configuration": "owner-polish-h2-bandage-test-v0.1",
+    "roll": 66,
+    "energyBefore": 96,
+    "energyAfter": 84,
+    "units": {
+      "bandage": 2,
+      "firstaid": 1,
+      "disinfect": 0,
+      "painkiller": 0,
+      "metal": 0,
+      "electronic": 0,
+      "cloth": 0,
+      "battery": 0,
+      "food": 0
+    }
+  }
+]

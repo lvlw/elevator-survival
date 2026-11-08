@@ -1,0 +1,170 @@
+{
+  "tool": "Codex built-in image_gen image edit; current tool emits PNG, native GIF encoded with Pillow",
+  "originalPng": [
+    {
+      "file": "npc-lin-candidate.png",
+      "bytes": 811188,
+      "sha256": "05fe8379dc1b7765cb253bb2856d465ef8bd59da16e3089350d0e5ac7ecb4dae",
+      "dimensions": [
+        1122,
+        1402
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "npc-lin-blink-source.png",
+      "bytes": 767578,
+      "sha256": "11a9d2609351201b9368c8100e8da5856c0d7a9e1086f4b3f6d46eb18efe9498",
+      "dimensions": [
+        1122,
+        1402
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    }
+  ],
+  "gif": {
+    "file": "npc-lin-blink.gif",
+    "bytes": 153436,
+    "sha256": "efd80834f2d1190544e32d0eec41eca377a9b93af03159903808e1dc1f6b48d0",
+    "dimensions": [
+      512,
+      640
+    ],
+    "frameMs": [
+      2870,
+      130
+    ],
+    "loop": "infinite",
+    "transparent": true
+  },
+  "existingArtTranscodes": [
+    {
+      "file": "explore.webp",
+      "bytes": 96414,
+      "sha256": "3ce36d93347bef77866ee6aab3ae63408640ae8b4ee5265d377b673bcb24d85b",
+      "from": "src/assets/presentation/world-ui-v1/bg-h2-v1.png",
+      "dimensions": [
+        1152,
+        648
+      ]
+    },
+    {
+      "file": "corridor.webp",
+      "bytes": 95464,
+      "sha256": "32ff16cd4371b7da1c7663f76d658cf4653d1231308df9416be4d1294252fe56",
+      "from": "src/assets/presentation/v0.1/visual/bg_isolation_corridor_v01.png",
+      "dimensions": [
+        1152,
+        648
+      ]
+    },
+    {
+      "file": "hotel.webp",
+      "bytes": 134140,
+      "sha256": "3e5664d57f6f77995b07b33e1ecf43ad34c1c18e9ed8e5d35c01119caf6076b4",
+      "from": "src/assets/presentation/world-ui-v1/bg-hotel-v1.png",
+      "dimensions": [
+        1152,
+        648
+      ]
+    },
+    {
+      "file": "lin-default.webp",
+      "bytes": 17034,
+      "sha256": "16fd2dbc3cd8193ada6d84f3ac242c2f4d63a915a99b5df31906961bdef736bc",
+      "from": "src/assets/presentation/world-ui-v1/npc-lin-v1.png",
+      "dimensions": [
+        320,
+        400
+      ]
+    },
+    {
+      "file": "enemy.webp",
+      "bytes": 21310,
+      "sha256": "ad6bede1285bb1817cfff079a547c55e690e64ff509ae97ca20d87dcd90ad057",
+      "from": "src/assets/presentation/world-battle-v1/enemy_infected_orderly_wounded_v02.png",
+      "dimensions": [
+        320,
+        400
+      ]
+    },
+    {
+      "file": "bandage.webp",
+      "bytes": 2738,
+      "sha256": "01b3ad13b5ae05c572b52c0f4e30614a3bb20a4420b7587d7bd81be081dd0952",
+      "from": "src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "dimensions": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "firstaid.webp",
+      "bytes": 1832,
+      "sha256": "de151189c2a542aafcaf9dbbc5336d939491f08a41b58b6de0ec4df402305fb2",
+      "from": "src/assets/presentation/world-ui-v1/item-firstaid-v1.png",
+      "dimensions": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "coat.webp",
+      "bytes": 3468,
+      "sha256": "3b4566f87b7019a4dbcf9fd765686e359bfda49239c30c50e054bd9a9dc32dd3",
+      "from": "src/assets/presentation/v0.1/visual/icon_heavy_coat_v01.png",
+      "dimensions": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "pipe.webp",
+      "bytes": 1962,
+      "sha256": "705831356ed995c074b9dfeb9e84471e7ba2b1456f45612a13321f243d17c15f",
+      "from": "src/assets/presentation/v0.1/visual/icon_metal_pipe_v01.png",
+      "dimensions": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "lamp.webp",
+      "bytes": 2204,
+      "sha256": "ab1305f6b1cecccd53ca496df790eed6da6ed01ce0fc22013e6b10412bb69902",
+      "from": "src/assets/presentation/v0.1/visual/icon_flashlight_v01.png",
+      "dimensions": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "ration.webp",
+      "bytes": 2298,
+      "sha256": "e41bbf995522e6c2f5bb6b79f095169b7be492d1b08acb7ebb193da4a8ee0514",
+      "from": "src/assets/presentation/world-ui-v1/item-ration-v1.png",
+      "dimensions": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "metal.webp",
+      "bytes": 3322,
+      "sha256": "ca03b1af4669f850d508acaae93ddc44fa3c81785d0821b1713920fd4920b2a4",
+      "from": "src/assets/presentation/world-ui-v1/item-metal-v1.png",
+      "dimensions": [
+        96,
+        96
+      ]
+    }
+  ]
+}

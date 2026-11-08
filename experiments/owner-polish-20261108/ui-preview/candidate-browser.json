@@ -1,0 +1,86 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "checks": {
+      "cellCount": 24,
+      "cellCssPixels": [
+        36,
+        36
+      ],
+      "explore": {
+        "quickSize": [
+          [
+            113,
+            56
+          ],
+          [
+            113,
+            56
+          ]
+        ],
+        "originalIcon": "../assets/action-search-a.svg",
+        "candidateIcon": "../assets/action-search-b.svg"
+      },
+      "battle": "one shot triggered, released, no stage change",
+      "devicePixelStates": 4,
+      "gifPixelStates": 3,
+      "motion": "static preference and candidate missing-file fallback verified",
+      "replacement": "selection, cancel, explicit confirm and return",
+      "scrollWidth": 1440
+    },
+    "screenshots": [
+      {
+        "file": "candidate-explore-1440.png",
+        "sha256": "e89a9ab51b29ba9e716868d6e9ec330901f8e69f4aded8831d1ba0c8edb26935"
+      },
+      {
+        "file": "candidate-lin-1440.png",
+        "sha256": "ae409c40216283cc17842c8e8caed0518bc1f14d1b8b339dfd856d0dd5bef1e4"
+      }
+    ],
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36 Edg/157.0.0.0",
+    "dpr": 1
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "checks": {
+      "cellCount": 24,
+      "cellCssPixels": [
+        31,
+        31
+      ],
+      "explore": {
+        "quickSize": [
+          [
+            98,
+            56
+          ],
+          [
+            98,
+            56
+          ]
+        ],
+        "originalIcon": "../assets/action-search-a.svg",
+        "candidateIcon": "../assets/action-search-b.svg"
+      },
+      "battle": "one shot triggered, released, no stage change",
+      "motion": "static preference and candidate missing-file fallback verified",
+      "replacement": "selection, cancel, explicit confirm and return",
+      "scrollWidth": 1280
+    },
+    "screenshots": [
+      {
+        "file": "candidate-battle-1280.png",
+        "sha256": "2c61d5bc5ced1bc8a18e78eefb6672053e654077b527b8e60d4fd948ee003a63"
+      },
+      {
+        "file": "candidate-replacement-1280.png",
+        "sha256": "996da6f3dd0b7729a8e58dcff7d856067dbe53fc730b10415c1034177a4ed8f3"
+      }
+    ],
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36 Edg/157.0.0.0",
+    "dpr": 1
+  }
+]

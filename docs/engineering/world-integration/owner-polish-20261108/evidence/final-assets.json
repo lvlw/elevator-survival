@@ -1,0 +1,49 @@
+{
+  "game": {},
+  "medicine": {},
+  "assets": {
+    "a": {
+      "icon": {
+        "x": 58,
+        "y": 216.171875,
+        "width": 16,
+        "height": 16
+      },
+      "slot": {
+        "x": 304,
+        "y": 199.171875,
+        "width": 320,
+        "height": 420
+      },
+      "iconSrc": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEwLjUgMy41YTcgNyAwIDEgMCAwIDE0IDcgNyAwIDAgMCAwLTE0Wk0xNS41IDE1LjUgMjEgMjEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2U3ZDRhYyIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==",
+      "npcSrc": "/src/assets/presentation/world-ui-v1/npc-lin-v1.png",
+      "buttonName": "药房搜索12"
+    },
+    "b": {
+      "icon": {
+        "x": 58,
+        "y": 216.171875,
+        "width": 16,
+        "height": 16
+      },
+      "slot": {
+        "x": 304,
+        "y": 199.171875,
+        "width": 320,
+        "height": 420
+      },
+      "iconSrc": "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%3e%3ccircle%20cx='10'%20cy='10'%20r='6'%20stroke='%23f4e8ca'%20stroke-width='2'/%3e%3cpath%20d='m14.5%2014.5%205.2%205.2'%20stroke='%23d2a468'%20stroke-width='3'%20stroke-linecap='round'/%3e%3cpath%20d='M8%209a2%202%200%200%201%202-2'%20stroke='%23f4e8ca'%20stroke-width='1.5'%20stroke-linecap='round'/%3e%3c/svg%3e",
+      "npcSrc": "/experiments/owner-polish-20261108/assets/npc-lin-candidate.png",
+      "buttonName": "药房搜索12"
+    },
+    "nativeReduced": true,
+    "brokenNeutral": true,
+    "unknownNeutral": true,
+    "afterFailureNewMapping": true,
+    "lateDetachedEventsIgnored": true,
+    "clicks": 4,
+    "result": "PASS"
+  },
+  "errors": [],
+  "browser": "157.0.4341.42"
+}

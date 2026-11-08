@@ -1,0 +1,39 @@
+{
+  "seed": "owner-polish-pharmacy-test-12",
+  "roll": 70,
+  "ground": [
+    {
+      "name": "绷带",
+      "quantity": 1
+    },
+    {
+      "name": "急救包",
+      "quantity": 1
+    }
+  ],
+  "before": {
+    "hp": {
+      "current": 10,
+      "maximum": 12
+    },
+    "energy": {
+      "current": 58,
+      "maximum": 100
+    },
+    "wounds": [],
+    "bleeding": false
+  },
+  "after": {
+    "hp": {
+      "current": 12,
+      "maximum": 12
+    },
+    "energy": {
+      "current": 58,
+      "maximum": 100
+    },
+    "wounds": [],
+    "bleeding": false
+  },
+  "writes": 1
+}

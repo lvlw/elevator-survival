@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>电梯求生 · 医院界面审看</title>
+<link rel="stylesheet" href="review.css">
+<script src="review.js" defer></script>
+</head>
+<body>
+<div class="shell">
+  <header class="mast">
+    <div class="identity"><span class="stamp" aria-hidden="true">▥</span><div><p class="eyebrow">ELEVATOR SURVIVAL</p><h1>电梯求生 <span>医院世界</span></h1></div></div>
+    <div class="mast-options"><span class="candidate">离线候选 · 不读写存档</span><label class="toggle"><input id="motion" type="checkbox" checked> 播放动态样片</label></div>
+  </header>
+  <nav class="scenarios" aria-label="候选状态">
+    <button data-view="explore" aria-pressed="true"><span>01</span> 探索与流血</button>
+    <button data-view="battle" aria-pressed="false"><span>02</span> 战斗舞台</button>
+    <button data-view="npc" aria-pressed="false"><span>03</span> 人物会面</button>
+    <button data-view="dead" aria-pressed="false"><span>04</span> 死亡与新尝试</button>
+  </nav>
+  <section class="hud" aria-label="公开身体状态">
+    <div class="metric health"><div><span>♥ 生命</span><b id="health-count">8 / 12</b></div><progress id="health" value="8" max="12">8 / 12</progress><small id="injury-state">开放伤口 · 未流血</small></div>
+    <div class="metric energy"><div><span>ϟ 精力</span><b>71 / 100</b></div><progress value="71" max="100">71 / 100</progress><small>第 3 日</small></div>
+    <div class="metric food"><div><span>饱食</span><b>2 / 6</b></div><progress value="2" max="6">2 / 6</progress><small>当前位置状态样本</small></div>
+    <button id="body-action" class="utility">十 <span>身体</span></button>
+  </section>
+  <main>
+    <aside class="panel brief" aria-label="委托摘要">
+      <p class="eyebrow">CURRENT ASSIGNMENT</p><h2>未完成的转运</h2>
+      <div class="step"><b>01 恢复供电</b><small class="done">已恢复</small><p>医院转运支路已通电。</p></div>
+      <div class="step"><b>02 恢复转运</b><small>未接驳</small><p>到医院转运平台安装装置。</p></div>
+      <div class="step"><b>03 携回样本</b><small>待交付</small><p>带回医院电梯前室交付。</p></div>
+      <p class="muted">位置、装备与状态均为审看样本。</p>
+    </aside>
+    <section id="stage" class="stage" aria-label="候选舞台"></section>
+    <aside class="panel inventory" aria-label="携带物品">
+      <div class="inventory-title"><h2>携带</h2><span class="muted" id="weight">重量 14 · 正常</span></div>
+      <h3>装备</h3>
+      <div class="equipment" id="equipment"></div>
+      <div class="inventory-title"><h3>背包</h3><small id="cells-count">格位 5 / 24</small></div>
+      <div class="cells" id="cells" aria-label="六列四行背包"></div>
+      <h3>快捷位</h3>
+      <div class="quick" id="quick"></div>
+      <p class="muted">长名称进入详情，快捷位保持等高。</p>
+      <button id="medical" class="utility wide">十 药食与维护</button>
+    </aside>
+  </main>
+  <footer><span id="status" aria-live="polite">探索样本：先对照伤口与流血。</span><span>WORLD-OWNER-POLISH · 2026-11</span></footer>
+</div>
+<dialog id="sheet" aria-labelledby="sheet-title"><form method="dialog"><button aria-label="关闭" class="close">×</button></form><h2 id="sheet-title"></h2><div id="sheet-body"></div></dialog>
+</body>
+</html>

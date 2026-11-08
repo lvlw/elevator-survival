@@ -1,0 +1,17 @@
+{
+  "status": "isolated proposal, pending adoption",
+  "configurationId": "owner-polish-h2-bandage-test-v0.1",
+  "contentId": "owner-polish-h2-bandage-content-test-v0.1",
+  "baseConfiguration": "infected-world-entry-test-v0.1",
+  "overrides": {
+    "grant.H2-search": {
+      "bandage": 2
+    }
+  },
+  "unchangedPharmacyWeights": {
+    "disinfect": 35,
+    "painkiller": 30,
+    "firstaid": 20,
+    "suppressant": 15
+  }
+}

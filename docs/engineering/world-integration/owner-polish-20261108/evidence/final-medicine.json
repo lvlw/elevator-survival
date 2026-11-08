@@ -1,0 +1,23 @@
+{
+  "game": {},
+  "medicine": {
+    "fixture": "TEST-only fixed bleeding, real React use and durable restore",
+    "hp": [
+      5,
+      6
+    ],
+    "bleed": [
+      true,
+      false
+    ],
+    "revisions": [
+      1,
+      2
+    ],
+    "previewCost": 0,
+    "result": "PASS"
+  },
+  "assets": {},
+  "errors": [],
+  "browser": "157.0.4341.42"
+}

@@ -1,0 +1,15 @@
+{
+  "seed": "owner-polish-pharmacy-test-2",
+  "roll": 9,
+  "ground": [
+    {
+      "name": "绷带",
+      "quantity": 1
+    },
+    {
+      "name": "消毒剂",
+      "quantity": 1
+    }
+  ],
+  "writes": 7
+}

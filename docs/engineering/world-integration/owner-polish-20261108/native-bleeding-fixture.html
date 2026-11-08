@@ -1,0 +1,25 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>TEST-only bleeding boundary</title>
+<p>TEST-only · prepares an isolated checkpoint from the formal initial and departure producers.</p>
+<script type="module">
+import { createReservation } from '/src/app/infected-browser/reservation.ts'
+import { CHECKPOINT_KEY, RESERVATION_KEY } from '/src/app/infected-browser/schema.ts'
+import { checkpointFor } from '/src/app/infected-browser/checkpoint.ts'
+import { createCombatTestFactory } from '/src/core/residence-combat/test-fixtures.ts'
+import { expectation } from '/src/state/residence-save/combat-test-fixtures.ts'
+import { serializeCombatResidenceSave } from '/src/state/residence-save/combat-codec.ts'
+
+if (location.hostname !== '127.0.0.1' || new URLSearchParams(location.search).get('isolated') !== '1') throw new Error('TEST-only loopback fixture')
+const { reservation, composition } = createReservation({
+  characterId: 'owner-polish-bleed-test', runId: 'combat-test-execution',
+  seed: 'combat-seed', generation: 'owner-polish-test',
+}, { tool: 'crow', specialty: 'engineer' })
+const { value } = createCombatTestFactory(() => composition.dependencies).fixture({ hp: 5, bleeding: true })
+const expected = expectation(value, composition.dependencies, { ...reservation.execution, ...reservation.choices })
+const text = serializeCombatResidenceSave(value, expected, composition.policy)
+if (localStorage.getItem(RESERVATION_KEY) || localStorage.getItem(CHECKPOINT_KEY)) throw new Error('TEST requires fresh isolated storage')
+localStorage.setItem(RESERVATION_KEY, JSON.stringify(reservation))
+localStorage.setItem(CHECKPOINT_KEY, JSON.stringify(checkpointFor(reservation, { expected, text }, composition)))
+document.body.dataset.ready = 'true'
+</script>

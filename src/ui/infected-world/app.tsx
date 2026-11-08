@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import type { BrowserControls } from '../../app/infected-browser/types'
+import type { BrowserControls, NewAttemptResult } from '../../app/infected-browser/types'
 import { BrowserOwnerError } from '../../app/infected-browser/errors'
 import { isPlayerBusinessError } from '../../state/residence-session/player-errors'
 import type { PreplayConfirmation } from '../../app/infected-preplay/types'
@@ -34,6 +34,7 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
   const [draft, setDraft] = useState<Draft | null>(null), [confirmation, setConfirmation] = useState<Confirmation | null>(null)
   const [message, setMessage] = useState<string | null>(null), [fatal, setFatal] = useState(false)
   const singleFlight = useRef(false)
+  const [restart, setRestart] = useState<{ controls: BrowserControls; result: NewAttemptResult | null } | null>(null)
   useEffect(() => { document.documentElement.classList.add('iw-document'); return () => { document.documentElement.classList.remove('iw-document') } }, [])
   const view = snapshot.status === 'ready' && snapshot.preplay?.status === 'stable' && snapshot.preplay.view?.status === 'ready' ? snapshot.preplay.view : null
   const controls = owner?.controls() ?? null
@@ -101,6 +102,18 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
     current?.confirmSetup(choices)
     if (owner?.getSnapshot().status === 'ready') current?.acknowledgeReading(marks)
   })} />
+  if (restart && controls === restart.controls && view?.phase === 'dead') return <SetupPanel
+    setup={{ tools: ['crow', 'lamp', 'toolbox'], specialties: ['scout', 'engineer', 'survival'] }}
+    replacement={{ result: restart.result, cancel: () => guarded(() => {
+      controls.cancelNewAttempt(); setRestart(null)
+    }), retry: () => guarded(() => {
+      const result = controls.retryNewAttempt()
+      setRestart(result === 'saved' ? null : { controls, result })
+    }) }}
+    onConfirm={choices => guarded(() => {
+      const result = controls.confirmNewAttempt(choices)
+      setRestart(result === 'saved' ? null : { controls, result })
+    })} />
   if (!view || !controls) return <SystemScreen snapshot={snapshot}
     onAcquire={() => { setDraft(null); setConfirmation(null); setMessage(null); void owner?.acquire() }}
     onRetryRead={() => guarded(() => { owner?.controls()?.retryRead() })}
@@ -111,6 +124,12 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
   }} onContextMenuCapture={()=>{story.cancel();closure.cancel()}}><ActionInformationProvider view={view} controls={controls}><GameShell view={view} feed={snapshot.preplay!.feed} onAction={choose} describeAction={controls.describeAction}
     narrative={!draftCurrent && !confirmationCurrent ? <>{!closure.selection&&<StoryPanel story={story} view={view} controls={controls} />}<ClosurePanel story={closure} view={view} onAction={choose}/></> : null}
     onRetrySave={() => guarded(() => { controls.retrySave() })}
+    onNewAttempt={() => guarded(() => {
+      controls.beginNewAttempt()
+      presentation.cancel(); story.cancel(); closure.cancel()
+      setDraft(null); setConfirmation(null); setMessage(null)
+      setRestart({ controls, result: null })
+    })}
     presentation={<CommittedActionCue cue={presentation.cue} reduced={presentation.reduced} localReduced={presentation.localReduced} inBattle={view.combat !== null}
       onReduce={presentation.setLocalReduced} onSkip={presentation.skip} />}>
     {(message || snapshot.preplay?.error) && <div className="iw-feedback" role="alert">{message ?? snapshot.preplay?.error?.message}<button aria-label="关闭提示" onClick={() => setMessage(null)}>×</button></div>}

@@ -2,20 +2,27 @@ import { createResidenceSessionDomain } from '../../state/residence-session/comb
 import { wrapPlayerSession } from '../../state/residence-session/player-facade'
 import { buildCombatSession } from '../../state/residence-session/combat-session'
 import { createPreplayController } from '../infected-preplay/controller'
-import { validateCheckpoint } from './checkpoint'
+import { checkpointFor, validateCheckpoint } from './checkpoint'
 import { validateReservation } from './reservation'
 import { initialBrowserMaterials } from './initial-materials'
-import { preparedBrowserWriter } from './storage'
+import { writeBrowserCheckpoint } from './storage'
 import type { BrowserStorage } from './types'
 import type { Checkpoint, Reservation } from './schema'
 import { BrowserOwnerError } from './errors'
 import { narrativeKnowledge } from '../../state/residence-session/narrative-entry/projection'
 /** Expected is fixed BEFORE any S or domain candidate decode. No value is installed here twice. */
-export function createBrowserContext(r: Reservation, cp: Checkpoint | null, storage: BrowserStorage, active: () => boolean) {
+export function createBrowserContext(r: Reservation, cp: Checkpoint | null, storage: BrowserStorage, active: () => boolean,
+  options: Readonly<{ replacement?: boolean; capture?: (checkpoint: Checkpoint) => void }> = {}) {
   const guard = <T>(fn: () => T): T => { if (!active()) throw new BrowserOwnerError('LOST_LEASE'); return fn() }
   const c = validateReservation(r), expected = cp ? validateCheckpoint(r, cp, c) : null
+  let lastSaved = cp
   const session = buildCombatSession(createResidenceSessionDomain(), { policy: c.policy, startup: cp ? 'existing' : 'first',
-    storage: { mode: 'prepared', read: () => guard(() => cp?.v4Text ?? null), writePrepared: preparedBrowserWriter(storage, r, c, active) },
+    storage: { mode: 'prepared', read: () => guard(() => cp?.v4Text ?? null), writePrepared: prepared => guard(() => {
+      const next = checkpointFor(r, prepared, c)
+      if (options.capture) options.capture(next)
+      else writeBrowserCheckpoint(storage, r, next, active, options.replacement === true)
+      lastSaved = next
+    }) },
     ...(expected ? { provideColdExpectation: () => guard(() => expected) } : { provideInitialMaterials: () => guard(() => initialBrowserMaterials(r, c.dependencies)) }) })
   const ports = wrapPlayerSession(session, c.policy, c.labels)
   // Recheck immediately AFTER controller busy callbacks, not only before entering the controller.
@@ -28,6 +35,11 @@ export function createBrowserContext(r: Reservation, cp: Checkpoint | null, stor
     retryRead: () => guard(ports.retryRead), synchronize: () => guard(ports.synchronize) })
   let persistedRevision = cp ? validateCheckpoint(r, cp, c).revision : -1
   return Object.freeze({ controller, hasCurrent: () => session.getState().current !== null,
+    savedDeath: () => {
+      const state = session.getState()
+      return lastSaved?.expected.phase === 'dead' && state.current?.character.revision === lastSaved.expected.revision
+        && state.persistence !== 'save-failed' ? lastSaved : null
+    },
     readingCurrent: () => {
       const state = session.getState(), value = state.current
       if (!value) return null

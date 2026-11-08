@@ -10,9 +10,12 @@ export type BrowserSnapshot = Readonly<{ status: 'idle' | 'acquiring' | 'occupie
   'loading' | 'read-error' | 'blocked' | 'reservation-failed' | 'ready' | 'suspended' | 'disposed';
   setup: Readonly<{ tools: readonly string[]; specialties: readonly string[] }> | null;
   preplay: PreplaySnapshot | null; message: string | null }>
+export type NewAttemptResult = 'saved' | 'save-failed' | 'prepare-failed'
 export type BrowserControls = Readonly<Pick<PreplayController, 'getSnapshot' | 'execute' | 'confirm' | 'preview' |
   'beginDraft' | 'cancel' | 'executeDraft' | 'retrySave' | 'synchronize' | 'describeAction'> & {
   confirmSetup(choices: unknown): BrowserSnapshot; retryRead(): BrowserSnapshot
+  beginNewAttempt(): void; cancelNewAttempt(): void
+  confirmNewAttempt(choices: unknown): NewAttemptResult; retryNewAttempt(): NewAttemptResult
   getReading(): ReadingView; acknowledgeReading(marks: readonly ReadingMark[]): ReadingView }>
 export type BrowserOwner = Readonly<{ getSnapshot(): BrowserSnapshot; subscribe(listener: () => void): () => void;
   controls(): BrowserControls | null; acquire(): Promise<BrowserSnapshot>; suspend(): void; dispose(): void }>

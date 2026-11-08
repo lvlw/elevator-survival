@@ -17,13 +17,14 @@ const schema = z.strictObject({ format: z.literal('infected-narrative-reading'),
   marks: z.array(mark).max(readingKeys.length) })
 
 /** A subordinate record, not a save, lease, task fact or replay log. */
-export function createReadingRecord(storage: BrowserStorage, reservation: Reservation, active: () => boolean, current: () => Current | null) {
+export function createReadingRecord(storage: BrowserStorage, reservation: Reservation, active: () => boolean, current: () => Current | null, replacement = false) {
+  const key = replacement ? READING_KEY + '.' + reservation.generation : READING_KEY
   const binding = Object.freeze({ generation: reservation.generation, character: reservation.characterId,
     execution: JSON.stringify(reservation.execution), versions: JSON.stringify(reservation.versions), lock: LOCK_NAME })
   let marks: z.infer<typeof mark>[] = [], dirty = false, warning: string | null = null
   const valid = () => { if (!active()) throw new Error('Reading owner is no longer active'); return current() }
   try {
-    const c = valid(), raw = storage.getItem(READING_KEY)
+    const c = valid(), raw = storage.getItem(key)
     if (raw !== null) {
       if (raw.length > 24000) throw new Error('Oversized record')
       const record = readJSON(schema, raw)
@@ -40,7 +41,7 @@ export function createReadingRecord(storage: BrowserStorage, reservation: Reserv
     if (!dirty || !c?.saved || marks.some(m => m.revision > c.persistedRevision)) return query()
     try {
       const text = JSON.stringify({ format: 'infected-narrative-reading', version: 1, storyVersion: STORY_VERSION, binding, marks })
-      valid(); storage.setItem(READING_KEY, text); dirty = false
+      valid(); storage.setItem(key, text); dirty = false
     } catch { warning = '阅读记录暂未保存；游戏行动不会重发。' }
     return query()
   }

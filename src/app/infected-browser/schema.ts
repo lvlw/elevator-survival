@@ -17,6 +17,9 @@ export const reservationSchema = z.strictObject({ format: z.literal('elevator-su
   mission: declarationSchema, choices: choicesSchema, versions: combatVersionsSchema })
 export const checkpointSchema = z.strictObject({ format: z.literal('elevator-survival.infected-checkpoint'), formatVersion: z.literal(1),
   slot: z.literal(SLOT), generation: idSchema, expected: combatExpectationSchema, v4Text: z.string().min(1) })
+export const replacementSchema = z.strictObject({ format: z.literal('elevator-survival.infected-replacement'),
+  formatVersion: z.literal(1), reservation: reservationSchema, checkpoint: checkpointSchema })
+export const storedCheckpointSchema = z.union([checkpointSchema, replacementSchema])
 export type Reservation = z.infer<typeof reservationSchema>
 export type Checkpoint = z.infer<typeof checkpointSchema>
 export function readRecord<T>(schema: z.ZodType<T>, input: unknown): Readonly<T> {

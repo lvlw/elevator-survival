@@ -41,7 +41,12 @@ export function InventoryPanel({ view, onAction, describeAction }: { view: Playe
     </div>
     <div className="iw-quick-area"><h3>快捷位</h3><div className="iw-quick" aria-label="快捷栏">{[0, 1].map(slot => {
       const item = view.carried.find(item => item.container === 'quick' && item.slot === slot)
-      return <div key={slot}><span>快捷 {slot + 1}</span>{item ? <><ItemHint item={item}><ItemTile item={item} onMenu={menuActions(item).length ? showMenu : undefined} /></ItemHint><small>{publicItemName(item.name)}{item.quantity > 1 ? ` ×${item.quantity}` : ''}</small></> : <span className="iw-empty-slot">空</span>}</div>
+      const canOperate = item ? menuActions(item).length > 0 : false
+      return <div className="iw-quick-slot" key={slot} data-state={!item ? 'empty' : menu?.item.selector === item.selector ? 'selected' : canOperate ? 'filled' : 'readonly'}>
+        <span>快捷 {slot + 1}</span>
+        {item ? <ItemHint item={item}><ItemTile item={item} onMenu={canOperate ? showMenu : undefined} /></ItemHint> : <span className="iw-empty-slot">空</span>}
+        <small title={item ? publicItemName(item.name) : undefined}>{item ? publicItemName(item.name) : '未分配'}</small>
+      </div>
     })}</div></div>
     {menu && <ContextMenu name={publicItemName(menu.item.name)} actions={menuActions(menu.item)} x={menu.x} y={menu.y} onClose={closeMenu} onAction={action => { const item = menu.item; setMenu(null); onAction(action, item) }} />}
   </aside>

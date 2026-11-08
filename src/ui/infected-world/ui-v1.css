@@ -246,6 +246,21 @@
 .iw-choice > span { flex:1; min-width:0; }.iw-choice-grid { gap:12px; }
 .iw-system-card { max-height:calc(100dvh - 48px); overflow:auto; border-radius:0; }
 .iw-terminal { border-radius:0; background:#101a21ed; }.iw-terminal-values > div { border-radius:0; }
+.iw-meter[data-bleeding] { position:relative; padding-inline:6px; outline:1px solid #b75b59; }
+.iw-meter[data-bleeding] meter { accent-color:#ec7c72; }
+.iw-app .iw-bleeding-flag { position:absolute; top:calc(100% + 4px); left:0; z-index:3; min-height:26px; padding:2px 7px; white-space:nowrap; background:#50272a; border:1px solid #dc8d82; color:#ffe1d6; font-size:12px; }
+.iw-bleeding-details,.iw-replacement-warning { border-left:3px solid #e29386; padding-left:10px; color:#ffe0d5; }
+.iw-quick-area .iw-quick > .iw-quick-slot { display:grid; grid-template-rows:16px 1fr 16px; height:86px; gap:3px; overflow:hidden; }
+.iw-quick-slot > .iw-empty-slot { min-height:0; height:100%; }
+.iw-quick-slot .iw-item { height:100%; }
+.iw-quick-slot > small { min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.iw-quick-slot[data-state="selected"] .iw-item { outline:2px solid #c6aa76; outline-offset:-2px; }
+.iw-quick-slot[data-state="readonly"] .iw-item { border-style:dashed; }
+.iw-action-glyph { width:16px; height:16px; display:inline-block; object-fit:contain; vertical-align:-3px; margin-right:5px; pointer-events:none; }
+.iw-action-cost { margin-left:5px; font-size:0.8em; color:#c9b691; white-space:nowrap; }
+.iw-battle .iw-battle-actions { gap:5px; }
+.iw-battle-actions button:first-child { min-height:36px; padding-block:3px; }
+
 @media(max-width:1919px) { .iw-battle { --iw-bh:44px; --iw-bt:56px; --iw-ba:88px; --iw-bf:32px; --iw-bgap:8px; } }
 @media(max-width:1599px) { .iw-battle { --iw-bp:12px; } }
 @media(max-width:1439px) { .iw-battle { --iw-bh:40px; --iw-bt:48px; --iw-ba:80px; width:100%; height:100%; }.iw-battle-size { display:none; }.iw-battle > header h1 { font-size:18px; }.iw-intent { padding:5px 8px; }.iw-battle-actions .iw-action-entry { flex-basis:105px; }.iw-battle-actions button:first-child { font-size:13px; }.iw-battle .iw-committed-cue { font-size:12px; } }

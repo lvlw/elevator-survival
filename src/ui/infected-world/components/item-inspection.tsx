@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react'
 import type { BrowserControls } from '../../../app/infected-browser/types'
 import type { PlayerAction, PlayerHandle, PlayerItem, PlayerReadyView } from '../../../state/residence-session/player-types'
-import { itemImage, itemPlaceholder } from '../assets'
+import { ItemSlotPicture } from '../asset-slots'
 import { actionName, publicItemName, resourceName } from '../labels'
 import { ContentLayer } from './content-layer'
 import { ActionButton } from './action-information'
@@ -12,9 +12,7 @@ export const useItemInspection = () => useContext(Inspect)
 
 /** One current public item image. Old errors cannot change a different URL's presentation. */
 export function ItemPicture({ name, className }: { name: string; className?: string }) {
-  const src = itemImage(name), [failed, setFailed] = useState<string | null>(null)
-  const current = failed === src ? itemPlaceholder : src
-  return <img key={src} className={className} src={current} alt="" aria-hidden="true" onError={() => { if (current !== itemPlaceholder) setFailed(src) }} />
+  return <ItemSlotPicture name={name} className={className} />
 }
 
 export function ItemInspectionProvider({ view, describeAction, onAction, children }: {

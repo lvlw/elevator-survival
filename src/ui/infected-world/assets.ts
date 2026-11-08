@@ -106,4 +106,23 @@ export function sceneArt(location: Readonly<{place: string; name: string}> | nul
 }
 /** Only public identities may select art. Unknown values remain neutral. */
 export const npcImage = (name: string): string | null => name === '林岑' ? art42 : name === '周衡' ? art43 : null
+export const actionGlyphs = {
+  source: 'M10.5 3.5a7 7 0 1 0 0 14 7 7 0 0 0 0-14ZM15.5 15.5 21 21',
+  move: 'M5 19 19 5M9 5h10v10',
+  inventory: 'M4 7h16v13H4zM4 7l3-4h10l3 4M9 12h6',
+  medical: 'M9 4h6v5h5v6h-5v5H9v-5H4V9h5z',
+  maintenance: 'm5 19 8-8m-2-3 5-5 2 4 3 1-5 5-4-1-5 8H3z',
+  rest: 'M4 17h16M4 11v9m16-9v9M4 14h16v3M7 10h5v4H7z',
+  combat: 'M12 3 4 7v5c0 4 4 7 8 9 4-2 8-5 8-9V7zM8 12h8m-4-4v8',
+  terminal: 'M9 5H4v14h5M8 12h12m-4-4 4 4-4 4',
+  task: 'M7 4h10v16H7zM9 9h6m-6 4h6m-6 4h4',
+} as const
+export type ActionGlyph = keyof typeof actionGlyphs
+export function actionImage(key: string): string | null {
+  if (!Object.hasOwn(actionGlyphs, key)) return null
+  const path = actionGlyphs[key as ActionGlyph]
+  const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="' + path +
+    '" fill="none" stroke="#e7d4ac" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+  return 'data:image/svg+xml;base64,' + btoa(svg)
+}
 export const closeupImages = { 'closeup-component': art18, 'closeup-install': art19, 'closeup-power': art20, 'closeup-records': art21, 'event-isolation-fire-door': art22, 'objective-pathogen-case': art44 } as const

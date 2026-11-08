@@ -8,6 +8,7 @@ import { actionName, publicItemName } from '../labels'
 import { SafeFacts } from './confirmation-layer'
 import { DetailsPopover } from './details-popover'
 import { ShortHint, itemPurpose } from '../story-interaction/short-hint'
+import { ActionGlyphImage } from '../asset-slots'
 import { uniqueToolRequest } from '../story-interaction/unique-tool'
 
 type Information = { action: PlayerAction; item?: PlayerItem; anchor: HTMLElement; controls: BrowserControls; focus: boolean; ordinal?: number }
@@ -74,12 +75,13 @@ function BriefAction({ action, item, controls }: { action: PlayerAction; item?: 
   }
 }
 
-export function ActionButton({ action, onAction, children, ariaLabel, item, className }: { action: PlayerAction; onAction: () => void; children?: ReactNode; ariaLabel?: string; item?: PlayerItem; className?: string }) {
+export function ActionButton({ action, onAction, children, ariaLabel, item, className, compactCost = false }: { action: PlayerAction; onAction: () => void; children?: ReactNode; ariaLabel?: string; item?: PlayerItem; className?: string; compactCost?: boolean }) {
   const information = useContext(Context)
   return <span className="iw-action-entry"><button type="button" className={className} aria-label={ariaLabel}
     onMouseEnter={e => information?.short(action, e.currentTarget, item)} onMouseLeave={() => information?.hideShort()}
     onFocus={e => information?.short(action, e.currentTarget, item)} onBlur={() => information?.hideShort()}
     onKeyDown={event => { if (event.key === 'F1') { event.preventDefault(); information?.show(action, event.currentTarget, true, item) } }}
-    onClick={() => { information?.dismiss(false); onAction() }}>{children ?? actionName(action)}</button>
+    onClick={() => { information?.dismiss(false); onAction() }}><ActionGlyphImage family={action.family} />{children ?? actionName(action)}
+    {compactCost && action.cost !== null && <span className="iw-action-cost" title="精力消耗" aria-label={`精力消耗 ${action.cost}`}>{action.cost}</span>}</button>
   </span>
 }

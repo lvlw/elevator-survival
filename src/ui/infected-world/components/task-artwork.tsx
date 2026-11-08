@@ -1,5 +1,6 @@
 import type { PlayerAction, PlayerReadyView } from '../../../state/residence-session/player-types'
-import { closeupImages, npcImage } from '../assets'
+import { NpcSlotPicture, SlotPicture } from '../asset-slots'
+import { closeupImages } from '../assets'
 
 /** Closed public interaction bindings. These images grant no facts, methods or lifecycle. */
 export function TaskArtwork({ view, action }: { view: PlayerReadyView; action: PlayerAction }) {
@@ -12,6 +13,9 @@ export function TaskArtwork({ view, action }: { view: PlayerReadyView; action: P
     取得转运组件: 'closeup-component', 提取样本: 'objective-pathogen-case', 安装转运装置: 'closeup-install',
   }
   const key = Object.hasOwn(bindings, action.label) ? bindings[action.label] : null
-  const src = npc ? npcImage(npc) : key ? closeupImages[key] : null
-  return src ? <figure className={`iw-task-art${npc ? ' iw-task-art--npc' : ''}`}><img key={src} src={src} alt={npc ? `${npc} · 当前公开互动` : `${action.label} · 当前操作近景`} onError={event => { event.currentTarget.hidden = true }} /><figcaption>{npc ?? action.label}</figcaption></figure> : null
+  const src = key ? closeupImages[key] : null
+  return npc || src ? <figure className={`iw-task-art${npc ? ' iw-task-art--npc' : ''}`}>
+    {npc ? <NpcSlotPicture name={npc} /> : <SlotPicture art={src ? { src } : null} alt={action.label + ' · 当前操作近景'} />}
+    <figcaption>{npc ?? action.label}</figcaption>
+  </figure> : null
 }

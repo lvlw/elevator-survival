@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import type { PlayerAction, PlayerItem, PlayerReadyView } from '../../../state/residence-session/player-types'
-import { sceneArt } from '../assets'
+import { SceneSlotPicture, useSceneSlot } from '../asset-slots'
 import { ItemPicture, useItemInspection } from './item-inspection'
 import { actionName, publicItemName } from '../labels'
 import { ActionButton } from './action-information'
@@ -13,7 +13,7 @@ import { ContentLayer } from './content-layer'
 import { TaskArtwork } from './task-artwork'
 import { ItemHint } from '../story-interaction/short-hint'
 
-export function WorldStage({ view, onAction, presentation, narrative }: { view: PlayerReadyView; onAction: (action: PlayerAction, item?: PlayerItem) => void; presentation?: ReactNode; narrative?: ReactNode }) {
+export function WorldStage({ view, onAction, presentation, narrative, onNewAttempt }: { view: PlayerReadyView; onAction: (action: PlayerAction, item?: PlayerItem) => void; presentation?: ReactNode; narrative?: ReactNode; onNewAttempt?: () => void }) {
   const [resultsOpen, setResultsOpen] = useState(true)
   const inspect = useItemInspection()
   const [context, setContext] = useState<PlayerAction | null>(null)
@@ -24,14 +24,14 @@ export function WorldStage({ view, onAction, presentation, narrative }: { view: 
   useEffect(() => { if (context && !contextCurrent) setContext(null) }, [context, contextCurrent])
   const signature = view.sources.map(source => `${source.label}:${source.completed}`).join('|')
   useEffect(() => { setResultsOpen(true) }, [signature, view.location?.place, view.location?.name])
-  const art = sceneArt(view.location, view.point)
+  const art = useSceneSlot(view.location, view.point)
   const revealed = view.ground.length > 0 || view.sources.some(source => source.completed)
   const groundAction = (item: PlayerItem) => view.actions.find(action => item.ordinary ? action.family === 'inventory' && action.label === '拾取' : action.family === 'task-transfer' && action.label === '拾取任务物')
   const taskGroups = [...new Set(view.tasks.choices.map(a => a.label))].map(label => ({ label, choices: view.tasks.choices.filter(a => a.label === label) }))
   return <section className="iw-stage" data-scene={art?.key ?? 'neutral'}>
-    {art && <img key={art.key} className="iw-scene-plate" src={art.src} alt="" aria-hidden="true" style={{ objectPosition: `${art.focal[0] * 100}% ${art.focal[1] * 100}%` }} onError={event => { event.currentTarget.hidden = true }} />}
+    <SceneSlotPicture art={art} className="iw-scene-plate" />
     <div className="iw-scene-shade" aria-hidden="true" />
-    {view.point === 'first-hub' ? <HubPanel view={view} onAction={onAction} /> : view.point === 'living-hub' || view.point === 'dead' ? <TerminalPanel view={view} /> : view.combat ? <BattleStage view={view} onAction={onAction} presentation={presentation} /> : <>
+    {view.point === 'first-hub' ? <HubPanel view={view} onAction={onAction} /> : view.point === 'living-hub' || view.point === 'dead' ? <TerminalPanel view={view} onNewAttempt={onNewAttempt} /> : view.combat ? <BattleStage view={view} onAction={onAction} presentation={presentation} /> : <>
       <header className="iw-room-heading"><div><p className="iw-eyebrow">{view.location?.place} / 当前地点</p><h1>{view.location?.name}</h1></div><div >{contextActions.length > 0 && <button type="button" className="iw-scene-details-trigger" onClick={() => { contextFocus.current = true; setContext(contextActions[0]!) }}>查看现场详情</button>}</div></header>
       <div className="iw-scene-card"><div className="iw-room-content"><PlatformPanel view={view}/><section className="iw-room-interactions" aria-label="当前现场互动">
         {view.sources.map((source, index) => <div className="iw-source" key={index}><strong>{source.label}</strong>{source.completed ? <span className="iw-muted">已处理</span> : <div className="iw-actions">{source.choices.map((action, n) => <ActionButton action={action} key={n} onAction={() => onAction(action)}>{actionName(action)}</ActionButton>)}</div>}</div>)}
